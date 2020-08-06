@@ -15,13 +15,13 @@ namespace HuajiTech.Mirai
         public async Task<Message> SendAsync(List<MessageElement> message)
         {
             var result = JObject.Parse(await InternalSendAsync(message.ToArray())).CheckError();
-            return new Message(result.Value<int>("messageId"), message);
+            return new Message(result.Value<int>("messageId"), message, CurrentSession);
         }
 
         public async Task<Message> SendAsync(MessageElement[] message)
         {
             var result = JObject.Parse(await InternalSendAsync(message)).CheckError();
-            return new Message(result.Value<int>("messageId"), message.ToList());
+            return new Message(result.Value<int>("messageId"), message.ToList(), CurrentSession);
         }
 
         public async Task<Message> SendAsync(string message) => await SendAsync(new MessageElement[] { new PlainText(message) });
