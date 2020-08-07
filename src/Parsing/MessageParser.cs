@@ -19,7 +19,6 @@ namespace HuajiTech.Mirai.Parsing
             "AtAll" => ToMentionAll(),
             "Plain" => ToPlainText(element),
             "Poke" => ToPoke(element),
-            "Quote" => ToQuote(element),
             _ => ParseExt(element)
         };
 
@@ -31,11 +30,11 @@ namespace HuajiTech.Mirai.Parsing
             }
         }
 
-        public static MessageParser GetParser(string type) => type switch
+        public static MessageParser GetParser(Session session, JObject data) => data.Value<string>("type") switch
         {
-            "FriendMessage" => new UserMessageParser(),
-            "GroupMessage" => new GroupMessageParser(),
-            "TempMessage" => new UserMessageParser(),
+            "FriendMessage" => new UserMessageParser(session),
+            "GroupMessage" => new GroupMessageParser(new Group(session, data["sender"]["group"].Value<long>("id"))),
+            "TempMessage" => new MemberMessageParser(session),
             _ => throw new InvalidOperationException()
         };
 
@@ -52,12 +51,6 @@ namespace HuajiTech.Mirai.Parsing
         private PlainText ToPlainText(JObject element) => new PlainText(element.Value<string>("text"));
 
         private Poke ToPoke(JObject element) => new Poke(Poke.PokeDictionary.FirstOrDefault(x => x.Value == element.Value<string>("name")).Key);
-
-        private Quote ToQuote(JObject element) => new Quote(null, null, null);
-
-        internal MessageParser()
-        {
-        }
 
         internal MessageParser(Session session) : base(session)
         {

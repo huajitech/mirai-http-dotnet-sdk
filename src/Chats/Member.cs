@@ -10,6 +10,6 @@ namespace HuajiTech.Mirai
 
         public Member(Session session, long group, long target) : base(session, target) => Group = new Group(session, group);
 
-        public Member(Session session, Group group, long target) : base(session, target) => Group = group;
+        public Member(Group group, long target) : base(group.CurrentSession, target) => Group = group;
     }
 }

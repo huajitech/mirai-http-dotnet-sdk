@@ -1,6 +1,7 @@
 ﻿using HuajiTech.Mirai.Messaging;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Linq;
 
 namespace HuajiTech.Mirai.Parsing
 {
@@ -8,17 +9,21 @@ namespace HuajiTech.Mirai.Parsing
     {
         private Group Group { get; }
 
-        protected override MessageElement ParseExt(JObject element) => element.Value<string>("type") == "At" ? ToMention(element, Group) : throw new InvalidOperationException();
-
-        private Mention ToMention(JObject element, Group group) => new Mention(new Member(CurrentSession, group, element.Value<long>("target")), element.Value<string>("display").TrimStart('@'));
-
-        internal GroupMessageParser()
+        protected override MessageElement ParseExt(JObject element) => element.Value<string>("type") switch
         {
+            "At" => ToMention(element),
+            "Quote" => ToQuote(element),
+            _ => throw new InvalidOperationException()
+        };
+
+        private Mention ToMention(JObject element) => new Mention(new Member(Group, element.Value<long>("target")), element.Value<string>("display").TrimStart('@'));
+
+        private Quote ToQuote(JObject element)
+        {
+            var group = new Group(CurrentSession, element.Value<long>("groupId"));
+            return new Quote(new Message(CurrentSession, ParseMore((JArray)element["origin"]).ToList()), new Member(group, element.Value<long>("senderId")), group);
         }
 
-        internal GroupMessageParser(Session session, Group group) : base(session)
-        {
-            Group = group;
-        }
+        internal GroupMessageParser(Group group) : base(group.CurrentSession) => Group = group;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,14 +9,18 @@ namespace HuajiTech.Mirai.Messaging
     {
         internal override string Type { get; } = "Source";
 
+        [JsonProperty(PropertyName = "id")]
         public int Id { get; }
 
-        public int Timestamp { get; }
+        [JsonProperty(PropertyName = "time")]
+        public int Time { get; }
+
+        public Source(int id) => Id = id;
 
         public Source(int id, int timestamp)
         {
             Id = id;
-            Timestamp = timestamp;
+            Time = timestamp;
         }
     }
 }

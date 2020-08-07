@@ -28,7 +28,7 @@ namespace HuajiTech.Mirai.Messaging
         internal long TargetNumber => Target.Number;
 
         [JsonProperty(PropertyName = "origin")]
-        internal MessageElement[] MessageChain => Message.Content.ToArray();
+        internal MessageElement[] MessageChain => Message.FullContent.ToArray();
 
         public Quote(Message message, User sender, Chat target)
         {
