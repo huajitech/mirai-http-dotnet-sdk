@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using HuajiTech.Mirai.Extensions;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace HuajiTech.Mirai
             return FriendList;
         }
 
-        private Friend GetFriendFromJson(JObject friend) => new Friend(CurrentSession, friend.Value<long>("id"), friend.Value<string>("nickname"), friend.Value<string>("remark"));
+        private Friend GetFriendFromJson(JObject friend) => new Friend(CurrentSession, friend.Value<long>("id"), friend.Value<string>("nickname"), friend.Value<string>("remark").CheckEmpty());
 
         private IEnumerable<Friend> GetFriendsFromJson(JArray friends) => friends.Select(x => GetFriendFromJson((JObject)x));
 

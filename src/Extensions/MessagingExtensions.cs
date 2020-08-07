@@ -1,8 +1,8 @@
 ﻿using HuajiTech.Mirai.Messaging;
 
-namespace HuajiTech.Mirai
+namespace HuajiTech.Mirai.Extensions
 {
-    public static class Extensions
+    public static class MessagingExtensions
     {
         public static Mention Mention(this Member member) => new Mention(member);
 

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace HuajiTech.Mirai
+namespace HuajiTech.Mirai.Extensions
 {
     internal static class ErrorHandlingExtensions
     {
