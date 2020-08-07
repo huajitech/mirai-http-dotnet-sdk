@@ -8,7 +8,7 @@ namespace HuajiTech.Mirai.Messaging
         internal override string Type { get; } = "Poke";
 
         [JsonIgnore]
-        internal static Dictionary<PokeType, string> PokeDictionary = new Dictionary<PokeType, string>()
+        internal static readonly Dictionary<PokeType, string> PokeDictionary = new Dictionary<PokeType, string>()
         {
             [PokeType.Poke] = "Poke",
             [PokeType.Love] = "ShowLove",
