@@ -38,6 +38,13 @@ namespace HuajiTech.Mirai.Messaging
         public ImageBase(string id) => Id = id;
 
         public ImageBase(Uri uri) => Uri = uri ?? throw new ArgumentNullException(nameof(uri));
+
+        internal ImageBase(string id, string filePath, Uri uri)
+        {
+            Id = id;
+            FilePath = filePath;
+            Uri = uri ?? throw new ArgumentNullException(nameof(uri));
+        }
     }
 
     public enum ImageSource

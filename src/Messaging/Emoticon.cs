@@ -19,5 +19,11 @@ namespace HuajiTech.Mirai.Messaging
         public Emoticon(int id) => Id = id;
 
         public Emoticon(string name) => Name = name;
+
+        public Emoticon(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
     }
 }

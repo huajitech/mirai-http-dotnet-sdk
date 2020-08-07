@@ -14,5 +14,7 @@ namespace HuajiTech.Mirai
         public static async Task<string> SendGroupMessage(Uri uri, string sessionKey, long target, MessageElement[] messageChain) => await HttpUtilities.PostAsync(uri.AbsoluteUri + "sendGroupMessage", JsonConvert.SerializeObject(new { sessionKey, target, messageChain }));
 
         public static async Task<string> Recall(Uri uri, string sessionKey, int target) => await HttpUtilities.PostAsync(uri.AbsoluteUri + "recall", JsonConvert.SerializeObject(new { sessionKey, target }));
+
+        public static async Task<string> GetMessage(Uri uri, string sessionKey, int id) => await HttpUtilities.GetAsync($"{uri.AbsoluteUri}messageFromId?sessionKey={sessionKey}&id={id}");
     }
 }

@@ -17,5 +17,9 @@ namespace HuajiTech.Mirai.Messaging
         public FlashImage(string str, ImageSource source) : base(str, source)
         {
         }
+
+        public FlashImage(string id, string filePath, Uri uri) : base(id, filePath, uri)
+        {
+        }
     }
 }

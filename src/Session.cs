@@ -21,6 +21,7 @@ namespace HuajiTech.Mirai
         {
             await Auth();
             await Verify();
+            await EnableWebsocket();
         }
 
         private async Task Auth()
@@ -30,6 +31,8 @@ namespace HuajiTech.Mirai
         }
 
         private async Task Verify() => JObject.Parse(await HttpSessions.Verify(Settings.Uri, SessionKey, Settings.BotNumber)).CheckError();
+
+        private async Task EnableWebsocket() => JObject.Parse(await HttpSessions.Config(Settings.Uri, SessionKey, true)).CheckError();
 
         public Session(SessionSettings settings) => Settings = settings;
     }

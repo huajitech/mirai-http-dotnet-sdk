@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using HuajiTech.Mirai.Parsing;
+using Newtonsoft.Json.Linq;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai
 {
@@ -13,5 +16,7 @@ namespace HuajiTech.Mirai
         protected Member Member(long group, long target) => new Member(CurrentSession, group, target);
 
         protected Member Member(Group group, long target) => new Member(CurrentSession, group, target);
+
+        protected async Task<Message> GetMessageAsync(int id) => await Message.GetMessageAsync(CurrentSession, id);
     }
 }
