@@ -4,10 +4,10 @@ namespace HuajiTech.Mirai
 {
     internal static class ErrorHandlingExtensions
     {
-        public static JObject CheckError(this JObject jObject)
+        public static JObject CheckError(this JObject result)
         {
-            int code = jObject.Value<int>("code");
-            return code == 0 ? jObject : throw new ApiException(string.Format(Resources.UnexpectedReturnValue, code, jObject.Value<string>("msg")), code);
+            int code = result.Value<int>("code");
+            return code == 0 ? result : throw new ApiException(string.Format(Resources.UnexpectedReturnValue, code, result.Value<string>("msg")), code);
         }
     }
 }

@@ -22,13 +22,7 @@ namespace HuajiTech.Mirai.Parsing
             _ => ParseExt(element)
         };
 
-        public IEnumerable<MessageElement> ParseMore(JArray elements)
-        {
-            foreach (JObject element in elements)
-            {
-                yield return Parse(element);
-            }
-        }
+        public IEnumerable<MessageElement> ParseMore(JArray elements) => elements.Select(x => Parse((JObject)x));
 
         public static MessageParser GetParser(Session session, JObject data) => data.Value<string>("type") switch
         {
