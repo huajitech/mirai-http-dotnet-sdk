@@ -1,7 +1,4 @@
-﻿using HuajiTech.Mirai.Parsing;
-using Newtonsoft.Json.Linq;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai
 {
