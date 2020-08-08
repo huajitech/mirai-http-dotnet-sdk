@@ -2,22 +2,34 @@
 
 namespace HuajiTech.Mirai.Messaging
 {
+    /// <summary>
+    /// 表示来源的 <see cref="MessageElement"/>
+    /// </summary>
     internal class Source : MessageElement
     {
         internal override string Type { get; } = "Source";
 
+        /// <summary>
+        /// 获取当前 <see cref="Source"/> 实例的 ID
+        /// </summary>
         [JsonProperty(PropertyName = "id")]
         public int Id { get; }
 
+        /// <summary>
+        /// 获取当前 <see cref="Source"/> 实例的时间戳
+        /// </summary>
         [JsonProperty(PropertyName = "time")]
         public int Time { get; }
 
-        public Source(int id) => Id = id;
-
-        public Source(int id, int timestamp)
+        /// <summary>
+        /// 创建 <see cref="Source"/> 实例
+        /// </summary>
+        /// <param name="id">指定 <see cref="Source"/> 实例的 ID</param>
+        /// <param name="time">指定 <see cref="Source"/> 实例的时间戳</param>
+        public Source(int id, int time)
         {
             Id = id;
-            Time = timestamp;
+            Time = time;
         }
     }
 }

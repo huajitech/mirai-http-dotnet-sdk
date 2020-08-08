@@ -6,6 +6,10 @@ namespace HuajiTech.Mirai
 {
     internal static partial class HttpSessions
     {
-        public static async Task<string> About(Uri uri) => await HttpUtilities.GetAsync(uri.AbsoluteUri + "about");
+        /// <summary>
+        /// 异步获取 关于 信息
+        /// </summary>
+        /// <param name="uri">API URI</param>
+        public static async Task<string> GetAboutAsync(Uri uri) => await HttpUtilities.GetAsync(uri.AbsoluteUri + "about");
     }
 }
