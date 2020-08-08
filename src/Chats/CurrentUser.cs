@@ -27,7 +27,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 异步刷新当前 <see cref="CurrentUser"/> 实例
         /// </summary>
-        public async Task Refresh() => await GetFriendListAsync(true);
+        public async Task RefreshAsync() => await GetFriendListAsync(true);
 
         /// <summary>
         /// 异步获取当前 <see cref="CurrentUser"/> 实例的好友列表
