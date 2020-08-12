@@ -9,6 +9,11 @@ namespace HuajiTech.Mirai
     /// </summary>
     public class Member : User
     {
+        internal override async Task<string> InternalSendAsync(MessageElement[] message) => await HttpSessions.SendTempMessageAsync(Session.Settings.Uri, Session.SessionKey, Number, Group.Number, message);
+
+        /// <summary>
+        /// 获取当前 <see cref="Member"/> 实例的名称
+        /// </summary>
         public string Name { get; }
 
         /// <summary>
@@ -16,10 +21,14 @@ namespace HuajiTech.Mirai
         /// </summary>
         public Group Group { get; }
 
-        public MemberRole MemberRole { get; }
+        /// <summary>
+        /// 获取当前 <see cref="Member"/> 实例的角色
+        /// </summary>
+        public MemberRole Role { get; }
 
-        internal override async Task<string> InternalSendAsync(MessageElement[] message) => await HttpSessions.SendTempMessageAsync(Session.Settings.Uri, Session.SessionKey, Number, Group.Number, message);
-
+        /// <summary>
+        /// 成员角色 <see cref="string"/> 对 <see cref="MemberRole"/> 的字典
+        /// </summary>
         internal static readonly Dictionary<string, MemberRole> MemberRoleDictionary = new Dictionary<string, MemberRole>()
         {
             ["OWNER"] = MemberRole.Owner,
@@ -36,10 +45,13 @@ namespace HuajiTech.Mirai
         internal Member(Group group, long number, string name, MemberRole role) : base(group.Session, number)
         {
             Name = name;
-            MemberRole = role;
+            Role = role;
         }
     }
 
+    /// <summary>
+    /// 指定成员角色
+    /// </summary>
     public enum MemberRole
     {
         Owner,

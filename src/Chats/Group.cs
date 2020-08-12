@@ -13,6 +13,9 @@ namespace HuajiTech.Mirai
     {
         internal override async Task<string> InternalSendAsync(MessageElement[] message) => await HttpSessions.SendGroupMessageAsync(Session.Settings.Uri, Session.SessionKey, Number, message);
 
+        /// <summary>
+        /// 获取当前 <see cref="Group"/> 实例的名称
+        /// </summary>
         public string Name { get; }
 
         /// <summary>
