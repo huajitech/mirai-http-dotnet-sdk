@@ -80,7 +80,7 @@ namespace HuajiTech.Mirai
 
         public override int GetHashCode() => base.GetHashCode();
 
-        public override string ToString() => $"{GetType()}({Number})";
+        public override string ToString() => $"{GetType().Name}({Number})";
 
         public static bool operator ==(Chat left, Chat right) => left.Equals(right);
 
