@@ -41,7 +41,6 @@ namespace HuajiTech.Mirai
         {
             await AuthAsync();
             await VerifyAsync();
-            await EnableWebsocketAsync();
         }
 
         /// <summary>
@@ -57,12 +56,6 @@ namespace HuajiTech.Mirai
         /// 异步认证 <see cref="Session"/> 实例
         /// </summary>
         private async Task VerifyAsync() => JObject.Parse(await HttpSessions.VerifyAsync(Settings.Uri, SessionKey, Settings.BotNumber)).CheckError();
-
-        /// <summary>
-        /// 异步启用 <see cref="Session"/> 实例的 Websocket 功能
-        /// </summary>
-        /// <returns></returns>
-        private async Task EnableWebsocketAsync() => JObject.Parse(await HttpSessions.ConfigAsync(Settings.Uri, SessionKey, true)).CheckError();
 
         /// <summary>
         /// 创建 <see cref="Session"/> 实例

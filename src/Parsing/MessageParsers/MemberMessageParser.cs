@@ -16,7 +16,7 @@ namespace HuajiTech.Mirai.Parsing
         /// 从 Json 中提取信息，并创建 <see cref="Quote"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的引用回复</param>
-        private Quote ToQuote(JObject element) => new Quote(new Message(Session, ParseMore((JArray)element["origin"]).ToList()), new Member(Session, element.Value<long>("groupId"), element.Value<long>("senderId")), new CurrentUser(Session));
+        private Quote ToQuote(JObject element) => /*new Quote(new Message(Session, ParseMore((JArray)element["origin"]).ToList()), new Member(Session, element.Value<long>("groupId"), element.Value<long>("senderId")), new CurrentUser(Session))*/ null;
 
         /// <summary>
         /// 创建 <see cref="MemberMessageParser"/> 实例

@@ -12,12 +12,12 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 获取当前 <see cref="Friend"/> 实例的昵称
         /// </summary>
-        public string Nickname { get; private set; }
+        public string Nickname { get; }
 
         /// <summary>
         /// 获取当前 <see cref="Friend"/> 实例的别名
         /// </summary>
-        public string Alias { get; private set; }
+        public string Alias { get; }
 
         /// <summary>
         /// 创建 <see cref="Friend"/> 实例

@@ -120,6 +120,9 @@
   <data name="CannotConnectToApi" xml:space="preserve">
     <value>与 Mirai HTTP API 交互时发生了错误，HTTP 状态码：{0}</value>
   </data>
+  <data name="ChatNotFound" xml:space="preserve">
+    <value>所指定的聊天类型 {0}，号码为 {1} 的聊天不存在</value>
+  </data>
   <data name="UnexpectedReturnValue" xml:space="preserve">
     <value>Mirai HTTP API 返回了意料之外的值 {0}，错误消息：{1}</value>
   </data>

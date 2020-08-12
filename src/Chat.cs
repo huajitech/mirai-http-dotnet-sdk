@@ -17,7 +17,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 获取当前 <see cref="Chat"/> 实例的号码
         /// </summary>
-        public long Number { get; protected set; }
+        public long Number { get; }
 
         /// <summary>
         /// 异步发送消息到当前 <see cref="Chat"/> 实例
@@ -90,8 +90,6 @@ namespace HuajiTech.Mirai
         /// 创建 <see cref="Chat"/> 实例
         /// </summary>
         /// <param name="session">指定 <see cref="Chat"/> 实例所使用的 Session</param>
-        public Chat(Session session) : base(session)
-        {
-        }
+        internal Chat(Session session, long number) : base(session) => Number = number;
     }
 }

@@ -11,6 +11,8 @@ namespace HuajiTech.Mirai.Parsing
     /// </summary>
     internal abstract class MessageParser : SessionProcessor
     {
+        protected CurrentUser CurrentUser { get; }
+
         /// <summary>
         /// 将 Json 消息元素解析为 <see cref="MessageElement"/> 的可重写方法扩展
         /// </summary>
@@ -101,8 +103,6 @@ namespace HuajiTech.Mirai.Parsing
         /// 创建 <see cref="MessageParser"/> 实例
         /// </summary>
         /// <param name="session">指定 <see cref="MessageParser"/> 实例所使用的当前用户</param>
-        internal MessageParser(CurrentUser currentUser) : base(currentUser.Session)
-        {
-        }
+        internal MessageParser(CurrentUser currentUser) : base(currentUser.Session) => CurrentUser = currentUser;
     }
 }

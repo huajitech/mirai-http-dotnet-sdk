@@ -70,6 +70,15 @@ namespace HuajiTech.Mirai {
         }
         
         /// <summary>
+        ///   查找类似 所指定的聊天类型 {0}，号码为 {1} 的聊天不存在 的本地化字符串。
+        /// </summary>
+        internal static string ChatNotFound {
+            get {
+                return ResourceManager.GetString("ChatNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Mirai HTTP API 返回了意料之外的值 {0}，错误消息：{1} 的本地化字符串。
         /// </summary>
         internal static string UnexpectedReturnValue {
