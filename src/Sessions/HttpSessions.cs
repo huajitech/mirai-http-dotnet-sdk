@@ -1,4 +1,4 @@
-﻿namespace HuajiTech.Mirai
+﻿namespace HuajiTech.Mirai.Sessions
 {
     /// <summary>
     /// 提供与 API 交互的方法
