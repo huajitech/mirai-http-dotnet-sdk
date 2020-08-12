@@ -1,7 +1,6 @@
 ﻿using HuajiTech.Mirai.Extensions;
 using HuajiTech.Mirai.Sessions;
 using Newtonsoft.Json.Linq;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

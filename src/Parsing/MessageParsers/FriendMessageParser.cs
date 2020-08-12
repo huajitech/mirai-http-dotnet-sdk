@@ -1,7 +1,6 @@
 ﻿using HuajiTech.Mirai.Messaging;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Linq;
 
 namespace HuajiTech.Mirai.Parsing
 {
