@@ -88,7 +88,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 从 Json 中提取多个好友信息，并创建一个 <see cref="List{Friend}"/> 实例
         /// </summary>
-        /// <param name="friend">以 Json 表达的多个好友信息</param>
+        /// <param name="friends">以 Json 表达的多个好友信息</param>
         private IEnumerable<Friend> GetFriendsFromJson(JArray friends) => friends.Select(x => GetFriendFromJson((JObject)x));
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 从 Json 中提取多个群信息，并创建一个 <see cref="List{Group}"/> 实例
         /// </summary>
-        /// <param name="friend">以 Json 表达的多个群信息</param>
+        /// <param name="groups">以 Json 表达的多个群信息</param>
         private IEnumerable<Group> GetGroupsFromJson(JArray groups) => groups.Select(x => GetGroupFromJson((JObject)x));
 
         /// <summary>

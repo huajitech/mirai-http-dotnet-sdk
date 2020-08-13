@@ -82,7 +82,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 从 Json 中提取多个群信息，并创建一个 <see cref="List{Member}"/> 实例
         /// </summary>
-        /// <param name="member">以 Json 表达的多个群信息</param>
+        /// <param name="members">以 Json 表达的多个群信息</param>
         private IEnumerable<Member> GetMembersFromJson(JArray members) => members.Select(x => GetMemberFromJson((JObject)x));
 
         /// <summary>
