@@ -33,7 +33,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 异步释放 <see cref="Session"/> 实例
         /// </summary>
-        public async Task ReleaseAsync() => JObject.Parse(await HttpSessions.ReleaseAsync(Settings.Uri, SessionKey, Settings.BotNumber)).CheckError();
+        public async Task ReleaseAsync() => JObject.Parse(await HttpSessions.ReleaseAsync(Settings.HttpUri, SessionKey, Settings.BotNumber)).CheckError();
 
         /// <summary>
         /// 异步连接 <see cref="Session"/> 实例
@@ -49,14 +49,14 @@ namespace HuajiTech.Mirai
         /// </summary>
         private async Task AuthAsync()
         {
-            var authResult = JObject.Parse(await HttpSessions.AuthAsync(Settings.Uri, Settings.AuthKey)).CheckError();
+            var authResult = JObject.Parse(await HttpSessions.AuthAsync(Settings.HttpUri, Settings.AuthKey)).CheckError();
             SessionKey = authResult.Value<string>("session");
         }
 
         /// <summary>
         /// 异步认证 <see cref="Session"/> 实例
         /// </summary>
-        private async Task VerifyAsync() => JObject.Parse(await HttpSessions.VerifyAsync(Settings.Uri, SessionKey, Settings.BotNumber)).CheckError();
+        private async Task VerifyAsync() => JObject.Parse(await HttpSessions.VerifyAsync(Settings.HttpUri, SessionKey, Settings.BotNumber)).CheckError();
 
         /// <summary>
         /// 创建 <see cref="Session"/> 实例

@@ -9,7 +9,7 @@ namespace HuajiTech.Mirai
     /// </summary>
     public class Member : User
     {
-        internal override async Task<string> InternalSendAsync(MessageElement[] message) => await HttpSessions.SendTempMessageAsync(Session.Settings.Uri, Session.SessionKey, Number, Group.Number, message);
+        internal override async Task<string> InternalSendAsync(MessageElement[] message) => await HttpSessions.SendTempMessageAsync(Session.Settings.HttpUri, Session.SessionKey, Number, Group.Number, message);
 
         /// <summary>
         /// 获取当前 <see cref="Member"/> 实例的名称

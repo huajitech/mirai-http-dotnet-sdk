@@ -8,32 +8,30 @@ namespace HuajiTech.Mirai
     public class SessionSettings
     {
         /// <summary>
-        /// 获取当前 <see cref="SessionSettings"/> 实例的 URI
+        /// 获取当前 <see cref="SessionSettings"/> 实例的 Http URI
         /// </summary>
-        public Uri Uri { get; private set; }
+        public Uri HttpUri { get; }
+
+        /// <summary>
+        /// 获取当前 <see cref="SessionSettings"/> 实例的 Websocket URI
+        /// </summary>
+        public Uri WebsocketUri { get; }
 
         /// <summary>
         /// 获取当前 <see cref="SessionSettings"/> 实例的 Auth Key
         /// </summary>
-        public string AuthKey { get; private set; }
+        public string AuthKey { get; }
 
         /// <summary>
         /// 获取当前 <see cref="SessionSettings"/> 实例的机器人号码
         /// </summary>
-        public long BotNumber { get; private set; }
+        public long BotNumber { get; }
 
         /// <summary>
-        /// 创建 <see cref="SessionSettings"/> 实例
+        /// Specifies that the URI is accessed through the Websocket.
+        /// This field is read-only.
         /// </summary>
-        /// <param name="uri">指定 <see cref="SessionSettings"/> 实例的 URI</param>
-        /// <param name="authKey">指定 <see cref="SessionSettings"/> 实例的 Auth Key</param>
-        /// <param name="botNumber">指定 <see cref="SessionSettings"/> 实例的机器人号码</param>
-        public SessionSettings(Uri uri, string authKey, long botNumber)
-        {
-            Uri = uri ?? throw new ArgumentNullException(nameof(uri));
-            AuthKey = authKey ?? throw new ArgumentNullException(nameof(authKey));
-            BotNumber = botNumber;
-        }
+        private readonly string UriSchemeWebsocket = "ws";
 
         /// <summary>
         /// 创建 <see cref="SessionSettings"/> 实例
@@ -44,7 +42,8 @@ namespace HuajiTech.Mirai
         /// <param name="botNumber">指定 <see cref="SessionSettings"/> 实例的机器人号码</param>
         public SessionSettings(string address, int port, string authKey, long botNumber)
         {
-            Uri = new UriBuilder(Uri.UriSchemeHttp, address, port).Uri;
+            HttpUri = new UriBuilder(Uri.UriSchemeHttp, address, port).Uri;
+            WebsocketUri = new UriBuilder(UriSchemeWebsocket, address, port).Uri;
             AuthKey = authKey ?? throw new ArgumentNullException(nameof(authKey));
             BotNumber = botNumber;
         }
