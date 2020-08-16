@@ -34,6 +34,8 @@ namespace HuajiTech.Mirai.Parsing
             "AtAll" => ToMentionAll(),
             "Plain" => ToPlainText(element),
             "Poke" => ToPoke(element),
+            "Json" => ToJson(element),
+            "Xml" => ToXml(element),
             _ => ParseExt(element)
         };
 
@@ -83,6 +85,12 @@ namespace HuajiTech.Mirai.Parsing
         private Image ToImage(JObject element) => new Image(element.Value<string>("imageId"), element.Value<string>("path"), new Uri(element.Value<string>("url")));
 
         /// <summary>
+        /// 从 Json 中提取信息，并创建 <see cref="Json"/> 实例
+        /// </summary>
+        /// <param name="element">以 Json 表达的 Json 消息</param>
+        private Json ToJson(JObject element) => new Json(element.Value<string>("json"));
+
+        /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="MentionAll"/> 实例
         /// </summary>
         private MentionAll ToMentionAll() => new MentionAll();
@@ -98,6 +106,12 @@ namespace HuajiTech.Mirai.Parsing
         /// </summary>
         /// <param name="element">以 Json 表达的戳一戳</param>
         private Poke ToPoke(JObject element) => new Poke(Poke.PokeDictionary.FirstOrDefault(x => x.Value == element.Value<string>("name")).Key);
+
+        /// <summary>
+        /// 从 Json 中提取信息，并创建 <see cref="Xml"/> 实例
+        /// </summary>
+        /// <param name="element">以 Json 表达的 Xml 消息</param>
+        private Xml ToXml(JObject element) => new Xml(element.Value<string>("xml"));
 
         /// <summary>
         /// 创建 <see cref="MessageParser"/> 实例
