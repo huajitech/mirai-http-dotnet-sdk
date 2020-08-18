@@ -1,6 +1,7 @@
 ﻿using HuajiTech.Mirai.Messaging;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Linq;
 
 namespace HuajiTech.Mirai.Parsing
 {
@@ -15,7 +16,7 @@ namespace HuajiTech.Mirai.Parsing
         /// 从 Json 中提取信息，并创建 <see cref="Quote"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的引用回复</param>
-        private Quote ToQuote(JObject element) => new Quote(CurrentUser.GetMessageAsync(element.Value<int>("id")).Result, CurrentUser.GetGroupAsync(element.Value<long>("groupId")).Result.GetMemberAsync(element.Value<long>("senderId")).Result, CurrentUser);
+        private Quote ToQuote(JObject element) => new Quote(new Message(CurrentUser.Session, ParseMore((JArray)element["origin"]).ToList()), CurrentUser.GetGroupAsync(element.Value<long>("groupId")).Result.GetMemberAsync(element.Value<long>("senderId")).Result, CurrentUser);
 
         /// <summary>
         /// 创建 <see cref="MemberMessageParser"/> 实例
