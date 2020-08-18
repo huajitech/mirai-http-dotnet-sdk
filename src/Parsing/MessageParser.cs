@@ -61,13 +61,17 @@ namespace HuajiTech.Mirai.Parsing
             _ => null
         };
 
-        private App ToApp(JObject element) => new App(element.Value<string>("content"));
-
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Source"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的来源</param>
         private Source ToSource(JObject element) => new Source(element.Value<int>("id"), element.Value<int>("time"));
+
+        /// <summary>
+        /// 从 Json 中提取信息，并创建 <see cref="App"/> 实例
+        /// </summary>
+        /// <param name="element">以 Json 表达的 App 消息</param>
+        private App ToApp(JObject element) => new App(element.Value<string>("content"));
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Emoticon"/> 实例
