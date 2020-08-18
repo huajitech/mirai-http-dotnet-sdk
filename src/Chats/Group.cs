@@ -90,6 +90,6 @@ namespace HuajiTech.Mirai
         /// </summary>
         /// <param name="session">指定 <see cref="Group"/> 实例所使用的 Session</param>
         /// <param name="number">指定 <see cref="Group"/> 实例的号码</param>
-        public Group(Session session, long number, string name) : base(session, number) => Name = name;
+        internal Group(Session session, long number, string name) : base(session, number) => Name = name;
     }
 }
