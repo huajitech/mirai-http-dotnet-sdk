@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai.ApiHandlers
 {
-    internal class MessageEvent : ApiEventHandler
+    internal class MessageEvents : ApiEventHandler
     {
         protected override string Type { get; } = "message";
 
@@ -61,7 +61,7 @@ namespace HuajiTech.Mirai.ApiHandlers
 
         private Member GetMember(JObject sender) => new Member(GetGroup((JObject)sender["group"]), sender.Value<long>("id"), sender.Value<string>("memberName"), Member.MemberRoleDictionary[sender.Value<string>("permission")]);
 
-        public MessageEvent(Plugin plugin) : base(plugin)
+        public MessageEvents(Plugin plugin) : base(plugin)
         {
         }
     }

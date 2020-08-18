@@ -6,7 +6,7 @@ namespace HuajiTech.Mirai.ApiHandlers
     {
         private Plugin Plugin { get; }
 
-        public MessageEvent MessageEvent => new MessageEvent(Plugin);
+        public MessageEvents MessageEvent => new MessageEvents(Plugin);
 
         public async Task Listen()
         {
