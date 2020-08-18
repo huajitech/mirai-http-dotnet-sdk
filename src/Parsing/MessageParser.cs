@@ -28,13 +28,14 @@ namespace HuajiTech.Mirai.Parsing
         public MessageElement Parse(JObject element) => element.Value<string>("type") switch
         {
             "Source" => ToSource(element),
+            "App" => ToApp(element),
             "Face" => ToEmoticon(element),
             "FlashImage" => ToFlashImage(element),
             "Image" => ToImage(element),
+            "Json" => ToJson(element),
             "AtAll" => ToMentionAll(),
             "Plain" => ToPlainText(element),
             "Poke" => ToPoke(element),
-            "Json" => ToJson(element),
             "Xml" => ToXml(element),
             _ => ParseExt(element)
         };
@@ -59,6 +60,8 @@ namespace HuajiTech.Mirai.Parsing
             "TempMessage" => new MemberMessageParser(currentUser),
             _ => null
         };
+
+        private App ToApp(JObject element) => new App(element.Value<string>("content"));
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Source"/> 实例
