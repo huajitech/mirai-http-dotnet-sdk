@@ -15,12 +15,12 @@ namespace HuajiTech.Mirai.ApiHandlers
         {
             var data = JObject.Parse(message);
 
-            var task = _ = data.Value<string>("type") switch
+            var task = data.Value<string>("type") switch
             {
                 "FriendMessage" => FriendMessageEventHandling(data),
                 "GroupMessage" => GroupMessageEventHandling(data),
                 "TempMessage" => MemberMessageEventHandling(data),
-                _ => null
+                _ => Task.Delay(0)
             };
 
             await task;
