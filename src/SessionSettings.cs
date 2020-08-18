@@ -10,12 +10,12 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 获取当前 <see cref="SessionSettings"/> 实例的 Http URI
         /// </summary>
-        public Uri HttpUri { get; }
+        public string HttpUri { get; }
 
         /// <summary>
         /// 获取当前 <see cref="SessionSettings"/> 实例的 Websocket URI
         /// </summary>
-        public Uri WebsocketUri { get; }
+        public string WebsocketUri { get; }
 
         /// <summary>
         /// 获取当前 <see cref="SessionSettings"/> 实例的 Auth Key
@@ -42,8 +42,8 @@ namespace HuajiTech.Mirai
         /// <param name="botNumber">指定 <see cref="SessionSettings"/> 实例的机器人号码</param>
         public SessionSettings(string address, int port, string authKey, long botNumber)
         {
-            HttpUri = new UriBuilder(Uri.UriSchemeHttp, address, port).Uri;
-            WebsocketUri = new UriBuilder(UriSchemeWebsocket, address, port).Uri;
+            HttpUri = new UriBuilder(Uri.UriSchemeHttp, address, port).Uri.AbsoluteUri;
+            WebsocketUri = new UriBuilder(UriSchemeWebsocket, address, port).Uri.AbsoluteUri;
             AuthKey = authKey ?? throw new ArgumentNullException(nameof(authKey));
             BotNumber = botNumber;
         }

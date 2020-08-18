@@ -9,7 +9,7 @@ namespace HuajiTech.Mirai.Parsing
     /// <summary>
     /// 用作消息解析的基类
     /// </summary>
-    internal abstract class MessageParser : SessionProcessor
+    internal abstract class MessageParser
     {
         protected CurrentUser CurrentUser { get; }
 
@@ -54,10 +54,10 @@ namespace HuajiTech.Mirai.Parsing
         /// <returns></returns>
         public static MessageParser GetParser(CurrentUser currentUser, JObject data) => data.Value<string>("type") switch
         {
-            "FriendMessage" => new UserMessageParser(currentUser),
+            "FriendMessage" => new FriendMessageParser(currentUser),
             "GroupMessage" => new GroupMessageParser(currentUser, data["sender"]["group"].Value<long>("id")),
             "TempMessage" => new MemberMessageParser(currentUser),
-            _ => throw new InvalidOperationException()
+            _ => null
         };
 
         /// <summary>
@@ -117,6 +117,6 @@ namespace HuajiTech.Mirai.Parsing
         /// 创建 <see cref="MessageParser"/> 实例
         /// </summary>
         /// <param name="session">指定 <see cref="MessageParser"/> 实例所使用的当前用户</param>
-        internal MessageParser(CurrentUser currentUser) : base(currentUser.Session) => CurrentUser = currentUser;
+        internal MessageParser(CurrentUser currentUser) => CurrentUser = currentUser;
     }
 }

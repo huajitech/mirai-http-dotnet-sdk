@@ -31,12 +31,7 @@ namespace HuajiTech.Mirai.Parsing
         /// 从 Json 中提取信息，并创建 <see cref="Quote"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的引用回复</param>
-        private Quote ToQuote(JObject element)
-        {
-            //var group = new Group(Session, element.Value<long>("groupId"));
-            //return new Quote(new Message(Session, ParseMore((JArray)element["origin"]).ToList()), new Member(group, element.Value<long>("senderId")), group);
-            return null;
-        }
+        private Quote ToQuote(JObject element) => new Quote(CurrentUser.GetMessageAsync(element.Value<int>("id")).Result, Group.GetMemberAsync(element.Value<long>("senderId")).Result, Group);
 
         /// <summary>
         /// 创建 <see cref="GroupMessageParser"/> 实例
@@ -44,5 +39,12 @@ namespace HuajiTech.Mirai.Parsing
         /// <param name="currentUser">指定 <see cref="GroupMessageParser"/> 实例所使用的当前用户</param>
         /// <param name="number">指定 <see cref="GroupMessageParser"/> 实例所使用的群号码</param>
         internal GroupMessageParser(CurrentUser currentUser, long number) : base(currentUser) => Group = CurrentUser.GetGroupAsync(number).Result;
+
+        /// <summary>
+        /// 创建 <see cref="GroupMessageParser"/> 实例
+        /// </summary>
+        /// <param name="currentUser">指定 <see cref="GroupMessageParser"/> 实例所使用的当前用户</param>
+        /// <param name="group">指定 <see cref="GroupMessageParser"/> 实例所使用的群</param>
+        internal GroupMessageParser(CurrentUser currentUser, Group group) : base(currentUser) => Group = group;
     }
 }

@@ -44,6 +44,7 @@ namespace HuajiTech.Mirai
         /// <param name="role">指定 <see cref="Member"/> 实例的成员角色</param>
         internal Member(Group group, long number, string name, MemberRole role) : base(group.Session, number)
         {
+            Group = group;
             Name = name;
             Role = role;
         }

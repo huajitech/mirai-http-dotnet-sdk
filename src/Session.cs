@@ -28,6 +28,8 @@ namespace HuajiTech.Mirai
         {
             plugin.SetSession(this);
             await plugin.Initialize();
+            var events = new ApiEventCollection(plugin);
+            await events.Listen();
         }
 
         /// <summary>

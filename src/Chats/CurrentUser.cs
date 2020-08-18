@@ -149,6 +149,13 @@ namespace HuajiTech.Mirai
         private IEnumerable<Group> GetGroupsFromJson(JArray groups) => groups.Select(x => GetGroupFromJson((JObject)x));
 
         /// <summary>
+        /// 异步获取指定 ID 的消息
+        /// </summary>
+        /// <param name="id">消息 ID</param>
+        /// <returns>指定 ID 的 <see cref="Message"/> 实例</returns>
+        public async Task<Message> GetMessageAsync(int id) => await Message.GetMessageAsync(this, id);
+
+        /// <summary>
         /// 创建一个 <see cref="CurrentUser"/> 实例
         /// </summary>
         /// <param name="session">指定 <see cref="CurrentUser"/> 实例所使用的 Session</param>

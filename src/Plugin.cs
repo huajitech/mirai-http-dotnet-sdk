@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using HuajiTech.Mirai.Events;
+using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai
 {
@@ -15,13 +16,13 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 获取当前 <see cref="Plugin"/> 实例的当前用户
         /// </summary>
-        protected CurrentUser CurrentUser => new CurrentUser(Session);
+        internal protected CurrentUser CurrentUser => new CurrentUser(Session);
 
-        /// <summary>
-        /// 异步获取指定 ID 的消息
-        /// </summary>
-        /// <param name="id">消息 ID</param>
-        /// <returns>指定 ID 的 <see cref="Message"/> 实例</returns>
-        protected async Task<Message> GetMessageAsync(int id) => await Message.GetMessageAsync(CurrentUser, id);
+        internal protected MessageEventSource MessageEventSource { get; }
+
+        public Plugin()
+        {
+            MessageEventSource = new MessageEventSource(Session);
+        }
     }
 }
