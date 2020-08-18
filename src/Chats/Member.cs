@@ -1,4 +1,7 @@
 ﻿using HuajiTech.Mirai.ApiHandlers;
+using HuajiTech.Mirai.Extensions;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -35,6 +38,33 @@ namespace HuajiTech.Mirai
             ["ADMINISTRATOR"] = MemberRole.Administrator,
             ["MEMBER"] = MemberRole.Member
         };
+
+        /// <summary>
+        /// 禁言当前 <see cref="Member"/> 实例
+        /// </summary>
+        /// <param name="time">禁言时长</param>
+        public async Task Mute(TimeSpan time)
+        {
+            if (time.TotalSeconds < 0 || time > TimeSpan.FromDays(30))
+            {
+                throw new OverflowException();
+            }
+            else
+            {
+                JObject.Parse(await ApiMethods.MuteAsync(Session.Settings.HttpUri, Session.SessionKey, Group.Number, Number, (int)time.TotalSeconds)).CheckError();
+            }
+        }
+
+        /// <summary>
+        /// 解除当前 <see cref="Member"/> 实例的禁言
+        /// </summary>
+        public async Task Unmute() => JObject.Parse(await ApiMethods.UnmuteAsync(Session.Settings.HttpUri, Session.SessionKey, Group.Number, Number)).CheckError();
+
+        /// <summary>
+        /// 移除当前 <see cref="Member"/> 实例
+        /// </summary>
+        /// <param name="msg">移除消息</param>
+        public async Task Kick(string msg = null) => JObject.Parse(await ApiMethods.KickAsync(Session.Settings.HttpUri, Session.SessionKey, Group.Number, Number, msg));
 
         /// <summary>
         /// 创建 <see cref="Member"/> 实例

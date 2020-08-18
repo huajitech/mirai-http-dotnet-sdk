@@ -1,4 +1,5 @@
 ﻿using HuajiTech.Mirai.ApiHandlers;
+using HuajiTech.Mirai.Extensions;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,6 +85,21 @@ namespace HuajiTech.Mirai
         /// </summary>
         /// <param name="members">以 Json 表达的多个群信息</param>
         private IEnumerable<Member> GetMembersFromJson(JArray members) => members.Select(x => GetMemberFromJson((JObject)x));
+
+        /// <summary>
+        /// 禁言当前 <see cref="Group"/> 实例
+        /// </summary>
+        public async Task Mute() => JObject.Parse(await ApiMethods.MuteAllAsync(Session.Settings.HttpUri, Session.SessionKey, Number)).CheckError();
+
+        /// <summary>
+        /// 解除当前 <see cref="Group"/> 实例的禁言
+        /// </summary>
+        public async Task Unmute() => JObject.Parse(await ApiMethods.UnmuteAllAsync(Session.Settings.HttpUri, Session.SessionKey, Number)).CheckError();
+
+        /// <summary>
+        /// 离开当前 <see cref="Group"/> 实例
+        /// </summary>
+        public async Task Leave() => JObject.Parse(await ApiMethods.QuitAsync(Session.Settings.HttpUri, Session.SessionKey, Number)).CheckError();
 
         /// <summary>
         /// 创建 <see cref="Group"/> 实例
