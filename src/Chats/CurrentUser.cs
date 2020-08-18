@@ -1,5 +1,5 @@
-﻿using HuajiTech.Mirai.Extensions;
-using HuajiTech.Mirai.Sessions;
+﻿using HuajiTech.Mirai.ApiHandlers;
+using HuajiTech.Mirai.Extensions;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace HuajiTech.Mirai
     /// </summary>
     public class CurrentUser : User
     {
-        internal override async Task<string> InternalSendAsync(MessageElement[] message) => await HttpSessions.SendFriendMessageAsync(Session.Settings.HttpUri, Session.SessionKey, Number, message);
+        internal override async Task<string> InternalSendAsync(MessageElement[] message) => await ApiMethods.SendFriendMessageAsync(Session.Settings.HttpUri, Session.SessionKey, Number, message);
 
         /// <summary>
         /// 当前 <see cref="CurrentUser"/> 实例的好友列表
@@ -47,7 +47,7 @@ namespace HuajiTech.Mirai
         {
             if (refresh || FriendList == null)
             {
-                var result = JArray.Parse(await HttpSessions.GetFriendListAsync(Session.Settings.HttpUri, Session.SessionKey));
+                var result = JArray.Parse(await ApiMethods.GetFriendListAsync(Session.Settings.HttpUri, Session.SessionKey));
                 FriendList = await Task.Run(() => GetFriendsFromJson(result).ToList());
             }
 
@@ -104,7 +104,7 @@ namespace HuajiTech.Mirai
         {
             if (refresh || GroupList == null)
             {
-                var result = JArray.Parse(await HttpSessions.GetGroupListAsync(Session.Settings.HttpUri, Session.SessionKey));
+                var result = JArray.Parse(await ApiMethods.GetGroupListAsync(Session.Settings.HttpUri, Session.SessionKey));
                 GroupList = await Task.Run(() => GetGroupsFromJson(result).ToList());
             }
 

@@ -2,9 +2,9 @@
 using System;
 using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai.Sessions
+namespace HuajiTech.Mirai.ApiHandlers
 {
-    internal static partial class HttpSessions
+    internal static partial class ApiMethods
     {
         /// <summary>
         /// 异步获取 关于 信息

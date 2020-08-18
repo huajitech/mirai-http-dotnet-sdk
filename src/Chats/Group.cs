@@ -1,4 +1,4 @@
-﻿using HuajiTech.Mirai.Sessions;
+﻿using HuajiTech.Mirai.ApiHandlers;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace HuajiTech.Mirai
     /// </summary>
     public class Group : Chat
     {
-        internal override async Task<string> InternalSendAsync(MessageElement[] message) => await HttpSessions.SendGroupMessageAsync(Session.Settings.HttpUri, Session.SessionKey, Number, message);
+        internal override async Task<string> InternalSendAsync(MessageElement[] message) => await ApiMethods.SendGroupMessageAsync(Session.Settings.HttpUri, Session.SessionKey, Number, message);
 
         /// <summary>
         /// 获取当前 <see cref="Group"/> 实例的名称
@@ -41,7 +41,7 @@ namespace HuajiTech.Mirai
         {
             if (refresh || MemberList == null)
             {
-                var result = JArray.Parse(await HttpSessions.GetMemberListAsync(Session.Settings.HttpUri, Session.SessionKey, Number));
+                var result = JArray.Parse(await ApiMethods.GetMemberListAsync(Session.Settings.HttpUri, Session.SessionKey, Number));
                 MemberList = await Task.Run(() => GetMembersFromJson(result).ToList());
             }
 
