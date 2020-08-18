@@ -43,7 +43,7 @@ namespace HuajiTech.Mirai
         /// 禁言当前 <see cref="Member"/> 实例
         /// </summary>
         /// <param name="time">禁言时长</param>
-        public async Task Mute(TimeSpan time)
+        public async Task MuteAsync(TimeSpan time)
         {
             if (time.TotalSeconds < 0 || time > TimeSpan.FromDays(30))
             {
@@ -58,13 +58,13 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 解除当前 <see cref="Member"/> 实例的禁言
         /// </summary>
-        public async Task Unmute() => JObject.Parse(await ApiMethods.UnmuteAsync(Session.Settings.HttpUri, Session.SessionKey, Group.Number, Number)).CheckError();
+        public async Task UnmuteAsync() => JObject.Parse(await ApiMethods.UnmuteAsync(Session.Settings.HttpUri, Session.SessionKey, Group.Number, Number)).CheckError();
 
         /// <summary>
         /// 移除当前 <see cref="Member"/> 实例
         /// </summary>
         /// <param name="msg">移除消息</param>
-        public async Task Kick(string msg = null) => JObject.Parse(await ApiMethods.KickAsync(Session.Settings.HttpUri, Session.SessionKey, Group.Number, Number, msg));
+        public async Task KickAsync(string msg = null) => JObject.Parse(await ApiMethods.KickAsync(Session.Settings.HttpUri, Session.SessionKey, Group.Number, Number, msg));
 
         /// <summary>
         /// 创建 <see cref="Member"/> 实例
