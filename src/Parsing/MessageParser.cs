@@ -70,7 +70,7 @@ namespace HuajiTech.Mirai.Parsing
         /// 从 Json 中提取信息，并创建 <see cref="Emoticon"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的表情</param>
-        private Emoticon ToEmoticon(JObject element) => new Emoticon(element.Value<int>("id"), element.Value<string>("name"));
+        private Emoticon ToEmoticon(JObject element) => new Emoticon(element.Value<int>("faceId"), element.Value<string>("name"));
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="FlashImage"/> 实例
