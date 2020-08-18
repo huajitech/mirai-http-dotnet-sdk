@@ -6,7 +6,7 @@ using System.Linq;
 namespace HuajiTech.Mirai.Parsing
 {
     /// <summary>
-    /// 用于解析群消息的 <see cref="MessageParser"/>
+    /// 用作解析群消息的 <see cref="MessageParser"/>
     /// </summary>
     internal class GroupMessageParser : MessageParser
     {

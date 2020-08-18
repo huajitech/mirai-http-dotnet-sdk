@@ -6,25 +6,8 @@ using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai.ApiHandlers
 {
-    internal class MessageEvents : ApiEventHandler
+    internal partial class ApiEventHandler
     {
-        protected override string Type { get; } = "message";
-
-        protected override async Task EventHandlingAsync(string message)
-        {
-            var data = JObject.Parse(message);
-
-            var task = _ = data.Value<string>("type") switch
-            {
-                "FriendMessage" => FriendMessageEventHandling(data),
-                "GroupMessage" => GroupMessageEventHandling(data),
-                "TempMessage" => MemberMessageEventHandling(data),
-                _ => null
-            };
-
-            await task;
-        }
-
         private async Task GroupMessageEventHandling(JObject data)
         {
             var member = GetMember((JObject)data["sender"]);
@@ -60,9 +43,5 @@ namespace HuajiTech.Mirai.ApiHandlers
         private Group GetGroup(JObject group) => new Group(Plugin.Session, group.Value<long>("id"), group.Value<string>("name"));
 
         private Member GetMember(JObject sender) => new Member(GetGroup((JObject)sender["group"]), sender.Value<long>("id"), sender.Value<string>("memberName"), Member.MemberRoleDictionary[sender.Value<string>("permission")]);
-
-        public MessageEvents(Plugin plugin) : base(plugin)
-        {
-        }
     }
 }
