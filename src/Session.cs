@@ -36,18 +36,6 @@ namespace HuajiTech.Mirai
         internal long BotNumber => Settings.BotNumber;
 
         /// <summary>
-        /// 异步绑定 <see cref="Session"/> 实例到 <see cref="Plugin"/> 实例
-        /// </summary>
-        /// <param name="plugin">要绑定的 <see cref="Plugin"/> 实例</param>
-        public async Task BindAsync(Plugin plugin)
-        {
-            plugin.SetSession(this);
-            await plugin.Initialize();
-            var events = new ApiEventHandler(plugin);
-            await events.ListenAsync();
-        }
-
-        /// <summary>
         /// 异步释放 <see cref="Session"/> 实例
         /// </summary>
         public async Task ReleaseAsync() => JObject.Parse(await ApiMethods.ReleaseAsync(HttpUri, SessionKey, BotNumber)).CheckError();

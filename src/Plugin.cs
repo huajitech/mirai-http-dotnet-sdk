@@ -1,4 +1,5 @@
-﻿using HuajiTech.Mirai.Events;
+﻿using HuajiTech.Mirai.ApiHandlers;
+using HuajiTech.Mirai.Events;
 using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai
@@ -37,6 +38,18 @@ namespace HuajiTech.Mirai
         /// 获取成员事件源
         /// </summary>
         internal protected MemberEventSource MemberEventSource { get; }
+
+        /// <summary>
+        /// 异步绑定 <see cref="Session"/> 实例
+        /// </summary>
+        /// <param name="session">要绑定的 <see cref="Session"/> 实例</param>
+        public async Task BindAsync(Session session)
+        {
+            SetSession(session);
+            await Initialize();
+            var events = new ApiEventHandler(this);
+            await events.ListenAsync();
+        }
 
         /// <summary>
         /// 创建 <see cref="Plugin"/> 实例
