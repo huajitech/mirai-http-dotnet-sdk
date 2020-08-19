@@ -8,7 +8,7 @@ namespace HuajiTech.Mirai.Events
     public class MessageReceivedEventArgs : MessageEventArgs
     {
         /// <summary>
-        /// 获取发送者
+        /// 获取当前 <see cref="MessageReceivedEventArgs"/> 实例的发送者
         /// </summary>
         public virtual User Sender { get; }
 

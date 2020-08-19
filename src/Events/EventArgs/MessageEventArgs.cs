@@ -10,12 +10,12 @@ namespace HuajiTech.Mirai.Events
     public class MessageEventArgs : EventArgs
     {
         /// <summary>
-        /// 获取来源
+        /// 获取当前 <see cref="MessageEventArgs"/> 实例的来源
         /// </summary>
         public virtual Chat Source { get; }
 
         /// <summary>
-        /// 获取消息
+        /// 获取当前 <see cref="MessageEventArgs"/> 实例的消息
         /// </summary>
         public virtual Message Message { get; }
 

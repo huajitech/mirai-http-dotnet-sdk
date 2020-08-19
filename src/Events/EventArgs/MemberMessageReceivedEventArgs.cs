@@ -10,7 +10,7 @@ namespace HuajiTech.Mirai.Events
     public class MemberMessageReceivedEventArgs : MessageEventArgs
     {
         /// <summary>
-        /// 获取来源
+        /// 获取当前 <see cref="MemberMessageReceivedEventArgs"/> 实例的来源
         /// </summary>
         public new virtual Member Source { get; }
 
