@@ -47,6 +47,14 @@ namespace HuajiTech.Mirai
         {
             SetSession(session);
             await Initialize();
+        }
+
+        /// <summary>
+        /// 异步监听事件
+        /// </summary>
+        /// <returns></returns>
+        public async Task ListenAsync()
+        {
             var events = new ApiEventHandler(this);
             await events.ListenAsync();
         }
