@@ -1,0 +1,15 @@
+# .NET Core 3.1
+image: mcr.microsoft.com/dotnet/core/sdk:3.1
+
+stages:
+  - deploy
+
+release:
+  stage: deploy
+  only:
+    - master
+  artifacts:
+    paths:
+      - publish/
+  script:
+  - dotnet publish -c Release -o publish/ src/HuajiTech.Mirai.sln
