@@ -53,7 +53,7 @@ namespace HuajiTech.Mirai
             if (refresh || FriendList == null)
             {
                 var result = JArray.Parse(await ApiMethods.GetFriendListAsync(Session.HttpUri, Session.SessionKey));
-                FriendList = await Task.Run(() => GetFriendsFromJson(result).ToList());
+                FriendList = await Task.Run(GetFriendsFromJson(result).ToList);
             }
 
             return FriendList;
@@ -110,7 +110,7 @@ namespace HuajiTech.Mirai
             if (refresh || GroupList == null)
             {
                 var result = JArray.Parse(await ApiMethods.GetGroupListAsync(Session.HttpUri, Session.SessionKey));
-                GroupList = await Task.Run(() => GetGroupsFromJson(result).ToList());
+                GroupList = await Task.Run(GetGroupsFromJson(result).ToList);
             }
 
             return GroupList;

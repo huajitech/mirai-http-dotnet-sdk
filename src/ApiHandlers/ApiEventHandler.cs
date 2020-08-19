@@ -40,7 +40,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         {
             var server = new WebSocket(Plugin.Session.WebsocketUri + "all?sessionKey=" + Plugin.Session.SessionKey);
             server.OnMessage += (object sender, MessageEventArgs e) => EventHandlingAsync(e.Data).Wait();
-            await Task.Run(() => server.Connect());
+            await Task.Run(server.Connect);
         }
 
         /// <summary>
