@@ -18,14 +18,29 @@ namespace HuajiTech.Mirai
         /// </summary>
         internal protected CurrentUser CurrentUser => new CurrentUser(Session);
 
+        /// <summary>
+        /// 获取当前用户事件源
+        /// </summary>
         internal protected CurrentUserEventSource CurrentUserEventSource { get; }
 
+        /// <summary>
+        /// 获取好友事件源
+        /// </summary>
         internal protected FriendEventSource FriendEventSource { get; }
 
+        /// <summary>
+        /// 获取群事件源
+        /// </summary>
         internal protected GroupEventSource GroupEventSource { get; }
 
+        /// <summary>
+        /// 获取成员事件源
+        /// </summary>
         internal protected MemberEventSource MemberEventSource { get; }
 
+        /// <summary>
+        /// 创建 <see cref="Plugin"/> 实例
+        /// </summary>
         public Plugin()
         {
             CurrentUserEventSource = new CurrentUserEventSource(Session);
