@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HuajiTech.Mirai.Events
+﻿namespace HuajiTech.Mirai.Events
 {
     /// <summary>
     /// 为消息接收事件提供数据

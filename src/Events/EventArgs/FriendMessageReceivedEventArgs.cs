@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HuajiTech.Mirai.Events
+﻿namespace HuajiTech.Mirai.Events
 {
     /// <summary>
     /// 为好友消息接收事件提供数据

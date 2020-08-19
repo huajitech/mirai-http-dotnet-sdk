@@ -2,7 +2,6 @@
 using HuajiTech.Mirai.Extensions;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai
