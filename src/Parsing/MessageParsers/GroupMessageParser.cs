@@ -26,17 +26,7 @@ namespace HuajiTech.Mirai.Parsing
         /// 从 Json 中提取信息，并创建 <see cref="Mention"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的提及</param>
-        private Mention ToMention(JObject element)
-        {
-            try
-            {
-                return new Mention(Group.GetMemberAsync(element.Value<long>("target")).Result, element.Value<string>("display").TrimStart('@'));
-            }
-            catch (ChatNotFoundException)
-            {
-                return null;
-            }
-        }
+        private Mention ToMention(JObject element) => new Mention(Group.GetMemberAsync(element.Value<long>("target")).Result, element.Value<string>("display").TrimStart('@'));
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Quote"/> 实例

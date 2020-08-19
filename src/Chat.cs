@@ -20,6 +20,11 @@ namespace HuajiTech.Mirai
         public long Number { get; }
 
         /// <summary>
+        /// 获取当前 <see cref="Chat"/> 实例的名称
+        /// </summary>
+        public string Name { get; }
+
+        /// <summary>
         /// 异步发送消息到当前 <see cref="Chat"/> 实例
         /// </summary>
         /// <param name="message">要发送的消息</param>
@@ -90,6 +95,12 @@ namespace HuajiTech.Mirai
         /// 创建 <see cref="Chat"/> 实例
         /// </summary>
         /// <param name="session">指定 <see cref="Chat"/> 实例所使用的 Session</param>
-        internal Chat(Session session, long number) : base(session) => Number = number;
+        /// <param name="number">指定 <see cref="Chat"/> 实例的号码</param>
+        /// <param name="name">指定 <see cref="Chat"/> 实例的名称</param>
+        internal Chat(Session session, long number, string name) : base(session)
+        {
+            Number = number;
+            Name = name;
+        }
     }
 }

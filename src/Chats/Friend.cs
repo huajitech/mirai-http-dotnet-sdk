@@ -11,11 +11,6 @@ namespace HuajiTech.Mirai
         internal override async Task<string> InternalSendAsync(MessageElement[] message) => await ApiMethods.SendFriendMessageAsync(Session.HttpUri, Session.SessionKey, Number, message);
 
         /// <summary>
-        /// 获取当前 <see cref="Friend"/> 实例的昵称
-        /// </summary>
-        public string Nickname { get; }
-
-        /// <summary>
         /// 获取当前 <see cref="Friend"/> 实例的别名
         /// </summary>
         public string Alias { get; }
@@ -27,9 +22,8 @@ namespace HuajiTech.Mirai
         /// <param name="number">指定 <see cref="Friend"/> 实例的号码</param>
         /// <param name="nickname">指定 <see cref="Friend"/> 实例的昵称</param>
         /// <param name="alias">指定 <see cref="Friend"/> 实例的别名</param>
-        internal Friend(Session session, long number, string nickname, string alias) : base(session, number)
+        internal Friend(Session session, long number, string name, string alias) : base(session, number, name)
         {
-            Nickname = nickname;
             Alias = alias;
         }
     }

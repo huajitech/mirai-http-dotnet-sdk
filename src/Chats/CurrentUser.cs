@@ -25,6 +25,11 @@ namespace HuajiTech.Mirai
         private List<Group> GroupList { get; set; } = null;
 
         /// <summary>
+        /// 获取当前 <see cref="CurrentUser"/> 实例的名称
+        /// </summary>
+        public new string Name => GetFriendAsync(Number).Result.Name;
+
+        /// <summary>
         /// 异步刷新当前 <see cref="CurrentUser"/> 实例的好友列表
         /// </summary>
         public async Task RefreshFriendsAsync() => await GetFriendListAsync(true);
@@ -140,7 +145,7 @@ namespace HuajiTech.Mirai
         /// 从 Json 中提取群信息，并创建一个 <see cref="Group"/> 实例
         /// </summary>
         /// <param name="group">以 Json 表达的群信息</param>
-        private Group GetGroupFromJson(JObject group) => new Group(Session, group.Value<long>("id"), group.Value<string>("name"));
+        private Group GetGroupFromJson(JObject group) => new Group(Session, group.Value<long>("id"), group.Value<string>("name"), this, Member.MemberRoleDictionary[group.Value<string>("permission")]);
 
         /// <summary>
         /// 从 Json 中提取多个群信息，并创建一个 <see cref="List{Group}"/> 实例
@@ -159,7 +164,7 @@ namespace HuajiTech.Mirai
         /// 创建一个 <see cref="CurrentUser"/> 实例
         /// </summary>
         /// <param name="session">指定 <see cref="CurrentUser"/> 实例所使用的 Session</param>
-        internal CurrentUser(Session session) : base(session, session.BotNumber)
+        internal CurrentUser(Session session) : base(session, session.BotNumber, null)
         {
         }
     }

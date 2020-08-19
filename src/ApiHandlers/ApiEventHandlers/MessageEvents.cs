@@ -69,7 +69,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// 从 Json 中提取信息，并创建 <see cref="Group"/> 实例
         /// </summary>
         /// <param name="group">以 Json 表达的群</param>
-        private Group GetGroup(JObject group) => new Group(Plugin.Session, group.Value<long>("id"), group.Value<string>("name"));
+        private Group GetGroup(JObject group) => new Group(Plugin.Session, group.Value<long>("id"), group.Value<string>("name"), Plugin.CurrentUser, Member.MemberRoleDictionary[group.Value<string>("permission")]);
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Member"/> 实例

@@ -15,11 +15,6 @@ namespace HuajiTech.Mirai
         internal override async Task<string> InternalSendAsync(MessageElement[] message) => await ApiMethods.SendTempMessageAsync(Session.HttpUri, Session.SessionKey, Number, Group.Number, message);
 
         /// <summary>
-        /// 获取当前 <see cref="Member"/> 实例的名称
-        /// </summary>
-        public string Name { get; }
-
-        /// <summary>
         /// 获取当前 <see cref="Member"/> 实例所在的群
         /// </summary>
         public Group Group { get; }
@@ -72,10 +67,9 @@ namespace HuajiTech.Mirai
         /// <param name="group">指定 <see cref="Member"/> 实例所在的群</param>
         /// <param name="number">指定 <see cref="Member"/> 实例的号码</param>
         /// <param name="role">指定 <see cref="Member"/> 实例的成员角色</param>
-        internal Member(Group group, long number, string name, MemberRole role) : base(group.Session, number)
+        internal Member(Group group, long number, string name, MemberRole role) : base(group.Session, number, name)
         {
             Group = group;
-            Name = name;
             Role = role;
         }
     }

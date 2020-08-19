@@ -15,14 +15,11 @@ namespace HuajiTech.Mirai
         internal override async Task<string> InternalSendAsync(MessageElement[] message) => await ApiMethods.SendGroupMessageAsync(Session.HttpUri, Session.SessionKey, Number, message);
 
         /// <summary>
-        /// 获取当前 <see cref="Group"/> 实例的名称
-        /// </summary>
-        public string Name { get; }
-
-        /// <summary>
         /// 当前 <see cref="Group"/> 实例的成员列表
         /// </summary>
         private List<Member> MemberList { get; set; } = null;
+
+        internal Member CurrentUser { get; }
 
         /// <summary>
         /// 异步刷新当前 <see cref="CurrentUser"/> 实例的群列表
@@ -44,6 +41,7 @@ namespace HuajiTech.Mirai
             {
                 var result = JArray.Parse(await ApiMethods.GetMemberListAsync(Session.HttpUri, Session.SessionKey, Number));
                 MemberList = await Task.Run(() => GetMembersFromJson(result).ToList());
+                MemberList.Add(CurrentUser);
             }
 
             return MemberList;
@@ -106,6 +104,6 @@ namespace HuajiTech.Mirai
         /// </summary>
         /// <param name="session">指定 <see cref="Group"/> 实例所使用的 Session</param>
         /// <param name="number">指定 <see cref="Group"/> 实例的号码</param>
-        internal Group(Session session, long number, string name) : base(session, number) => Name = name;
+        internal Group(Session session, long number, string name, CurrentUser currentUser, MemberRole currentUserRole) : base(session, number, name) => CurrentUser = new Member(this, currentUser.Number, currentUser.Name, currentUserRole);
     }
 }
