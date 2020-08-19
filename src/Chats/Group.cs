@@ -19,6 +19,9 @@ namespace HuajiTech.Mirai
         /// </summary>
         private List<Member> MemberList { get; set; } = null;
 
+        /// <summary>
+        /// 获取当前 <see cref="Group"/> 实例的当前用户
+        /// </summary>
         internal Member CurrentUser { get; }
 
         /// <summary>
