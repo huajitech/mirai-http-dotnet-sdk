@@ -15,6 +15,11 @@ namespace HuajiTech.Mirai
         internal override async Task<string> InternalSendAsync(MessageElement[] message) => await ApiMethods.SendTempMessageAsync(Session.HttpUri, Session.SessionKey, Number, Group.Number, message);
 
         /// <summary>
+        /// 当前 <see cref="Member"/> 实例的昵称
+        /// </summary>
+        public string Nickname { get; }
+
+        /// <summary>
         /// 获取当前 <see cref="Member"/> 实例所在的群
         /// </summary>
         public Group Group { get; }
@@ -23,6 +28,26 @@ namespace HuajiTech.Mirai
         /// 获取当前 <see cref="Member"/> 实例的角色
         /// </summary>
         public MemberRole Role { get; }
+
+        /// <summary>
+        /// 获取当前 <see cref="Member"/> 实例的信息
+        /// </summary>
+        internal MemberInfo MemberInfo { get; set; }
+
+        /// <summary>
+        /// 获取当前 <see cref="Member"/> 实例的群名片
+        /// </summary>
+        public string Alias => MemberInfo.Name;
+
+        /// <summary>
+        /// 获取当前 <see cref="Member"/> 实例的头衔
+        /// </summary>
+        public string Title => MemberInfo.Title;
+
+        /// <summary>
+        /// 获取当前 <see cref="Member"/> 实例的显示名称
+        /// </summary>
+        public string DisplayName => Alias ?? Nickname;
 
         /// <summary>
         /// 成员角色 <see cref="string"/> 对 <see cref="MemberRole"/> 的字典
@@ -67,8 +92,9 @@ namespace HuajiTech.Mirai
         /// <param name="group">指定 <see cref="Member"/> 实例所在的群</param>
         /// <param name="number">指定 <see cref="Member"/> 实例的号码</param>
         /// <param name="role">指定 <see cref="Member"/> 实例的成员角色</param>
-        internal Member(Group group, long number, string name, MemberRole role) : base(group.Session, number, name)
+        internal Member(Group group, long number, string name, MemberRole role) : base(group.Session, number)
         {
+            Nickname = name;
             Group = group;
             Role = role;
         }

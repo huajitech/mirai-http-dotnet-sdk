@@ -27,7 +27,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 获取当前 <see cref="CurrentUser"/> 实例的名称
         /// </summary>
-        public new string Name => GetFriendAsync(Number).Result.Name;
+        public string Name => GetFriendAsync(Number).Result.Nickname;
 
         /// <summary>
         /// 异步刷新当前 <see cref="CurrentUser"/> 实例的好友列表
@@ -120,7 +120,6 @@ namespace HuajiTech.Mirai
         /// 异步获取当前 <see cref="CurrentUser"/> 实例的群
         /// </summary>
         /// <param name="number">群号码</param>
-        /// <returns></returns>
         public async Task<Group> GetGroupAsync(long number)
         {
             if (GroupList == null)
@@ -161,10 +160,17 @@ namespace HuajiTech.Mirai
         public async Task<Message> GetMessageAsync(int id) => await Message.GetMessageAsync(this, id);
 
         /// <summary>
+        /// 异步获取当前 <see cref="CurrentUser"/> 实例在指定群的成员
+        /// </summary>
+        /// <param name="group">群</param>
+        /// <param name="role">成员角色</param>
+        internal Member GetMember(Group group, MemberRole role) => new Member(group, Number, Name, role);
+
+        /// <summary>
         /// 创建一个 <see cref="CurrentUser"/> 实例
         /// </summary>
         /// <param name="session">指定 <see cref="CurrentUser"/> 实例所使用的 Session</param>
-        internal CurrentUser(Session session) : base(session, session.BotNumber, null)
+        internal CurrentUser(Session session) : base(session, session.BotNumber)
         {
         }
     }

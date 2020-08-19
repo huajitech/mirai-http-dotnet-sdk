@@ -15,6 +15,11 @@ namespace HuajiTech.Mirai
         internal override async Task<string> InternalSendAsync(MessageElement[] message) => await ApiMethods.SendGroupMessageAsync(Session.HttpUri, Session.SessionKey, Number, message);
 
         /// <summary>
+        /// 当前 <see cref="Group"/> 实例的名称
+        /// </summary>
+        public string Name { get; }
+
+        /// <summary>
         /// 当前 <see cref="Group"/> 实例的成员列表
         /// </summary>
         private List<Member> MemberList { get; set; } = null;
@@ -45,6 +50,20 @@ namespace HuajiTech.Mirai
                 var result = JArray.Parse(await ApiMethods.GetMemberListAsync(Session.HttpUri, Session.SessionKey, Number));
                 MemberList = await Task.Run(() => GetMembersFromJson(result).ToList());
                 MemberList.Add(CurrentUser);
+            }
+
+            return await GetMemberInfoAsync();
+        }
+
+        /// <summary>
+        /// 异步获取当前 <see cref="Group"/> 实例的成员信息
+        /// </summary>
+        private async Task<List<Member>> GetMemberInfoAsync()
+        {
+            foreach (var member in MemberList)
+            {
+                var info = JObject.Parse(await ApiMethods.GetMemberInfo(Session.HttpUri, Session.SessionKey, Number, member.Number));
+                member.MemberInfo = GetMemberInfoFromJson(info);
             }
 
             return MemberList;
@@ -88,6 +107,12 @@ namespace HuajiTech.Mirai
         private IEnumerable<Member> GetMembersFromJson(JArray members) => members.Select(x => GetMemberFromJson((JObject)x));
 
         /// <summary>
+        /// 从 Json 中提取成员信息，并创建一个 <see cref="MemberInfo"/> 实例
+        /// </summary>
+        /// <param name="info">以 Json 表达的成员信息</param>
+        private MemberInfo GetMemberInfoFromJson(JObject info) => new MemberInfo(info.Value<string>("name").CheckEmpty(), info.Value<string>("specialTitle").CheckEmpty());
+
+        /// <summary>
         /// 禁言当前 <see cref="Group"/> 实例
         /// </summary>
         public async Task MuteAsync() => JObject.Parse(await ApiMethods.MuteAllAsync(Session.HttpUri, Session.SessionKey, Number)).CheckError();
@@ -107,6 +132,10 @@ namespace HuajiTech.Mirai
         /// </summary>
         /// <param name="session">指定 <see cref="Group"/> 实例所使用的 Session</param>
         /// <param name="number">指定 <see cref="Group"/> 实例的号码</param>
-        internal Group(Session session, long number, string name, CurrentUser currentUser, MemberRole currentUserRole) : base(session, number, name) => CurrentUser = new Member(this, currentUser.Number, currentUser.Name, currentUserRole);
+        internal Group(Session session, long number, string name, CurrentUser currentUser, MemberRole currentUserRole) : base(session, number)
+        {
+            Name = name;
+            CurrentUser = currentUser.GetMember(this, currentUserRole);
+        }
     }
 }
