@@ -1,6 +1,8 @@
 ﻿using HuajiTech.Mirai.ApiHandlers;
 using HuajiTech.Mirai.Extensions;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai
@@ -8,7 +10,7 @@ namespace HuajiTech.Mirai
     /// <summary>
     /// 定义 Session
     /// </summary>
-    public class Session
+    public class Session : IAsyncDisposable
     {
         /// <summary>
         /// 获取当前 <see cref="Session"/> 实例的 Session Key
@@ -62,6 +64,8 @@ namespace HuajiTech.Mirai
         /// 异步检验 <see cref="Session"/> 实例
         /// </summary>
         private async Task VerifyAsync() => JObject.Parse(await ApiMethods.VerifyAsync(HttpUri, SessionKey, BotNumber)).CheckError();
+
+        public ValueTask DisposeAsync() => new ValueTask(ReleaseAsync());
 
         /// <summary>
         /// 创建 <see cref="Session"/> 实例
