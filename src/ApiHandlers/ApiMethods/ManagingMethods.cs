@@ -71,7 +71,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <param name="target">目标群号码</param>
         /// <param name="memberId">目标成员号码</param>
         /// <param name="msg">移除消息</param>
-        public static async Task<string> KickAsync(string uri, string sessionKey, long target, long memberId, string msg = null) => await HttpUtilities.PostAsync(uri + "unmute", JsonConvert.SerializeObject(new { sessionKey, target, memberId, msg }));
+        public static async Task<string> KickAsync(string uri, string sessionKey, long target, long memberId, string msg = null) => await HttpUtilities.PostAsync(uri + "kick", JsonConvert.SerializeObject(new { sessionKey, target, memberId, msg }));
 
         /// <summary>
         /// 异步移除群成员
@@ -79,7 +79,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <param name="uri">API URI</param>
         /// <param name="sessionKey">Session Key</param>
         /// <param name="target">目标群号码</param>
-        public static async Task<string> QuitAsync(string uri, string sessionKey, long target) => await HttpUtilities.PostAsync(uri + "unmute", JsonConvert.SerializeObject(new { sessionKey, target }));
+        public static async Task<string> QuitAsync(string uri, string sessionKey, long target) => await HttpUtilities.PostAsync(uri + "quit", JsonConvert.SerializeObject(new { sessionKey, target }));
 
         /// <summary>
         /// 异步获取群成员信息
