@@ -13,7 +13,7 @@ namespace HuajiTech.Mirai
         public string HttpUri { get; }
 
         /// <summary>
-        /// 获取当前 <see cref="SessionSettings"/> 实例的 WebSocket URI
+        /// 获取当前 <see cref="SessionSettings"/> 实例的 Websocket URI
         /// </summary>
         public string WebsocketUri { get; }
 

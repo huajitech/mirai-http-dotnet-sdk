@@ -26,7 +26,7 @@ namespace HuajiTech.Mirai
         internal string HttpUri => Settings.HttpUri;
 
         /// <summary>
-        /// 获取当前 <see cref="Session"/> 实例的 WebSocket URI
+        /// 获取当前 <see cref="Session"/> 实例的 Websocket URI
         /// </summary>
         internal string WebsocketUri => Settings.WebsocketUri;
 

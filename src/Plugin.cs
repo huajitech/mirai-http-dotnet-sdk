@@ -18,11 +18,20 @@ namespace HuajiTech.Mirai
         /// </summary>
         internal protected CurrentUser CurrentUser => new CurrentUser(Session);
 
-        internal protected MessageEventSource MessageEventSource { get; }
+        internal protected CurrentUserEventSource CurrentUserEventSource { get; }
+
+        internal protected FriendEventSource FriendEventSource { get; }
+
+        internal protected GroupEventSource GroupEventSource { get; }
+
+        internal protected MemberEventSource MemberEventSource { get; }
 
         public Plugin()
         {
-            MessageEventSource = new MessageEventSource(Session);
+            CurrentUserEventSource = new CurrentUserEventSource(Session);
+            FriendEventSource = new FriendEventSource(Session);
+            GroupEventSource = new GroupEventSource(Session);
+            MemberEventSource = new MemberEventSource(Session);
         }
     }
 }

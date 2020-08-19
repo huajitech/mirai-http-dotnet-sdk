@@ -9,8 +9,15 @@ namespace HuajiTech.Mirai.ApiHandlers
     /// </summary>
     internal partial class ApiEventHandler
     {
+        /// <summary>
+        /// 获取当前 <see cref="ApiEventHandler"/> 的插件
+        /// </summary>
         protected Plugin Plugin { get; }
 
+        /// <summary>
+        /// 异步处理通过 Websocket 获取的消息
+        /// </summary>
+        /// <param name="message">通过 Websocket 获取的消息</param>
         private async Task EventHandlingAsync(string message)
         {
             var data = JObject.Parse(message);
@@ -26,6 +33,9 @@ namespace HuajiTech.Mirai.ApiHandlers
             await task;
         }
 
+        /// <summary>
+        /// 异步监听 Websocket
+        /// </summary>
         public async Task ListenAsync()
         {
             var server = new WebSocket(Plugin.Session.WebsocketUri + "all?sessionKey=" + Plugin.Session.SessionKey);
@@ -33,6 +43,10 @@ namespace HuajiTech.Mirai.ApiHandlers
             await Task.Run(() => server.Connect());
         }
 
+        /// <summary>
+        /// 创建 <see cref="ApiEventHandler"/> 实例
+        /// </summary>
+        /// <param name="plugin">指定 <see cref="ApiEventHandler"/> 实例所使用的插件</param>
         public ApiEventHandler(Plugin plugin) => Plugin = plugin;
     }
 }
