@@ -45,7 +45,7 @@ namespace HuajiTech.Mirai
         /// 异步撤回当前 <see cref="Message"/> 实例
         /// </summary>
         /// <returns></returns>
-        public async Task RecallAsync() => JObject.Parse(await ApiMethods.RecallAsync(Session.Settings.HttpUri, Session.SessionKey, Id)).CheckError();
+        public async Task RecallAsync() => JObject.Parse(await ApiMethods.RecallAsync(Session.HttpUri, Session.SessionKey, Id)).CheckError();
 
         /// <summary>
         /// 异步获取 <see cref="Message"/> 实例

@@ -12,7 +12,7 @@ namespace HuajiTech.Mirai
     /// </summary>
     public class Group : Chat
     {
-        internal override async Task<string> InternalSendAsync(MessageElement[] message) => await ApiMethods.SendGroupMessageAsync(Session.Settings.HttpUri, Session.SessionKey, Number, message);
+        internal override async Task<string> InternalSendAsync(MessageElement[] message) => await ApiMethods.SendGroupMessageAsync(Session.HttpUri, Session.SessionKey, Number, message);
 
         /// <summary>
         /// 获取当前 <see cref="Group"/> 实例的名称
@@ -42,7 +42,7 @@ namespace HuajiTech.Mirai
         {
             if (refresh || MemberList == null)
             {
-                var result = JArray.Parse(await ApiMethods.GetMemberListAsync(Session.Settings.HttpUri, Session.SessionKey, Number));
+                var result = JArray.Parse(await ApiMethods.GetMemberListAsync(Session.HttpUri, Session.SessionKey, Number));
                 MemberList = await Task.Run(() => GetMembersFromJson(result).ToList());
             }
 
@@ -89,17 +89,17 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 禁言当前 <see cref="Group"/> 实例
         /// </summary>
-        public async Task MuteAsync() => JObject.Parse(await ApiMethods.MuteAllAsync(Session.Settings.HttpUri, Session.SessionKey, Number)).CheckError();
+        public async Task MuteAsync() => JObject.Parse(await ApiMethods.MuteAllAsync(Session.HttpUri, Session.SessionKey, Number)).CheckError();
 
         /// <summary>
         /// 解除当前 <see cref="Group"/> 实例的禁言
         /// </summary>
-        public async Task UnmuteAsync() => JObject.Parse(await ApiMethods.UnmuteAllAsync(Session.Settings.HttpUri, Session.SessionKey, Number)).CheckError();
+        public async Task UnmuteAsync() => JObject.Parse(await ApiMethods.UnmuteAllAsync(Session.HttpUri, Session.SessionKey, Number)).CheckError();
 
         /// <summary>
         /// 离开当前 <see cref="Group"/> 实例
         /// </summary>
-        public async Task LeaveAsync() => JObject.Parse(await ApiMethods.QuitAsync(Session.Settings.HttpUri, Session.SessionKey, Number)).CheckError();
+        public async Task LeaveAsync() => JObject.Parse(await ApiMethods.QuitAsync(Session.HttpUri, Session.SessionKey, Number)).CheckError();
 
         /// <summary>
         /// 创建 <see cref="Group"/> 实例

@@ -8,12 +8,12 @@ namespace HuajiTech.Mirai
     public class SessionSettings
     {
         /// <summary>
-        /// 获取当前 <see cref="SessionSettings"/> 实例的 Http URI
+        /// 获取当前 <see cref="SessionSettings"/> 实例的 HTTP URI
         /// </summary>
         public string HttpUri { get; }
 
         /// <summary>
-        /// 获取当前 <see cref="SessionSettings"/> 实例的 Websocket URI
+        /// 获取当前 <see cref="SessionSettings"/> 实例的 WebSocket URI
         /// </summary>
         public string WebsocketUri { get; }
 

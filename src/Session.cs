@@ -11,14 +11,29 @@ namespace HuajiTech.Mirai
     public class Session
     {
         /// <summary>
-        /// 获取 <see cref="Session"/> 实例的 Session Key
+        /// 获取当前 <see cref="Session"/> 实例的 Session Key
         /// </summary>
         internal string SessionKey { get; private set; }
 
         /// <summary>
-        /// 获取 <see cref="Session"/> 实例的设置
+        /// 获取当前 <see cref="Session"/> 实例的设置
         /// </summary>
         internal SessionSettings Settings { get; }
+
+        /// <summary>
+        /// 获取当前 <see cref="Session"/> 实例的 HTTP URI
+        /// </summary>
+        internal string HttpUri => Settings.HttpUri;
+
+        /// <summary>
+        /// 获取当前 <see cref="Session"/> 实例的 WebSocket URI
+        /// </summary>
+        internal string WebsocketUri => Settings.WebsocketUri;
+
+        /// <summary>
+        /// 获取当前 <see cref="Session"/> 实例的机器人号码
+        /// </summary>
+        internal long BotNumber => Settings.BotNumber;
 
         /// <summary>
         /// 异步绑定 <see cref="Session"/> 实例到 <see cref="Plugin"/> 实例
@@ -35,7 +50,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 异步释放 <see cref="Session"/> 实例
         /// </summary>
-        public async Task ReleaseAsync() => JObject.Parse(await ApiMethods.ReleaseAsync(Settings.HttpUri, SessionKey, Settings.BotNumber)).CheckError();
+        public async Task ReleaseAsync() => JObject.Parse(await ApiMethods.ReleaseAsync(HttpUri, SessionKey, BotNumber)).CheckError();
 
         /// <summary>
         /// 异步连接 <see cref="Session"/> 实例
@@ -51,14 +66,14 @@ namespace HuajiTech.Mirai
         /// </summary>
         private async Task AuthAsync()
         {
-            var authResult = JObject.Parse(await ApiMethods.AuthAsync(Settings.HttpUri, Settings.AuthKey)).CheckError();
+            var authResult = JObject.Parse(await ApiMethods.AuthAsync(HttpUri, Settings.AuthKey)).CheckError();
             SessionKey = authResult.Value<string>("session");
         }
 
         /// <summary>
-        /// 异步认证 <see cref="Session"/> 实例
+        /// 异步检验 <see cref="Session"/> 实例
         /// </summary>
-        private async Task VerifyAsync() => JObject.Parse(await ApiMethods.VerifyAsync(Settings.HttpUri, SessionKey, Settings.BotNumber)).CheckError();
+        private async Task VerifyAsync() => JObject.Parse(await ApiMethods.VerifyAsync(HttpUri, SessionKey, BotNumber)).CheckError();
 
         /// <summary>
         /// 创建 <see cref="Session"/> 实例

@@ -12,7 +12,7 @@ namespace HuajiTech.Mirai
     /// </summary>
     public class Member : User
     {
-        internal override async Task<string> InternalSendAsync(MessageElement[] message) => await ApiMethods.SendTempMessageAsync(Session.Settings.HttpUri, Session.SessionKey, Number, Group.Number, message);
+        internal override async Task<string> InternalSendAsync(MessageElement[] message) => await ApiMethods.SendTempMessageAsync(Session.HttpUri, Session.SessionKey, Number, Group.Number, message);
 
         /// <summary>
         /// 获取当前 <see cref="Member"/> 实例的名称
@@ -51,20 +51,20 @@ namespace HuajiTech.Mirai
             }
             else
             {
-                JObject.Parse(await ApiMethods.MuteAsync(Session.Settings.HttpUri, Session.SessionKey, Group.Number, Number, (int)time.TotalSeconds)).CheckError();
+                JObject.Parse(await ApiMethods.MuteAsync(Session.HttpUri, Session.SessionKey, Group.Number, Number, (int)time.TotalSeconds)).CheckError();
             }
         }
 
         /// <summary>
         /// 解除当前 <see cref="Member"/> 实例的禁言
         /// </summary>
-        public async Task UnmuteAsync() => JObject.Parse(await ApiMethods.UnmuteAsync(Session.Settings.HttpUri, Session.SessionKey, Group.Number, Number)).CheckError();
+        public async Task UnmuteAsync() => JObject.Parse(await ApiMethods.UnmuteAsync(Session.HttpUri, Session.SessionKey, Group.Number, Number)).CheckError();
 
         /// <summary>
         /// 移除当前 <see cref="Member"/> 实例
         /// </summary>
         /// <param name="msg">移除消息</param>
-        public async Task KickAsync(string msg = null) => JObject.Parse(await ApiMethods.KickAsync(Session.Settings.HttpUri, Session.SessionKey, Group.Number, Number, msg));
+        public async Task KickAsync(string msg = null) => JObject.Parse(await ApiMethods.KickAsync(Session.HttpUri, Session.SessionKey, Group.Number, Number, msg));
 
         /// <summary>
         /// 创建 <see cref="Member"/> 实例

@@ -12,7 +12,7 @@ namespace HuajiTech.Mirai
     /// </summary>
     public class CurrentUser : User
     {
-        internal override async Task<string> InternalSendAsync(MessageElement[] message) => await ApiMethods.SendFriendMessageAsync(Session.Settings.HttpUri, Session.SessionKey, Number, message);
+        internal override async Task<string> InternalSendAsync(MessageElement[] message) => await ApiMethods.SendFriendMessageAsync(Session.HttpUri, Session.SessionKey, Number, message);
 
         /// <summary>
         /// 当前 <see cref="CurrentUser"/> 实例的好友列表
@@ -47,7 +47,7 @@ namespace HuajiTech.Mirai
         {
             if (refresh || FriendList == null)
             {
-                var result = JArray.Parse(await ApiMethods.GetFriendListAsync(Session.Settings.HttpUri, Session.SessionKey));
+                var result = JArray.Parse(await ApiMethods.GetFriendListAsync(Session.HttpUri, Session.SessionKey));
                 FriendList = await Task.Run(() => GetFriendsFromJson(result).ToList());
             }
 
@@ -104,7 +104,7 @@ namespace HuajiTech.Mirai
         {
             if (refresh || GroupList == null)
             {
-                var result = JArray.Parse(await ApiMethods.GetGroupListAsync(Session.Settings.HttpUri, Session.SessionKey));
+                var result = JArray.Parse(await ApiMethods.GetGroupListAsync(Session.HttpUri, Session.SessionKey));
                 GroupList = await Task.Run(() => GetGroupsFromJson(result).ToList());
             }
 
@@ -159,7 +159,7 @@ namespace HuajiTech.Mirai
         /// 创建一个 <see cref="CurrentUser"/> 实例
         /// </summary>
         /// <param name="session">指定 <see cref="CurrentUser"/> 实例所使用的 Session</param>
-        internal CurrentUser(Session session) : base(session, session.Settings.BotNumber)
+        internal CurrentUser(Session session) : base(session, session.BotNumber)
         {
         }
     }
