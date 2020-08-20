@@ -4,7 +4,7 @@
 
 ## 示例
 
-1. [复读机示例](Repeater.cs)
+1. [复读机示例](http://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/snippets/2)
 
 ## 本项目开发环境
 
@@ -19,7 +19,7 @@
 ## 联系
 
 - Ricky QQ：397050061
-- HuajiTech QQ群：565136444
+- HuajiTech QQ群：[565136444](https://jq.qq.com/?_wv=1027&k=UNTnWwHd)
 
 ## TODO
 
