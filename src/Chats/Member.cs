@@ -37,12 +37,12 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 获取当前 <see cref="Member"/> 实例的群名片
         /// </summary>
-        public string Alias => MemberInfo.Name;
+        public string Alias => MemberInfo.Name.CheckEmpty();
 
         /// <summary>
         /// 获取当前 <see cref="Member"/> 实例的头衔
         /// </summary>
-        public string Title => MemberInfo.Title;
+        public string Title => MemberInfo.Title.CheckEmpty();
 
         /// <summary>
         /// 获取当前 <see cref="Member"/> 实例的显示名称

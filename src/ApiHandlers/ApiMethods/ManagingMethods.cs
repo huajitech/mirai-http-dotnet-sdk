@@ -88,6 +88,14 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <param name="sessionKey">Session Key</param>
         /// <param name="target">目标群号码</param>
         /// <param name="memberId">目标成员号码</param>
-        public static async Task<string> GetMemberInfo(string uri, string sessionKey, long target, long memberId) => await HttpUtilities.GetAsync($"{uri}/memberInfo?sessionKey={sessionKey}&target={target}&memberId={memberId}");
+        public static async Task<string> GetMemberInfo(string uri, string sessionKey, long target, long memberId) => await HttpUtilities.GetAsync($"{uri}memberInfo?sessionKey={sessionKey}&target={target}&memberId={memberId}");
+
+        /// <summary>
+        /// 异步获取群设置
+        /// </summary>
+        /// <param name="uri">API URI</param>
+        /// <param name="sessionKey">Session Key</param>
+        /// <param name="target">目标群号码</param>
+        public static async Task<string> GetGroupConfig(string uri, string sessionKey, long target) => await HttpUtilities.GetAsync($"{uri}groupConfig?sessionKey={sessionKey}&target={target}");
     }
 }

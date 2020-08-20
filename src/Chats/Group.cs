@@ -1,5 +1,6 @@
 ﻿using HuajiTech.Mirai.ApiHandlers;
 using HuajiTech.Mirai.Extensions;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,36 @@ namespace HuajiTech.Mirai
         /// 当前 <see cref="Group"/> 实例的成员列表
         /// </summary>
         private List<Member> MemberList { get; set; } = null;
+
+        /// <summary>
+        /// 获取当前 <see cref="Group"/> 实例的信息
+        /// </summary>
+        internal GroupInfo GroupInfo { get; set; }
+
+        /// <summary>
+        /// 获取 <see cref="Group"/> 实例的公告
+        /// </summary>
+        public string Announcement => GroupInfo.Announcement.CheckEmpty();
+
+        /// <summary>
+        /// 获取 <see cref="Group"/> 实例能否使用坦白说
+        /// </summary>
+        public bool CanConfessTalk => GroupInfo.CanConfessTalk;
+
+        /// <summary>
+        /// 获取 <see cref="Group"/> 实例能否邀请新成员
+        /// </summary>
+        public bool CanInvite => GroupInfo.CanInvite;
+
+        /// <summary>
+        /// 获取 <see cref="Group"/> 实例是否自动审批入群
+        /// </summary>
+        public bool IsAutoApprove => GroupInfo.IsAutoApprove;
+
+        /// <summary>
+        /// 获取 <see cref="Group"/> 实例能否使用匿名功能
+        /// </summary>
+        public bool CanAnonymous => GroupInfo.CanAnonymous;
 
         /// <summary>
         /// 获取当前 <see cref="Group"/> 实例的当前用户
@@ -62,7 +93,7 @@ namespace HuajiTech.Mirai
         {
             foreach (var member in MemberList)
             {
-                var info = JObject.Parse(await ApiMethods.GetMemberInfo(Session.HttpUri, Session.SessionKey, Number, member.Number));
+                var info = await ApiMethods.GetMemberInfo(Session.HttpUri, Session.SessionKey, Number, member.Number);
                 member.MemberInfo = GetMemberInfoFromJson(info);
             }
 
@@ -110,7 +141,7 @@ namespace HuajiTech.Mirai
         /// 从 Json 中提取成员信息，并创建一个 <see cref="MemberInfo"/> 实例
         /// </summary>
         /// <param name="info">以 Json 表达的成员信息</param>
-        private MemberInfo GetMemberInfoFromJson(JObject info) => new MemberInfo(info.Value<string>("name").CheckEmpty(), info.Value<string>("specialTitle").CheckEmpty());
+        private MemberInfo GetMemberInfoFromJson(string info) => JsonConvert.DeserializeObject<MemberInfo>(info);
 
         /// <summary>
         /// 禁言当前 <see cref="Group"/> 实例

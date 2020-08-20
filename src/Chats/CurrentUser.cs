@@ -1,5 +1,6 @@
 ﻿using HuajiTech.Mirai.ApiHandlers;
 using HuajiTech.Mirai.Extensions;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,9 +31,9 @@ namespace HuajiTech.Mirai
         private Friend Friend { get; set; }
 
         /// <summary>
-        /// 获取当前 <see cref="CurrentUser"/> 实例的名称
+        /// 获取当前 <see cref="CurrentUser"/> 实例的昵称
         /// </summary>
-        public string Nickname => Friend.Nickname;
+        public string Nickname => Friend?.Nickname;
 
         /// <summary>
         /// 异步刷新当前 <see cref="CurrentUser"/> 实例的好友列表
@@ -119,6 +120,20 @@ namespace HuajiTech.Mirai
                 GroupList = await Task.Run(GetGroupsFromJson(result).ToList);
             }
 
+            return await GetGroupInfoAsync();
+        }
+
+        /// <summary>
+        /// 异步获取当前 <see cref="CurrentUser"/> 实例的群信息
+        /// </summary>
+        private async Task<List<Group>> GetGroupInfoAsync()
+        {
+            foreach (var group in GroupList)
+            {
+                var info = await ApiMethods.GetGroupConfig(Session.HttpUri, Session.SessionKey, group.Number);
+                group.GroupInfo = GetGroupInfoFromJson(info);
+            }
+
             return GroupList;
         }
 
@@ -157,6 +172,12 @@ namespace HuajiTech.Mirai
         /// </summary>
         /// <param name="groups">以 Json 表达的多个群信息</param>
         private IEnumerable<Group> GetGroupsFromJson(JArray groups) => groups.Select(x => GetGroupFromJson((JObject)x));
+
+        /// <summary>
+        /// 从 Json 中提取成员信息，并创建一个 <see cref="GroupInfo"/> 实例
+        /// </summary>
+        /// <param name="info">以 Json 表达的群信息</param>
+        private GroupInfo GetGroupInfoFromJson(string info) => JsonConvert.DeserializeObject<GroupInfo>(info);
 
         /// <summary>
         /// 异步获取指定 ID 的消息
