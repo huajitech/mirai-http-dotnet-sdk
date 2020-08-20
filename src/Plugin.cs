@@ -69,6 +69,7 @@ namespace HuajiTech.Mirai
         /// </summary>
         public Plugin()
         {
+            BotEventSource = new BotEventSource(Session);
             CurrentUserEventSource = new CurrentUserEventSource(Session);
             FriendEventSource = new FriendEventSource(Session);
             GroupEventSource = new GroupEventSource(Session);
