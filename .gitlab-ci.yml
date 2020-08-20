@@ -1,15 +1,52 @@
-# .NET Core 3.1
 image: mcr.microsoft.com/dotnet/core/sdk:3.1
 
+variables:
+  NUGET_PACKAGES_DIRECTORY: .nuget
+
 stages:
+  - build
+  - test
   - deploy
 
-release:
+cache:
+  key:
+    files:
+      - src/*.csproj
+  paths:
+    - ${NUGET_PACKAGES_DIRECTORY}
+
+before_script:
+  - dotnet restore src/ --packages ${NUGET_PACKAGES_DIRECTORY}
+
+build:
+  stage: build
+  script: 
+    - dotnet build src/ --no-restore
+
+test:
+  stage: test
+  script:
+    - dotnet test src/ --no-restore
+
+publish:
   stage: deploy
   only:
     - master
+  script:
+    - dotnet publish -c Release -o bin/ src/ --no-restore
   artifacts:
     paths:
-      - publish/
+      - bin/
+
+pages:
+  image: daemoncore/docfx:latest
+  stage: deploy
+  only:
+    - master
+  before_script:
+    - ''
   script:
-  - dotnet publish -c Release -o publish/ src/HuajiTech.Mirai.sln
+    - docfx docs/docfx.json
+  artifacts:
+    paths:
+      - public/
