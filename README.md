@@ -1,4 +1,4 @@
-# HuajiTech.CoolQ
+# HuajiTech.Mirai
 
 用于开发 mirai 应用基于 mirai-http-api 的 .NET SDK
 
