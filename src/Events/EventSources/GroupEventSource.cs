@@ -20,7 +20,7 @@ namespace HuajiTech.Mirai.Events
         internal async Task OnGroupMessageReceived(Member source, Message message)
         {
             var e = new MemberMessageReceivedEventArgs(source, message);
-            await InvokeAsync(GroupMessageReceivedEvent, Session, e);
+            await InvokeAsync(GroupMessageReceivedEvent, e);
         }
 
         /// <summary>

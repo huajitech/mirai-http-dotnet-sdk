@@ -21,7 +21,7 @@ namespace HuajiTech.Mirai.Events
         internal async Task OnMessageReceived(Chat source, User sender, Message message)
         {
             var e = new MessageReceivedEventArgs(source, sender, message);
-            await InvokeAsync(MessageReceivedEvent, Session, e);
+            await InvokeAsync(MessageReceivedEvent, e);
         }
 
         /// <summary>

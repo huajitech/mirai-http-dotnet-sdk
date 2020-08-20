@@ -20,7 +20,7 @@ namespace HuajiTech.Mirai.Events
         internal async Task OnFriendMessageReceived(Friend source, Message message)
         {
             var e = new FriendMessageReceivedEventArgs(source, message);
-            await InvokeAsync(FriendMessageReceivedEvent, Session, e);
+            await InvokeAsync(FriendMessageReceivedEvent, e);
         }
 
         /// <summary>

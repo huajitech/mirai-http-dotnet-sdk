@@ -20,6 +20,11 @@ namespace HuajiTech.Mirai
         internal protected CurrentUser CurrentUser => new CurrentUser(Session);
 
         /// <summary>
+        /// 获取机器人事件源
+        /// </summary>
+        internal protected BotEventSource BotEventSource { get; }
+
+        /// <summary>
         /// 获取当前用户事件源
         /// </summary>
         internal protected CurrentUserEventSource CurrentUserEventSource { get; }

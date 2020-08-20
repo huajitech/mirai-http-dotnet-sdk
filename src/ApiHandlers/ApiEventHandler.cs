@@ -27,6 +27,8 @@ namespace HuajiTech.Mirai.ApiHandlers
                 "FriendMessage" => FriendMessageEventHandling(data),
                 "GroupMessage" => GroupMessageEventHandling(data),
                 "TempMessage" => MemberMessageEventHandling(data),
+                "BotOnlineEvent" => BotOnlineEvent(data),
+                "BotReloginEvent" => BotReloginEvent(data),
                 _ => Task.Delay(0)
             };
 

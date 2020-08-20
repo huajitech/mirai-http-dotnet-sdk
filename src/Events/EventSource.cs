@@ -15,11 +15,11 @@ namespace HuajiTech.Mirai.Events
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">An object that contains the event data.</param>
         /// <returns></returns>
-        internal static async Task InvokeAsync<TEventArgs>(EventHandler<TEventArgs> handlers, Session sender, TEventArgs e)
+        internal async Task InvokeAsync<TEventArgs>(EventHandler<TEventArgs> handlers, TEventArgs e)
         {
             if (handlers != null)
             {
-                await handlers.Invoke(sender, e);
+                await handlers.Invoke(Session, e);
             }
         }
 
