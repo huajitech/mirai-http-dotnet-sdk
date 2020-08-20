@@ -48,7 +48,7 @@ namespace HuajiTech.Mirai
             if (refresh || MemberList == null)
             {
                 var result = JArray.Parse(await ApiMethods.GetMemberListAsync(Session.HttpUri, Session.SessionKey, Number));
-                MemberList = await Task.Run(() => GetMembersFromJson(result).ToList());
+                MemberList = await Task.Run(GetMembersFromJson(result).ToList);
                 MemberList.Add(CurrentUser);
             }
 

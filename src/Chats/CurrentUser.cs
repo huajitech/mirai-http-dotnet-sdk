@@ -25,9 +25,14 @@ namespace HuajiTech.Mirai
         private List<Group> GroupList { get; set; } = null;
 
         /// <summary>
+        /// 当前 <see cref="CurrentUser"/> 实例的好友实例
+        /// </summary>
+        private Friend Friend { get; set; }
+
+        /// <summary>
         /// 获取当前 <see cref="CurrentUser"/> 实例的名称
         /// </summary>
-        public string Name => GetFriendAsync(Number).Result.Nickname;
+        public string Nickname => Friend.Nickname;
 
         /// <summary>
         /// 异步刷新当前 <see cref="CurrentUser"/> 实例的好友列表
@@ -54,6 +59,7 @@ namespace HuajiTech.Mirai
             {
                 var result = JArray.Parse(await ApiMethods.GetFriendListAsync(Session.HttpUri, Session.SessionKey));
                 FriendList = await Task.Run(GetFriendsFromJson(result).ToList);
+                Friend = await GetFriendAsync(Number);
             }
 
             return FriendList;
@@ -85,7 +91,7 @@ namespace HuajiTech.Mirai
         }
 
         /// <summary>
-        /// 从 Json 中提取好友信息，并创建一个 <see cref="Friend"/> 实例
+        /// 从 Json 中提取好友信息，并创建一个 <see cref="Mirai.Friend"/> 实例
         /// </summary>
         /// <param name="friend">以 Json 表达的好友信息</param>
         private Friend GetFriendFromJson(JObject friend) => new Friend(Session, friend.Value<long>("id"), friend.Value<string>("nickname"), friend.Value<string>("remark").CheckEmpty());
@@ -164,7 +170,7 @@ namespace HuajiTech.Mirai
         /// </summary>
         /// <param name="group">群</param>
         /// <param name="role">成员角色</param>
-        internal Member GetMember(Group group, MemberRole role) => new Member(group, Number, Name, role);
+        internal Member GetMember(Group group, MemberRole role) => new Member(group, Number, Nickname, role);
 
         /// <summary>
         /// 创建一个 <see cref="CurrentUser"/> 实例
