@@ -6,12 +6,18 @@
 
 1. [复读机示例](http://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/snippets/2)
 
-## 本项目开发环境
+## 文档
+
+- GitLab 文档：https://huajitech.pages.huajitech.net/mirai-http-dotnet-sdk/index.html
+
+## 开发环境
+
+### 本项目
 
 - Visual Studio 2019
 - .NET Core 3.1
 
-## 推荐开发配置
+### 推荐
 
 - .NET Core 3.1
 - 控制台应用
