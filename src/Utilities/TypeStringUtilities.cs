@@ -4,7 +4,7 @@ namespace HuajiTech.Mirai.Utilities
 {
     internal static class TypeStringUtilities
     {
-        private static readonly string TypeStringFormat = "[type:{0},{1}]";
+        private static readonly string TypeStringFormat = "[{0}({1})]";
 
         public static string ToTypeString<T>(T t)
         {
