@@ -1,6 +1,5 @@
 ﻿using HuajiTech.Mirai.Interop;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace HuajiTech.Mirai.Extensions
 {

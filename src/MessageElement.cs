@@ -1,4 +1,5 @@
 ﻿using HuajiTech.Mirai.Messaging;
+using HuajiTech.Mirai.Utilities;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
@@ -14,6 +15,8 @@ namespace HuajiTech.Mirai
         /// </summary>
         [JsonProperty(PropertyName = "type")]
         internal abstract string Type { get; }
+
+        public override string ToString() => TypeStringUtilities.ToTypeString(this);
 
         public static implicit operator MessageElement(string str) => new PlainText(str);
 
