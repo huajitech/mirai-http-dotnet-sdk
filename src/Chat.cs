@@ -33,7 +33,7 @@ namespace HuajiTech.Mirai
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
         public async Task<Message> SendAsync(List<MessageElement> message)
         {
-            var result = JObject.Parse(await InternalSendAsync(message.ToArray())).CheckError();
+            var result = JObject.Parse((await InternalSendAsync(message.ToArray())).CheckError());
             return new Message(Session, GetSource(result.Value<int>("messageId")), message);
         }
 
@@ -44,7 +44,7 @@ namespace HuajiTech.Mirai
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
         public async Task<Message> SendAsync(MessageElement[] message)
         {
-            var result = JObject.Parse(await InternalSendAsync(message)).CheckError();
+            var result = JObject.Parse((await InternalSendAsync(message)).CheckError());
             return new Message(Session, GetSource(result.Value<int>("messageId")), message.ToList());
         }
 

@@ -146,17 +146,17 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 禁言当前 <see cref="Group"/> 实例
         /// </summary>
-        public async Task MuteAsync() => JObject.Parse(await ApiMethods.MuteAllAsync(Session.HttpUri, Session.SessionKey, Number)).CheckError();
+        public async Task MuteAsync() => (await ApiMethods.MuteAllAsync(Session.HttpUri, Session.SessionKey, Number)).CheckError();
 
         /// <summary>
         /// 解除当前 <see cref="Group"/> 实例的禁言
         /// </summary>
-        public async Task UnmuteAsync() => JObject.Parse(await ApiMethods.UnmuteAllAsync(Session.HttpUri, Session.SessionKey, Number)).CheckError();
+        public async Task UnmuteAsync() => (await ApiMethods.UnmuteAllAsync(Session.HttpUri, Session.SessionKey, Number)).CheckError();
 
         /// <summary>
         /// 离开当前 <see cref="Group"/> 实例
         /// </summary>
-        public async Task LeaveAsync() => JObject.Parse(await ApiMethods.QuitAsync(Session.HttpUri, Session.SessionKey, Number)).CheckError();
+        public async Task LeaveAsync() => (await ApiMethods.QuitAsync(Session.HttpUri, Session.SessionKey, Number)).CheckError();
 
         /// <summary>
         /// 创建 <see cref="Group"/> 实例

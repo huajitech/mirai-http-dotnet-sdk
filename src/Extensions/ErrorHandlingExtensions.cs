@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using HuajiTech.Mirai.Interop;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace HuajiTech.Mirai.Extensions
 {
@@ -11,10 +13,10 @@ namespace HuajiTech.Mirai.Extensions
         /// 通过请求返回的 Json 结果检查是否出错
         /// </summary>
         /// <param name="result">Json 结果</param>
-        public static JObject CheckError(this JObject result)
+        public static string CheckError(this string result)
         {
-            int code = result.Value<int>("code");
-            return code == 0 ? result : throw new ApiException(result.Value<string>("msg"), code);
+            var info = JsonConvert.DeserializeObject<ErrorInfo>(result);
+            return info.ErrorCode == 0 ? result : throw new ApiException(info.Message, info.ErrorCode);
         }
     }
 }

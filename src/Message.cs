@@ -45,7 +45,7 @@ namespace HuajiTech.Mirai
         /// 异步撤回当前 <see cref="Message"/> 实例
         /// </summary>
         /// <returns></returns>
-        public async Task RecallAsync() => JObject.Parse(await ApiMethods.RecallAsync(Session.HttpUri, Session.SessionKey, Id)).CheckError();
+        public async Task RecallAsync() => (await ApiMethods.RecallAsync(Session.HttpUri, Session.SessionKey, Id)).CheckError();
 
         /// <summary>
         /// 异步获取 <see cref="Message"/> 实例
@@ -56,8 +56,9 @@ namespace HuajiTech.Mirai
         public static async Task<Message> GetMessageAsync(CurrentUser currentUser, int id)
         {
             var session = currentUser.Session;
-            var result = (JObject)JObject.Parse(await ApiMethods.GetMessageAsync(session.Settings.HttpUri, session.SessionKey, id)).CheckError()["data"];
-            var parser = MessageParser.GetParser(currentUser, result);
+            var result = JObject.Parse((await ApiMethods.GetMessageAsync(session.Settings.HttpUri, session.SessionKey, id)).CheckError());
+            var data = (JObject)result["data"];
+            var parser = MessageParser.GetParser(currentUser, data);
             var elements = await Task.Run(() => parser.ParseMore((JArray)result["messageChain"]));
             return new Message(session, elements.ToList());
         }

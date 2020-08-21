@@ -39,7 +39,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 异步释放 <see cref="Session"/> 实例
         /// </summary>
-        public async Task ReleaseAsync() => JObject.Parse(await ApiMethods.ReleaseAsync(HttpUri, SessionKey, BotNumber)).CheckError();
+        public async Task ReleaseAsync() => (await ApiMethods.ReleaseAsync(HttpUri, SessionKey, BotNumber)).CheckError();
 
         /// <summary>
         /// 异步连接 <see cref="Session"/> 实例
@@ -55,14 +55,14 @@ namespace HuajiTech.Mirai
         /// </summary>
         private async Task AuthAsync()
         {
-            var authResult = JObject.Parse(await ApiMethods.AuthAsync(HttpUri, Settings.AuthKey)).CheckError();
+            var authResult = JObject.Parse((await ApiMethods.AuthAsync(HttpUri, Settings.AuthKey)).CheckError());
             SessionKey = authResult.Value<string>("session");
         }
 
         /// <summary>
         /// 异步检验 <see cref="Session"/> 实例
         /// </summary>
-        private async Task VerifyAsync() => JObject.Parse(await ApiMethods.VerifyAsync(HttpUri, SessionKey, BotNumber)).CheckError();
+        private async Task VerifyAsync() => (await ApiMethods.VerifyAsync(HttpUri, SessionKey, BotNumber)).CheckError();
 
         public ValueTask DisposeAsync() => new ValueTask(ReleaseAsync());
 
