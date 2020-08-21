@@ -2,6 +2,9 @@
 
 namespace HuajiTech.Mirai.Messaging
 {
+    /// <summary>
+    /// 表示 App 的 <see cref="MessageElement"/>
+    /// </summary>
     public class App : MessageElement
     {
         internal override string Type { get; } = "App";

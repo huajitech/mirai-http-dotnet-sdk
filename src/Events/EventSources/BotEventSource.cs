@@ -2,6 +2,9 @@
 
 namespace HuajiTech.Mirai.Events
 {
+    /// <summary>
+    /// 指定机器人事件源
+    /// </summary>
     public class BotEventSource : EventSource
     {
         /// <summary>
