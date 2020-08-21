@@ -8,7 +8,7 @@
 
 ## 文档
 
-- GitLab 文档：https://huajitech.pages.huajitech.net/mirai-http-dotnet-sdk/index.html
+- GitLab 文档：https://mirai-http-dotnet-sdk.projects.huajitech.net/
 
 ## 开发环境
 
