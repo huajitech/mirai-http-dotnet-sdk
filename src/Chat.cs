@@ -49,27 +49,6 @@ namespace HuajiTech.Mirai
         }
 
         /// <summary>
-        /// 异步发送消息到当前 <see cref="Chat"/> 实例
-        /// </summary>
-        /// <param name="message">要发送的消息</param>
-        /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public async Task<Message> SendAsync(string message) => await SendAsync(new MessageElement[] { new PlainText(message) });
-
-        /// <summary>
-        /// 异步发送消息到当前 <see cref="Chat"/> 实例
-        /// </summary>
-        /// <param name="message">要发送的消息</param>
-        /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public async Task<Message> SendAsync(MessageElement message) => await SendAsync(new MessageElement[] { message });
-
-        /// <summary>
-        /// 异步发送消息到当前 <see cref="Chat"/> 实例
-        /// </summary>
-        /// <param name="message">要发送的消息</param>
-        /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public async Task<Message> SendAsync(PlainText message) => await SendAsync((MessageElement)message);
-
-        /// <summary>
         /// 获取所发送消息的来源
         /// </summary>
         /// <param name="id">消息 ID</param>
