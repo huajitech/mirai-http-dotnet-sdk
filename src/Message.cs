@@ -63,6 +63,8 @@ namespace HuajiTech.Mirai
             return new Message(session, elements.ToList());
         }
 
+        public override string ToString() => TypeStringUtilities.ToTypeString(this);
+
         public static implicit operator List<MessageElement>(Message message) => message.Content;
 
         /// <summary>

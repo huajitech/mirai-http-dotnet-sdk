@@ -13,6 +13,8 @@ namespace HuajiTech.Mirai
     {
         internal override async Task<string> InternalSendAsync(MessageElement[] message) => await ApiMethods.SendTempMessageAsync(Session.HttpUri, Session.SessionKey, Number, Group.Number, message);
 
+        public override string ToString() => $"{nameof(Member)}({Number}, {Group.Number})";
+
         /// <summary>
         /// 当前 <see cref="Member"/> 实例的昵称
         /// </summary>

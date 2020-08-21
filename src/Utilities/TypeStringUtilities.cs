@@ -2,10 +2,22 @@
 
 namespace HuajiTech.Mirai.Utilities
 {
+    /// <summary>
+    /// 提供实例转换为类型字符串的方法
+    /// </summary>
     internal static class TypeStringUtilities
     {
+        /// <summary>
+        /// 实例转换为类型字符串的格式
+        /// </summary>
         private static readonly string TypeStringFormat = "[{0}({1})]";
 
+        /// <summary>
+        /// 转换到类型字符串
+        /// </summary>
+        /// <typeparam name="T">实例类型</typeparam>
+        /// <param name="t">将要转换到类型字符串的实例</param>
+        /// <returns>表达该实例的字符串</returns>
         public static string ToTypeString<T>(T t)
         {
             var type = t.GetType();
