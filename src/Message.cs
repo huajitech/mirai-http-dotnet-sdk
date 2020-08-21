@@ -59,7 +59,7 @@ namespace HuajiTech.Mirai
             var result = JObject.Parse((await ApiMethods.GetMessageAsync(session.Settings.HttpUri, session.SessionKey, id)).CheckError());
             var data = (JObject)result["data"];
             var parser = MessageParser.GetParser(currentUser, data);
-            var elements = await Task.Run(() => parser.ParseMore((JArray)result["messageChain"]));
+            var elements = await Task.Run(() => parser.ParseMore((JArray)data["messageChain"]));
             return new Message(session, elements.ToList());
         }
 
