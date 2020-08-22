@@ -18,7 +18,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 当前 <see cref="Group"/> 实例的名称
         /// </summary>
-        public string Name { get; }
+        public string Name { get; private set; }
 
         /// <summary>
         /// 当前 <see cref="Group"/> 实例的成员列表
@@ -157,6 +157,107 @@ namespace HuajiTech.Mirai
         /// 离开当前 <see cref="Group"/> 实例
         /// </summary>
         public async Task LeaveAsync() => (await ApiMethods.QuitAsync(Session.HttpUri, Session.SessionKey, Number)).CheckError();
+
+        /// <summary>
+        /// 设置当前 <see cref="Group"/> 实例的名称
+        /// </summary>
+        /// <param name="name">将要设定的名称</param>
+        public async Task SetName(string name)
+        {
+            (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { name })).CheckError();
+            Name = name;
+        }
+
+        /// <summary>
+        /// 设置当前 <see cref="Group"/> 实例的公告
+        /// </summary>
+        /// <param name="announcement">将要设定的公告</param>
+        public async Task SetAnnouncement(string announcement)
+        {
+            (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { announcement })).CheckError();
+            GroupInfo.Announcement = announcement;
+        }
+
+        /// <summary>
+        /// 设置当前 <see cref="Group"/> 实例的坦白说
+        /// </summary>
+        /// <param name="enabled">是否启用</param>
+        internal async Task SetConfessTalk(bool enabled)
+        {
+            (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { confessTalk = enabled })).CheckError();
+            GroupInfo.CanConfessTalk = enabled;
+        }
+
+        /// <summary>
+        /// 启用当前 <see cref="Group"/> 实例的坦白说
+        /// </summary>
+        public async Task EnableConfessTalk() => await SetConfessTalk(true);
+
+        /// <summary>
+        /// 禁用当前 <see cref="Group"/> 实例的坦白说
+        /// </summary>
+        /// <param name="enabled">是否启用</param>
+        public async Task DisableConfessTalk() => await SetConfessTalk(false);
+
+        /// <summary>
+        /// 设置当前 <see cref="Group"/> 实例的邀请
+        /// </summary>
+        /// <param name="allowed">是否允许</param>
+        internal async Task SetInvite(bool allowed)
+        {
+            (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { allowMemberInvite = allowed })).CheckError();
+            GroupInfo.CanInvite = allowed;
+        }
+
+        /// <summary>
+        /// 允许当前 <see cref="Group"/> 实例邀请新成员
+        /// </summary>
+        public async Task AllowInvite() => await SetInvite(true);
+
+        /// <summary>
+        /// 不允许当前 <see cref="Group"/> 实例邀请新成员
+        /// </summary>
+        public async Task DisallowInvite() => await SetInvite(false);
+
+        /// <summary>
+        /// 设置当前 <see cref="Group"/> 实例的自动审批入群
+        /// </summary>
+        /// <param name="enabled">是否启用</param>
+        internal async Task SetAutoApprove(bool enabled)
+        {
+            (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { autoApprove = enabled })).CheckError();
+            GroupInfo.IsAutoApprove = enabled;
+        }
+
+        /// <summary>
+        /// 启用当前 <see cref="Group"/> 实例的自动审批入群
+        /// </summary>
+        public async Task EnableAutoApprove() => await SetAutoApprove(true);
+
+        /// <summary>
+        /// 禁用当前 <see cref="Group"/> 实例的自动审批入群
+        /// </summary>
+        public async Task DisableAutoApprove() => await SetAutoApprove(false);
+
+        /// <summary>
+        /// 设置当前 <see cref="Group"/> 实例的匿名功能
+        /// </summary>
+        /// <param name="enabled">是否启用</param>
+        internal async Task SetAnonymous(bool enabled)
+        {
+            (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { anonymousChat = enabled })).CheckError();
+            GroupInfo.CanAnonymous = enabled;
+        }
+
+        /// <summary>
+        /// 启用当前 <see cref="Group"/> 实例的匿名功能
+        /// </summary>
+        public async Task EnableAnonymous() => await SetAnonymous(true);
+
+        /// <summary>
+        /// 禁用当前 <see cref="Group"/> 实例的匿名功能
+        /// </summary>
+        public async Task DisableAnonymous() => await SetAnonymous(false);
 
         /// <summary>
         /// 创建 <see cref="Group"/> 实例

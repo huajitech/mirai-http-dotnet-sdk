@@ -97,5 +97,14 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <param name="sessionKey">Session Key</param>
         /// <param name="target">目标群号码</param>
         public static async Task<string> GetGroupConfig(string uri, string sessionKey, long target) => await HttpUtilities.GetAsync($"{uri}groupConfig?sessionKey={sessionKey}&target={target}");
+
+        /// <summary>
+        /// 异步修改群设置
+        /// </summary>
+        /// <param name="uri">API URI</param>
+        /// <param name="sessionKey">Session Key</param>
+        /// <param name="target">目标群号码</param>
+        /// <param name="config">配置</param>
+        public static async Task<string> GroupConfig(string uri, string sessionKey, long target, object config) => await HttpUtilities.PostAsync(uri + "groupConfig", JsonConvert.SerializeObject(new { sessionKey, target, config }));
     }
 }
