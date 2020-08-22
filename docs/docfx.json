@@ -51,7 +51,8 @@
     "fileMetadataFiles": [],
     "template": [
       "default",
-      "default(zh-cn)"
+      "default(zh-cn)",
+      "templates/material"
     ],
     "postProcessors": [
       "ExtractSearchIndex"
