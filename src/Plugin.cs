@@ -17,7 +17,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 获取当前 <see cref="Plugin"/> 实例的当前用户
         /// </summary>
-        internal protected CurrentUser CurrentUser => new CurrentUser(Session);
+        internal protected CurrentUser CurrentUser { get; }
 
         /// <summary>
         /// 获取机器人事件源
@@ -30,19 +30,9 @@ namespace HuajiTech.Mirai
         internal protected CurrentUserEventSource CurrentUserEventSource { get; }
 
         /// <summary>
-        /// 获取好友事件源
-        /// </summary>
-        internal protected FriendEventSource FriendEventSource { get; }
-
-        /// <summary>
         /// 获取群事件源
         /// </summary>
         internal protected GroupEventSource GroupEventSource { get; }
-
-        /// <summary>
-        /// 获取成员事件源
-        /// </summary>
-        internal protected MemberEventSource MemberEventSource { get; }
 
         /// <summary>
         /// 异步绑定 <see cref="Session"/> 实例
@@ -69,11 +59,10 @@ namespace HuajiTech.Mirai
         /// </summary>
         public Plugin()
         {
+            CurrentUser = new CurrentUser(Session);
             BotEventSource = new BotEventSource(Session);
             CurrentUserEventSource = new CurrentUserEventSource(Session);
-            FriendEventSource = new FriendEventSource(Session);
             GroupEventSource = new GroupEventSource(Session);
-            MemberEventSource = new MemberEventSource(Session);
         }
     }
 }

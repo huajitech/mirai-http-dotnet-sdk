@@ -17,7 +17,7 @@ namespace HuajiTech.Mirai.ApiHandlers
             var member = GetMember((JObject)data["sender"]);
             var parser = new GroupMessageParser(Plugin.CurrentUser, member.Group);
             var message = await GetMessage(parser, (JArray)data["messageChain"]);
-            await Plugin.GroupEventSource.OnGroupMessageReceived(member, message);
+            await Plugin.CurrentUserEventSource.OnGroupMessageReceived(member, message);
             await Plugin.CurrentUserEventSource.OnMessageReceived(member.Group, member, message);
         }
 
@@ -30,7 +30,7 @@ namespace HuajiTech.Mirai.ApiHandlers
             var member = GetMember((JObject)data["sender"]);
             var parser = new MemberMessageParser(Plugin.CurrentUser);
             var message = await GetMessage(parser, (JArray)data["messageChain"]);
-            await Plugin.MemberEventSource.OnMemberMessageReceived(member, message);
+            await Plugin.CurrentUserEventSource.OnMemberMessageReceived(member, message);
             await Plugin.CurrentUserEventSource.OnMessageReceived(member, member, message);
         }
 
@@ -43,7 +43,7 @@ namespace HuajiTech.Mirai.ApiHandlers
             var friend = GetFriend((JObject)data["sender"]);
             var parser = new FriendMessageParser(Plugin.CurrentUser);
             var message = await GetMessage(parser, (JArray)data["messageChain"]);
-            await Plugin.FriendEventSource.OnFriendMessageReceived(friend, message);
+            await Plugin.CurrentUserEventSource.OnFriendMessageReceived(friend, message);
             await Plugin.CurrentUserEventSource.OnMessageReceived(friend, friend, message);
         }
 
