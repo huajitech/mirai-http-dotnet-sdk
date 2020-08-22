@@ -10,7 +10,7 @@ namespace HuajiTech.Mirai.Events
         /// <summary>
         /// 在收到群消息时引发
         /// </summary>
-        public event EventHandler<MemberMessageReceivedEventArgs> GroupMessageReceivedEvent;
+        public event AsyncEventHandler<MemberMessageReceivedEventArgs> GroupMessageReceivedEvent;
 
         /// <summary>
         /// 触发 <see cref="GroupMessageReceivedEvent"/> 事件

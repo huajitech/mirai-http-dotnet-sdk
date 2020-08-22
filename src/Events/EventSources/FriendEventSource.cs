@@ -10,7 +10,7 @@ namespace HuajiTech.Mirai.Events
         /// <summary>
         /// 在收到好友消息时引发
         /// </summary>
-        public event EventHandler<FriendMessageReceivedEventArgs> FriendMessageReceivedEvent;
+        public event AsyncEventHandler<FriendMessageReceivedEventArgs> FriendMessageReceivedEvent;
 
         /// <summary>
         /// 触发 <see cref="FriendMessageReceivedEvent"/> 事件

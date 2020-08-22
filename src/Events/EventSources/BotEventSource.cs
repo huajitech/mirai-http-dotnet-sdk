@@ -10,12 +10,12 @@ namespace HuajiTech.Mirai.Events
         /// <summary>
         /// 在机器人登录时引发
         /// </summary>
-        public event EventHandler<BotEventArgs> BotLoginedEvent;
+        public event AsyncEventHandler<BotEventArgs> BotLoginedEvent;
 
         /// <summary>
         /// 在机器人重新登录时引发
         /// </summary>
-        public event EventHandler<BotEventArgs> BotReloginedEvent;
+        public event AsyncEventHandler<BotEventArgs> BotReloginedEvent;
 
         /// <summary>
         /// 触发 <see cref="BotLoginedEvent"/> 事件
