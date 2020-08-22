@@ -17,22 +17,22 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 获取当前 <see cref="Plugin"/> 实例的当前用户
         /// </summary>
-        internal protected CurrentUser CurrentUser { get; }
+        internal protected CurrentUser CurrentUser { get; private set; }
 
         /// <summary>
         /// 获取机器人事件源
         /// </summary>
-        internal protected BotEventSource BotEventSource { get; }
+        internal protected BotEventSource BotEventSource { get; private set; }
 
         /// <summary>
         /// 获取当前用户事件源
         /// </summary>
-        internal protected CurrentUserEventSource CurrentUserEventSource { get; }
+        internal protected CurrentUserEventSource CurrentUserEventSource { get; private set; }
 
         /// <summary>
         /// 获取群事件源
         /// </summary>
-        internal protected GroupEventSource GroupEventSource { get; }
+        internal protected GroupEventSource GroupEventSource { get; private set; }
 
         /// <summary>
         /// 异步绑定 <see cref="Session"/> 实例
@@ -41,6 +41,12 @@ namespace HuajiTech.Mirai
         public async Task BindAsync(Session session)
         {
             SetSession(session);
+
+            CurrentUser = new CurrentUser(Session);
+            BotEventSource = new BotEventSource(Session);
+            CurrentUserEventSource = new CurrentUserEventSource(Session);
+            GroupEventSource = new GroupEventSource(Session);
+
             await Initialize();
         }
 
@@ -59,10 +65,6 @@ namespace HuajiTech.Mirai
         /// </summary>
         public Plugin()
         {
-            CurrentUser = new CurrentUser(Session);
-            BotEventSource = new BotEventSource(Session);
-            CurrentUserEventSource = new CurrentUserEventSource(Session);
-            GroupEventSource = new GroupEventSource(Session);
         }
     }
 }
