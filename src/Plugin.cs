@@ -41,12 +41,7 @@ namespace HuajiTech.Mirai
         public async Task BindAsync(Session session)
         {
             SetSession(session);
-
             CurrentUser = new CurrentUser(Session);
-            BotEventSource = new BotEventSource(Session);
-            CurrentUserEventSource = new CurrentUserEventSource(Session);
-            GroupEventSource = new GroupEventSource(Session);
-
             await Initialize();
         }
 
@@ -65,6 +60,9 @@ namespace HuajiTech.Mirai
         /// </summary>
         public Plugin()
         {
+            BotEventSource = new BotEventSource(Session);
+            CurrentUserEventSource = new CurrentUserEventSource(Session);
+            GroupEventSource = new GroupEventSource(Session);
         }
     }
 }
