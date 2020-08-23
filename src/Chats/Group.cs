@@ -109,18 +109,18 @@ namespace HuajiTech.Mirai
         {
             if (MemberList == null)
             {
-                return (await GetMemberListAsync(true)).Where(x => x.Number == number).SingleOrDefault() ?? throw new ChatNotFoundException(typeof(Member), number);
+                return (await GetMemberListAsync(true)).SingleOrDefault(x => x.Number == number) ?? throw new ChatNotFoundException(typeof(Member), number);
             }
             else
             {
-                var result = (await GetMemberListAsync(false)).Where(x => x.Number == number);
-                if (result.Any())
+                var result = (await GetMemberListAsync(false)).SingleOrDefault(x => x.Number == number);
+                if (result == null)
                 {
-                    return result.SingleOrDefault() ?? throw new ChatNotFoundException(typeof(Member), number);
+                    return (await GetMemberListAsync(true)).SingleOrDefault(x => x.Number == number) ?? throw new ChatNotFoundException(typeof(Member), number);
                 }
                 else
                 {
-                    return (await GetMemberListAsync(true)).Where(x => x.Number == number).SingleOrDefault() ?? throw new ChatNotFoundException(typeof(Member), number);
+                    return result;
                 }
             }
         }
@@ -264,7 +264,7 @@ namespace HuajiTech.Mirai
         /// </summary>
         /// <param name="session">指定 <see cref="Group"/> 实例所使用的 Session</param>
         /// <param name="number">指定 <see cref="Group"/> 实例的号码</param>
-        internal Group(Session session, long number, string name, CurrentUser currentUser, MemberRole currentUserRole) : base(session, number)
+        internal Group(CurrentUser currentUser, long number, string name, MemberRole currentUserRole) : base(currentUser.Session, number)
         {
             Name = name;
             CurrentUser = currentUser.GetMember(this, currentUserRole);

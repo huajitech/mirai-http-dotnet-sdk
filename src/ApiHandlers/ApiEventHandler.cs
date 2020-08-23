@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using HuajiTech.Mirai.Interop;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 using WebSocketSharp;
 
@@ -20,15 +21,15 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <param name="message">通过 Websocket 获取的消息</param>
         private async Task EventHandlingAsync(string message)
         {
-            var data = JObject.Parse(message);
+            var info = JsonConvert.DeserializeObject<EventInfo>(message);
 
-            var task = data.Value<string>("type") switch
+            var task = info.Type switch
             {
-                "FriendMessage" => FriendMessageEventHandling(data),
-                "GroupMessage" => GroupMessageEventHandling(data),
-                "TempMessage" => MemberMessageEventHandling(data),
-                "BotOnlineEvent" => BotOnlineEvent(data),
-                "BotReloginEvent" => BotReloginEvent(data),
+                "FriendMessage" => FriendMessageEventHandling(message),
+                "GroupMessage" => GroupMessageEventHandling(message),
+                "TempMessage" => MemberMessageEventHandling(message),
+                "BotOnlineEvent" => BotOnlineEvent(message),
+                "BotReloginEvent" => BotReloginEvent(message),
                 _ => Task.Delay(0)
             };
 

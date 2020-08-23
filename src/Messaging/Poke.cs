@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HuajiTech.Mirai.Messaging
 {
@@ -14,14 +15,14 @@ namespace HuajiTech.Mirai.Messaging
         /// 戳一戳类型 <see cref="Messaging.PokeType"/> 对 <see cref="string"/> 的字典
         /// </summary>
         [JsonIgnore]
-        internal static readonly Dictionary<PokeType, string> PokeDictionary = new Dictionary<PokeType, string>()
+        internal static readonly Dictionary<string, PokeType> PokeDictionary = new Dictionary<string, PokeType>()
         {
-            [PokeType.Poke] = "Poke",
-            [PokeType.Love] = "ShowLove",
-            [PokeType.Like] = "Like",
-            [PokeType.Heartbroken] = "Heartbroken",
-            [PokeType.Awesome] = "SixSixSix",
-            [PokeType.BigMove] = "FangDaZhao",
+            ["Poke"] = PokeType.Poke,
+            ["ShowLove"] = PokeType.Love,
+            ["Like"] = PokeType.Like,
+            ["Heartbroken"] = PokeType.Heartbroken,
+            ["SixSixSix"] = PokeType.Awesome,
+            ["FangDaZhao"] = PokeType.BigMove,
         };
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace HuajiTech.Mirai.Messaging
         /// 指定当前 <see cref="Poke"/> 实例的戳一戳名称
         /// </summary>
         [JsonProperty(PropertyName = "name")]
-        internal string PokeName => PokeDictionary[PokeType];
+        internal string PokeName => PokeDictionary.SingleOrDefault(x => x.Value == PokeType).Key;
 
         /// <summary>
         /// 创建 <see cref="Poke"/> 实例

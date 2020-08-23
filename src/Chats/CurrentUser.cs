@@ -75,18 +75,18 @@ namespace HuajiTech.Mirai
         {
             if (FriendList == null)
             {
-                return (await GetFriendListAsync(true)).Where(x => x.Number == number).SingleOrDefault() ?? throw new ChatNotFoundException(typeof(Friend), number);
+                return (await GetFriendListAsync(true)).SingleOrDefault(x => x.Number == number) ?? throw new ChatNotFoundException(typeof(Friend), number);
             }
             else
             {
-                var result = (await GetFriendListAsync(false)).Where(x => x.Number == number);
-                if (result.Any())
+                var result = (await GetFriendListAsync(false)).SingleOrDefault(x => x.Number == number);
+                if (result == null)
                 {
-                    return result.SingleOrDefault() ?? throw new ChatNotFoundException(typeof(Friend), number);
+                    return (await GetFriendListAsync(true)).SingleOrDefault(x => x.Number == number) ?? throw new ChatNotFoundException(typeof(Friend), number);
                 }
                 else
                 {
-                    return (await GetFriendListAsync(true)).Where(x => x.Number == number).SingleOrDefault() ?? throw new ChatNotFoundException(typeof(Friend), number);
+                    return result;
                 }
             }
         }
@@ -145,18 +145,18 @@ namespace HuajiTech.Mirai
         {
             if (GroupList == null)
             {
-                return (await GetGroupListAsync(true)).Where(x => x.Number == number).SingleOrDefault() ?? throw new ChatNotFoundException(typeof(Group), number);
+                return (await GetGroupListAsync(true)).SingleOrDefault(x => x.Number == number) ?? throw new ChatNotFoundException(typeof(Group), number);
             }
             else
             {
-                var result = (await GetGroupListAsync(false)).Where(x => x.Number == number);
-                if (result.Any())
+                var result = (await GetGroupListAsync(false)).SingleOrDefault(x => x.Number == number);
+                if (result == null)
                 {
-                    return result.SingleOrDefault() ?? throw new ChatNotFoundException(typeof(Group), number);
+                    return (await GetGroupListAsync(true)).SingleOrDefault(x => x.Number == number) ?? throw new ChatNotFoundException(typeof(Group), number);
                 }
                 else
                 {
-                    return (await GetGroupListAsync(true)).Where(x => x.Number == number).SingleOrDefault() ?? throw new ChatNotFoundException(typeof(Group), number);
+                    return result;
                 }
             }
         }
@@ -165,7 +165,7 @@ namespace HuajiTech.Mirai
         /// 从 Json 中提取群信息，并创建一个 <see cref="Group"/> 实例
         /// </summary>
         /// <param name="group">以 Json 表达的群信息</param>
-        private Group GetGroupFromJson(JObject group) => new Group(Session, group.Value<long>("id"), group.Value<string>("name"), this, Member.MemberRoleDictionary[group.Value<string>("permission")]);
+        private Group GetGroupFromJson(JObject group) => new Group(this, group.Value<long>("id"), group.Value<string>("name"), Member.MemberRoleDictionary[group.Value<string>("permission")]);
 
         /// <summary>
         /// 从 Json 中提取多个群信息，并创建一个 <see cref="List{Group}"/> 实例

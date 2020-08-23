@@ -1,4 +1,6 @@
-﻿using HuajiTech.Mirai.Messaging;
+﻿using HuajiTech.Mirai.Interop;
+using HuajiTech.Mirai.Interop.Messaging;
+using HuajiTech.Mirai.Messaging;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -53,10 +55,10 @@ namespace HuajiTech.Mirai.Parsing
         /// <param name="currentUser">创建 <see cref="MessageParser"/> 实例所使用的当前用户</param>
         /// <param name="data">Json 形式的消息数据</param>
         /// <returns></returns>
-        public static MessageParser GetParser(CurrentUser currentUser, JObject data) => data.Value<string>("type") switch
+        public static MessageParser GetParser(CurrentUser currentUser, MessageData data) => data.Type switch
         {
             "FriendMessage" => new FriendMessageParser(currentUser),
-            "GroupMessage" => new GroupMessageParser(currentUser, data["sender"]["group"].Value<long>("id")),
+            "GroupMessage" => new GroupMessageParser(currentUser, data.Sender.ToObject<MemberSenderInfo>().Group.Id),
             "TempMessage" => new MemberMessageParser(currentUser),
             _ => null
         };
@@ -65,37 +67,37 @@ namespace HuajiTech.Mirai.Parsing
         /// 从 Json 中提取信息，并创建 <see cref="Source"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的来源</param>
-        private Source ToSource(JObject element) => new Source(element.Value<int>("id"), element.Value<int>("time"));
+        private Source ToSource(JObject element) => element.ToObject<Source>();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="App"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的 App 消息</param>
-        private App ToApp(JObject element) => new App(element.Value<string>("content"));
+        private App ToApp(JObject element) => element.ToObject<App>();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Emoticon"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的表情</param>
-        private Emoticon ToEmoticon(JObject element) => new Emoticon(element.Value<int>("faceId"), element.Value<string>("name"));
+        private Emoticon ToEmoticon(JObject element) => element.ToObject<Emoticon>();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="FlashImage"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的闪图</param>
-        private FlashImage ToFlashImage(JObject element) => new FlashImage(element.Value<string>("imageId"), element.Value<string>("path"), new Uri(element.Value<string>("url")));
+        private FlashImage ToFlashImage(JObject element) => element.ToObject<ImageInfo>().ToFlashImage();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Image"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的图片</param>
-        private Image ToImage(JObject element) => new Image(element.Value<string>("imageId"), element.Value<string>("path"), new Uri(element.Value<string>("url")));
+        private Image ToImage(JObject element) => element.ToObject<ImageInfo>().ToImage();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Json"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的 Json 消息</param>
-        private Json ToJson(JObject element) => new Json(element.Value<string>("json"));
+        private Json ToJson(JObject element) => element.ToObject<Json>();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="MentionAll"/> 实例
@@ -106,24 +108,27 @@ namespace HuajiTech.Mirai.Parsing
         /// 从 Json 中提取信息，并创建 <see cref="PlainText"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的纯文本</param>
-        private PlainText ToPlainText(JObject element) => new PlainText(element.Value<string>("text"));
+        private PlainText ToPlainText(JObject element) => element.ToObject<PlainText>();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Poke"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的戳一戳</param>
-        private Poke ToPoke(JObject element) => new Poke(Poke.PokeDictionary.FirstOrDefault(x => x.Value == element.Value<string>("name")).Key);
+        private Poke ToPoke(JObject element) => element.ToObject<PokeInfo>().ToPoke();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Xml"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的 Xml 消息</param>
-        private Xml ToXml(JObject element) => new Xml(element.Value<string>("xml"));
+        private Xml ToXml(JObject element) => element.ToObject<Xml>();
 
         /// <summary>
         /// 创建 <see cref="MessageParser"/> 实例
         /// </summary>
         /// <param name="session">指定 <see cref="MessageParser"/> 实例所使用的当前用户</param>
-        internal MessageParser(CurrentUser currentUser) => CurrentUser = currentUser;
+        public MessageParser(CurrentUser currentUser)
+        {
+            CurrentUser = currentUser;
+        }
     }
 }

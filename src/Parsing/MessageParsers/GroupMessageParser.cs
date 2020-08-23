@@ -1,4 +1,5 @@
-﻿using HuajiTech.Mirai.Messaging;
+﻿using HuajiTech.Mirai.Interop.Messaging;
+using HuajiTech.Mirai.Messaging;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
@@ -32,7 +33,14 @@ namespace HuajiTech.Mirai.Parsing
         /// 从 Json 中提取信息，并创建 <see cref="Quote"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的引用回复</param>
-        private Quote ToQuote(JObject element) => new Quote(new Message(CurrentUser.Session, ParseMore((JArray)element["origin"]).ToList()), Group.GetMemberAsync(element.Value<long>("senderId")).Result, Group);
+        private Quote ToQuote(JObject element)
+        {
+            var info = element.ToObject<QuoteInfo>();
+            var message = new Message(CurrentUser.Session, ParseMore(info.Origin).ToList());
+            var member = Group.GetMemberAsync(info.SenderId).Result;
+
+            return new Quote(message, member, Group);
+        }
 
         /// <summary>
         /// 创建 <see cref="GroupMessageParser"/> 实例

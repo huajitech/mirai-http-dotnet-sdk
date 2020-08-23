@@ -1,9 +1,10 @@
 ﻿using HuajiTech.Mirai.ApiHandlers;
 using HuajiTech.Mirai.Extensions;
+using HuajiTech.Mirai.Interop;
 using HuajiTech.Mirai.Messaging;
 using HuajiTech.Mirai.Parsing;
 using HuajiTech.Mirai.Utilities;
-using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,10 +57,9 @@ namespace HuajiTech.Mirai
         public static async Task<Message> GetMessageAsync(CurrentUser currentUser, int id)
         {
             var session = currentUser.Session;
-            var result = JObject.Parse((await ApiMethods.GetMessageAsync(session.Settings.HttpUri, session.SessionKey, id)).CheckError());
-            var data = (JObject)result["data"];
+            var data = JsonConvert.DeserializeObject<MessageData>((await ApiMethods.GetMessageAsync(session.Settings.HttpUri, session.SessionKey, id)).CheckError());
             var parser = MessageParser.GetParser(currentUser, data);
-            var elements = await Task.Run(() => parser.ParseMore((JArray)data["messageChain"]));
+            var elements = await Task.Run(() => parser.ParseMore(data.MessageChain));
             return new Message(session, elements.ToList());
         }
 
