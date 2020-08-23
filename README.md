@@ -1,6 +1,6 @@
 # HuajiTech.Mirai
 
-用于开发 mirai 应用基于 mirai-http-api 的 .NET SDK
+用于开发 mirai 应用基于 [mirai-api-http](https://github.com/project-mirai/mirai-api-http) 的 .NET SDK
 
 ## 示例
 
