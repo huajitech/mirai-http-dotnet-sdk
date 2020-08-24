@@ -1,9 +1,11 @@
-﻿namespace HuajiTech.Mirai.Events
+﻿using System;
+
+namespace HuajiTech.Mirai.Events
 {
     /// <summary>
     /// 为消息接收事件提供数据
     /// </summary>
-    public class MessageReceivedEventArgs
+    public class MessageReceivedEventArgs : EventArgs
     {
         /// <summary>
         /// 获取当前 <see cref="MessageReceivedEventArgs"/> 实例的来源

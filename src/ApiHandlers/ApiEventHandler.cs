@@ -40,6 +40,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         }
 
         private async Task InvokeAsync<TEventSource>(Action<TEventSource> action)
+            where TEventSource : EventSource
         {
             var sources = EventSources.OfType<TEventSource>();
 

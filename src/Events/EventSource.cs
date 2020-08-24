@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai.Events
@@ -15,6 +16,7 @@ namespace HuajiTech.Mirai.Events
         /// <param name="handlers">Event handlers.</param>
         /// <param name="e">An object that contains the event data.</param>
         internal async Task InvokeAsync<TEventArgs>(AsyncEventHandler<TEventArgs> handlers, Session session, TEventArgs e)
+            where TEventArgs : EventArgs
         {
             if (handlers != null)
             {
