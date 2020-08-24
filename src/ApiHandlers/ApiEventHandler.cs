@@ -16,7 +16,7 @@ namespace HuajiTech.Mirai.ApiHandlers
     {
         private WebSocket Server;
 
-        private ImmutableList<EventSource> EventSources;
+        private ImmutableList<EventSource> EventSources = ImmutableList<EventSource>.Empty;
 
         /// <summary>
         /// 异步处理通过 Websocket 获取的消息
