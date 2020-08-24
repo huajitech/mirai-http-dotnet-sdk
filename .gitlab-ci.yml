@@ -17,6 +17,7 @@ cache:
       - $SRC/*.csproj
   paths:
     - $NUGET_PACKAGES_DIRECTORY
+    - $DOCS/api/
 
 before_script:
   - dotnet restore $SRC/ --packages $NUGET_PACKAGES_DIRECTORY
