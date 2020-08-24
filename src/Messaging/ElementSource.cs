@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HuajiTech.Mirai.Messaging
+﻿namespace HuajiTech.Mirai.Messaging
 {
     /// <summary>
     /// 指定元素来源
