@@ -18,17 +18,17 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 当前 <see cref="CurrentUser"/> 实例的好友列表
         /// </summary>
-        private List<Friend> FriendList { get; set; } = null;
+        private List<Friend> FriendList;
 
         /// <summary>
         /// 当前 <see cref="CurrentUser"/> 实例的群列表
         /// </summary>
-        private List<Group> GroupList { get; set; } = null;
+        private List<Group> GroupList;
 
         /// <summary>
         /// 当前 <see cref="CurrentUser"/> 实例的好友实例
         /// </summary>
-        private Friend Friend { get; set; }
+        private Friend Friend;
 
         /// <summary>
         /// 获取当前 <see cref="CurrentUser"/> 实例的昵称

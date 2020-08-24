@@ -23,7 +23,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 当前 <see cref="Group"/> 实例的成员列表
         /// </summary>
-        private List<Member> MemberList { get; set; } = null;
+        private List<Member> MemberList;
 
         /// <summary>
         /// 获取当前 <see cref="Group"/> 实例的信息
