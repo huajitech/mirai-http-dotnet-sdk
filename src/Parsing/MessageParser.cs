@@ -38,6 +38,7 @@ namespace HuajiTech.Mirai.Parsing
             "AtAll" => ToMentionAll(),
             "Plain" => ToPlainText(element),
             "Poke" => ToPoke(element),
+            "Voice" => ToVoice(element),
             "Xml" => ToXml(element),
             _ => ParseExt(element)
         };
@@ -115,6 +116,12 @@ namespace HuajiTech.Mirai.Parsing
         /// </summary>
         /// <param name="element">以 Json 表达的戳一戳</param>
         private Poke ToPoke(JObject element) => element.ToObject<PokeInfo>().ToPoke();
+
+        /// <summary>
+        /// 从 Json 中提取信息，并创建 <see cref="Voice"/> 实例
+        /// </summary>
+        /// <param name="element">以 Json 表达的语音</param>
+        private Voice ToVoice(JObject element) => element.ToObject<VoiceInfo>().ToVoice();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Xml"/> 实例

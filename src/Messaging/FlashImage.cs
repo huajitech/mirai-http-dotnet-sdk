@@ -30,7 +30,7 @@ namespace HuajiTech.Mirai.Messaging
         /// </summary>
         /// <param name="str">指定 <see cref="FlashImage"/> 实例的字符串（可为 ID、字符串形式的 URI、相对文件路径）</param>
         /// <param name="source">指定 <see cref="FlashImage"/> 实例的来源</param>
-        public FlashImage(string str, ImageSource source) : base(str, source)
+        public FlashImage(string str, ElementSource source) : base(str, source)
         {
         }
 

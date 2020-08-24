@@ -37,17 +37,17 @@ namespace HuajiTech.Mirai.Messaging
         /// </summary>
         /// <param name="str">指定 <see cref="ImageBase"/> 实例的字符串（可为 ID、字符串形式的 URI、相对文件路径）</param>
         /// <param name="source">指定 <see cref="ImageBase"/> 实例的来源</param>
-        public ImageBase(string str, ImageSource source)
+        public ImageBase(string str, ElementSource source)
         {
             switch (source)
             {
-                case ImageSource.Id:
+                case ElementSource.Id:
                     Id = str;
                     break;
-                case ImageSource.Uri:
+                case ElementSource.Uri:
                     Uri = new Uri(str);
                     break;
-                case ImageSource.File:
+                case ElementSource.File:
                     FilePath = str;
                     break;
                 default:
@@ -79,24 +79,5 @@ namespace HuajiTech.Mirai.Messaging
             FilePath = filePath;
             Uri = uri ?? throw new ArgumentNullException(nameof(uri));
         }
-    }
-
-    /// <summary>
-    /// 指定图片来源
-    /// </summary>
-    public enum ImageSource
-    {
-        /// <summary>
-        /// ID
-        /// </summary>
-        Id,
-        /// <summary>
-        /// 字符串形式的 URI
-        /// </summary>
-        Uri,
-        /// <summary>
-        /// 相对文件路径
-        /// </summary>
-        File
     }
 }
