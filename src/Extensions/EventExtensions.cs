@@ -1,7 +1,4 @@
 ﻿using HuajiTech.Mirai.Events;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HuajiTech.Mirai.Extensions
 {

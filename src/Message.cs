@@ -4,7 +4,6 @@ using HuajiTech.Mirai.Interop;
 using HuajiTech.Mirai.Messaging;
 using HuajiTech.Mirai.Parsing;
 using HuajiTech.Mirai.Utilities;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;

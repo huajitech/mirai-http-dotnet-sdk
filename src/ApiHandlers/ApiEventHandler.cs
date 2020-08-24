@@ -18,7 +18,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// 当前 <see cref="ApiEventHandler"/> 的 <see cref="WebSocket"/> 实例
         /// </summary>
         private WebSocket Server;
-        
+
         /// <summary>
         /// 当前 <see cref="ApiEventHandler"/> 的 <see cref="EventSource"/> 列表
         /// </summary>
