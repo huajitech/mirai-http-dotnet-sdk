@@ -3,8 +3,18 @@
     /// <summary>
     /// 为消息接收事件提供数据
     /// </summary>
-    public class MessageReceivedEventArgs : MessageEventArgs
+    public class MessageReceivedEventArgs
     {
+        /// <summary>
+        /// 获取当前 <see cref="MessageReceivedEventArgs"/> 实例的来源
+        /// </summary>
+        public virtual Chat Source { get; }
+
+        /// <summary>
+        /// 获取当前 <see cref="MessageReceivedEventArgs"/> 实例的消息
+        /// </summary>
+        public virtual Message Message { get; }
+
         /// <summary>
         /// 获取当前 <see cref="MessageReceivedEventArgs"/> 实例的发送者
         /// </summary>
@@ -16,6 +26,11 @@
         /// <param name="source">指定 <see cref="MessageReceivedEventArgs"/> 实例的来源</param>
         /// <param name="sender">指定 <see cref="MessageReceivedEventArgs"/> 实例的发送者</param>
         /// <param name="message">指定 <see cref="MessageReceivedEventArgs"/> 实例的消息</param>
-        public MessageReceivedEventArgs(Chat source, User sender, Message message) : base(source, message) => Sender = sender;
+        public MessageReceivedEventArgs(Chat source, User sender, Message message)
+        {
+            Source = source;
+            Sender = sender;
+            Message = message;
+        }
     }
 }
