@@ -48,7 +48,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <summary>
         /// 异步调用 <see cref="EventSource"/> 实例的方法
         /// </summary>
-        /// <typeparam name="TEventSource">事件源</typeparam>
+        /// <typeparam name="TEventSource">事件源类型</typeparam>
         /// <param name="action">调用所执行操作</param>
         private async Task InvokeAsync<TEventSource>(Action<TEventSource> action)
             where TEventSource : EventSource

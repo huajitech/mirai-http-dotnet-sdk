@@ -4,6 +4,11 @@ namespace HuajiTech.Mirai.Extensions
 {
     public static class EventExtensions
     {
+        /// <summary>
+        /// 添加消息接收事件处理程序
+        /// </summary>
+        /// <param name="currentUserEventSource">当前用户事件源</param>
+        /// <param name="handler">事件处理器</param>
         public static void AddMessageReceivedEventHandler(this CurrentUserEventSource currentUserEventSource, AsyncEventHandler<MessageReceivedEventArgs> handler)
         {
             currentUserEventSource.FriendMessageReceivedEvent += new AsyncEventHandler<FriendMessageReceivedEventArgs>(handler);
