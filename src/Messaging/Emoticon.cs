@@ -45,7 +45,7 @@ namespace HuajiTech.Mirai.Messaging
         /// </summary>
         /// <param name="id">指定 <see cref="Emoticon"/> 实例的 ID</param>
         /// <param name="name">指定 <see cref="Emoticon"/> 实例的名称</param>
-        public Emoticon(int id, string name)
+        public Emoticon(int? id, string name)
         {
             Id = id;
             Name = name;
