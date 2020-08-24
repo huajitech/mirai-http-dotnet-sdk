@@ -23,11 +23,6 @@ namespace HuajiTech.Mirai
         public string AuthKey { get; }
 
         /// <summary>
-        /// 获取当前 <see cref="SessionSettings"/> 实例的机器人号码
-        /// </summary>
-        public long BotNumber { get; }
-
-        /// <summary>
         /// Specifies that the URI is accessed through the Websocket.
         /// This field is read-only.
         /// </summary>
@@ -39,13 +34,11 @@ namespace HuajiTech.Mirai
         /// <param name="address">指定 <see cref="SessionSettings"/> 实例的 URI 地址</param>
         /// <param name="port">指定 <see cref="SessionSettings"/> 实例的 URI 端口</param>
         /// <param name="authKey">指定 <see cref="SessionSettings"/> 实例的 Auth Key</param>
-        /// <param name="botNumber">指定 <see cref="SessionSettings"/> 实例的机器人号码</param>
-        public SessionSettings(string address, int port, string authKey, long botNumber)
+        public SessionSettings(string address, int port, string authKey)
         {
             HttpUri = new UriBuilder(Uri.UriSchemeHttp, address, port).Uri.AbsoluteUri;
             WebsocketUri = new UriBuilder(UriSchemeWebsocket, address, port).Uri.AbsoluteUri;
             AuthKey = authKey ?? throw new ArgumentNullException(nameof(authKey));
-            BotNumber = botNumber;
         }
     }
 }

@@ -32,8 +32,7 @@ namespace HuajiTech.Mirai.Events
         /// <summary>
         /// 创建 <see cref="BotEventSource"/> 实例
         /// </summary>
-        /// <param name="session">指定 <see cref="BotEventSource"/> 实例所使用的会话</param>
-        internal BotEventSource(Session session) : base(session)
+        public BotEventSource()
         {
         }
     }

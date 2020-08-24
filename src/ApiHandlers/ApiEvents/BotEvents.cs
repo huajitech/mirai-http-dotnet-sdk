@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai.ApiHandlers
 {
-    internal partial class ApiEventHandler
+    public partial class ApiEventHandler
     {
-        private async Task BotOnlineEvent(string data) => await Plugin.BotEventSource.OnBotLogined(JsonConvert.DeserializeObject<BotEventArgs>(data));
+        private async Task BotOnlineEvent(string data) => await InvokeAsync<BotEventSource>(async x => await x.OnBotLogined(JsonConvert.DeserializeObject<BotEventArgs>(data)));
 
-        private async Task BotReloginEvent(string data) => await Plugin.BotEventSource.OnBotRelogined(JsonConvert.DeserializeObject<BotEventArgs>(data));
+        private async Task BotReloginEvent(string data) => await InvokeAsync<BotEventSource>(async x => await x.OnBotRelogined(JsonConvert.DeserializeObject<BotEventArgs>(data)));
     }
 }

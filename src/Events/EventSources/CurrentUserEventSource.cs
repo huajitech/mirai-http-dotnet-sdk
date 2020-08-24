@@ -75,8 +75,7 @@ namespace HuajiTech.Mirai.Events
         /// <summary>
         /// 创建 <see cref="CurrentUserEventSource"/> 实例
         /// </summary>
-        /// <param name="session">指定 <see cref="CurrentUserEventSource"/> 实例所使用的会话</param>
-        internal CurrentUserEventSource(Session session) : base(session)
+        public CurrentUserEventSource()
         {
         }
     }

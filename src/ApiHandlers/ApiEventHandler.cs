@@ -1,5 +1,9 @@
-﻿using HuajiTech.Mirai.Interop;
+﻿using HuajiTech.Mirai.Events;
+using HuajiTech.Mirai.Interop;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Immutable;
+using System.Linq;
 using System.Threading.Tasks;
 using WebSocketSharp;
 
@@ -8,12 +12,11 @@ namespace HuajiTech.Mirai.ApiHandlers
     /// <summary>
     /// 用作与 API 通过 Websocket 交互
     /// </summary>
-    internal partial class ApiEventHandler
+    public partial class ApiEventHandler : SessionProcessor, IAsyncDisposable
     {
-        /// <summary>
-        /// 获取当前 <see cref="ApiEventHandler"/> 的插件
-        /// </summary>
-        protected Plugin Plugin { get; }
+        private WebSocket Server;
+
+        private ImmutableList<EventSource> EventSources;
 
         /// <summary>
         /// 异步处理通过 Websocket 获取的消息
@@ -36,20 +39,44 @@ namespace HuajiTech.Mirai.ApiHandlers
             await task;
         }
 
+        private async Task InvokeAsync<TEventSource>(Action<TEventSource> action)
+        {
+            var sources = EventSources.OfType<TEventSource>();
+
+            foreach (var source in sources)
+            {
+                await Task.Run(() => action.Invoke(source));
+            }
+        }
+
+        public void Bind(params EventSource[] source) => EventSources = ImmutableList.Create(source);
+
         /// <summary>
         /// 异步监听 Websocket
         /// </summary>
         public async Task ListenAsync()
         {
-            var server = new WebSocket(Plugin.Session.WebsocketUri + "all?sessionKey=" + Plugin.Session.SessionKey);
-            server.OnMessage += async (object sender, MessageEventArgs e) => await EventHandlingAsync(e.Data);
-            await Task.Run(server.Connect);
+            Server = new WebSocket(Session.WebsocketUri + "all?sessionKey=" + Session.SessionKey);
+            Server.OnMessage += async (sender, e) => await EventHandlingAsync(e.Data);
+            await Task.Run(Server.Connect);
+        }
+
+        public async ValueTask DisposeAsync()
+        {
+            foreach (var source in EventSources)
+            {
+                source.RemoveAllHandlers();
+            }
+
+            await Task.Run(Server.Close);
         }
 
         /// <summary>
         /// 创建 <see cref="ApiEventHandler"/> 实例
         /// </summary>
-        /// <param name="plugin">指定 <see cref="ApiEventHandler"/> 实例所使用的插件</param>
-        public ApiEventHandler(Plugin plugin) => Plugin = plugin;
+        /// <param name="session">指定 <see cref="ApiEventHandler"/> 实例所使用的会话</param>
+        internal ApiEventHandler(Session session) : base(session)
+        {
+        }
     }
 }

@@ -23,6 +23,16 @@ namespace HuajiTech.Mirai
         internal SessionSettings Settings { get; }
 
         /// <summary>
+        /// 获取当前 <see cref="Session"/> 实例的当前用户
+        /// </summary>
+        public CurrentUser CurrentUser { get; }
+
+        /// <summary>
+        /// 获取当前 <see cref="Session"/> 实例的 API 事件处理器
+        /// </summary>
+        public ApiEventHandler ApiEventHandler { get; }
+
+        /// <summary>
         /// 获取当前 <see cref="Session"/> 实例的 HTTP URI
         /// </summary>
         internal string HttpUri => Settings.HttpUri;
@@ -35,7 +45,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 获取当前 <see cref="Session"/> 实例的机器人号码
         /// </summary>
-        internal long BotNumber => Settings.BotNumber;
+        public long BotNumber { get; }
 
         /// <summary>
         /// 异步释放 <see cref="Session"/> 实例
@@ -65,12 +75,23 @@ namespace HuajiTech.Mirai
         /// </summary>
         private async Task VerifyAsync() => (await ApiMethods.VerifyAsync(HttpUri, SessionKey, BotNumber)).CheckError();
 
-        public ValueTask DisposeAsync() => new ValueTask(ReleaseAsync());
+        public async ValueTask DisposeAsync()
+        {
+            await ApiEventHandler.DisposeAsync();
+            await ReleaseAsync();
+        }
 
         /// <summary>
         /// 创建 <see cref="Session"/> 实例
         /// </summary>
         /// <param name="settings">指定 <see cref="Session"/> 实例所使用的设置</param>
-        public Session(SessionSettings settings) => Settings = settings;
+        /// <param name="number">指定 <see cref="Session"/> 实例的机器人号码</param>
+        public Session(SessionSettings settings, long number)
+        {
+            Settings = settings;
+            BotNumber = number;
+            CurrentUser = new CurrentUser(this);
+            ApiEventHandler = new ApiEventHandler(this);
+        }
     }
 }

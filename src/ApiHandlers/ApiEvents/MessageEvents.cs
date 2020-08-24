@@ -1,4 +1,5 @@
-﻿using HuajiTech.Mirai.Interop;
+﻿using HuajiTech.Mirai.Events;
+using HuajiTech.Mirai.Interop;
 using HuajiTech.Mirai.Parsing;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai.ApiHandlers
 {
-    internal partial class ApiEventHandler
+    public partial class ApiEventHandler
     {
         /// <summary>
         /// 处理群消息事件
@@ -17,12 +18,12 @@ namespace HuajiTech.Mirai.ApiHandlers
         {
             var info = JsonConvert.DeserializeObject<MessageData>(data);
             var senderInfo = info.Sender.ToObject<MemberSenderInfo>();
-            var member = senderInfo.ToMember(Plugin.CurrentUser);
-            var parser = new GroupMessageParser(Plugin.CurrentUser, member.Group);
+            var member = senderInfo.ToMember(Session.CurrentUser);
+            var parser = new GroupMessageParser(Session.CurrentUser, member.Group);
             var message = await GetMessage(parser, info.MessageChain);
 
-            await Plugin.CurrentUserEventSource.OnGroupMessageReceived(member, message);
-            await Plugin.CurrentUserEventSource.OnMessageReceived(member.Group, member, message);
+            await InvokeAsync<CurrentUserEventSource>(async x => await x.OnGroupMessageReceived(member, message));
+            await InvokeAsync<CurrentUserEventSource>(async x => await x.OnMessageReceived(member.Group, member, message));
         }
 
         /// <summary>
@@ -33,12 +34,12 @@ namespace HuajiTech.Mirai.ApiHandlers
         {
             var info = JsonConvert.DeserializeObject<MessageData>(data);
             var senderInfo = info.Sender.ToObject<MemberSenderInfo>();
-            var member = senderInfo.ToMember(Plugin.CurrentUser);
-            var parser = new MemberMessageParser(Plugin.CurrentUser);
+            var member = senderInfo.ToMember(Session.CurrentUser);
+            var parser = new MemberMessageParser(Session.CurrentUser);
             var message = await GetMessage(parser, info.MessageChain);
 
-            await Plugin.CurrentUserEventSource.OnMemberMessageReceived(member, message);
-            await Plugin.CurrentUserEventSource.OnMessageReceived(member, member, message);
+            await InvokeAsync<CurrentUserEventSource>(async x => await x.OnMemberMessageReceived(member, message));
+            await InvokeAsync<CurrentUserEventSource>(async x => await x.OnMessageReceived(member, member, message));
         }
 
         /// <summary>
@@ -49,12 +50,12 @@ namespace HuajiTech.Mirai.ApiHandlers
         {
             var info = JsonConvert.DeserializeObject<MessageData>(data);
             var senderInfo = info.Sender.ToObject<FriendSenderInfo>();
-            var friend = senderInfo.ToFriend(Plugin.Session);
-            var parser = new FriendMessageParser(Plugin.CurrentUser);
+            var friend = senderInfo.ToFriend(Session);
+            var parser = new FriendMessageParser(Session.CurrentUser);
             var message = await GetMessage(parser, info.MessageChain);
 
-            await Plugin.CurrentUserEventSource.OnFriendMessageReceived(friend, message);
-            await Plugin.CurrentUserEventSource.OnMessageReceived(friend, friend, message);
+            await InvokeAsync<CurrentUserEventSource>(async x => await x.OnFriendMessageReceived(friend, message));
+            await InvokeAsync<CurrentUserEventSource>(async x => await x.OnMessageReceived(friend, friend, message));
         }
 
         /// <summary>
@@ -66,7 +67,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         private async Task<Message> GetMessage(MessageParser parser, JArray messageChain)
         {
             var content = await Task.Run(() => parser.ParseMore(messageChain));
-            return new Message(Plugin.Session, content.ToList());
+            return new Message(Session, content.ToList());
         }
     }
 }
