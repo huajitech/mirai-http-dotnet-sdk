@@ -39,7 +39,7 @@ publish:
       - bin/
 
 pages:
-  image: daemoncore/docfx:latest
+  image: tizendotnet/tizenfx-build-worker:2.0
   stage: deploy
   only:
     - master
