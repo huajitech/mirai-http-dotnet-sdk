@@ -14,8 +14,14 @@ namespace HuajiTech.Mirai.ApiHandlers
     /// </summary>
     public partial class ApiEventHandler : SessionProcessor, IAsyncDisposable
     {
+        /// <summary>
+        /// 当前 <see cref="ApiEventHandler"/> 的 <see cref="WebSocket"/> 实例
+        /// </summary>
         private WebSocket Server;
-
+        
+        /// <summary>
+        /// 当前 <see cref="ApiEventHandler"/> 的 <see cref="EventSource"/> 列表
+        /// </summary>
         private ImmutableList<EventSource> EventSources = ImmutableList<EventSource>.Empty;
 
         /// <summary>
@@ -39,6 +45,11 @@ namespace HuajiTech.Mirai.ApiHandlers
             await task;
         }
 
+        /// <summary>
+        /// 异步调用 <see cref="EventSource"/> 实例的方法
+        /// </summary>
+        /// <typeparam name="TEventSource">事件源</typeparam>
+        /// <param name="action">调用所执行操作</param>
         private async Task InvokeAsync<TEventSource>(Action<TEventSource> action)
             where TEventSource : EventSource
         {
@@ -50,6 +61,10 @@ namespace HuajiTech.Mirai.ApiHandlers
             }
         }
 
+        /// <summary>
+        /// 绑定指定 <see cref="EventSource"/> 实例
+        /// </summary>
+        /// <param name="source">将要绑定的 <see cref="EventSource"/> 实例</param>
         public void Bind(params EventSource[] source) => EventSources = ImmutableList.Create(source);
 
         /// <summary>

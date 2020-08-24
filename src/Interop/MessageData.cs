@@ -3,7 +3,6 @@ using Newtonsoft.Json.Linq;
 
 namespace HuajiTech.Mirai.Interop
 {
-    [JsonObject(Id = "data")]
     internal class MessageData
     {
         [JsonProperty(PropertyName = "type")]
