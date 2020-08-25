@@ -14,7 +14,7 @@
     <PackageLicenseFile></PackageLicenseFile>
     <RepositoryUrl>https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>mirai, qq, bot</PackageTags>
+    <PackageTags>mirai qq bot</PackageTags>
     <PackageProjectUrl>https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk</PackageProjectUrl>
     <PackageReleaseNotes>这是一个早期访问版本，不建议用于生产环境</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
