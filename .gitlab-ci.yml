@@ -50,11 +50,10 @@ pack:
 publish:
   stage: deploy
   only:
-    changes:
-      - $SRC/
-  only:
     refs:
       - master
+    changes:
+      - $SRC/
     variables:
       - $NUGET_SERVER_URL
       - $NUGET_API_KEY
