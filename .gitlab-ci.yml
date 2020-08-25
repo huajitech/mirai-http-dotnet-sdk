@@ -68,11 +68,11 @@ pages:
   image: tizendotnet/tizenfx-build-worker:2.0
   stage: deploy
   only:
+    refs:
+      - master
     changes:
       - $SRC/
       - $DOCS/
-  only:
-    - master
   cache:
     paths:
       - $DOCS/api/
