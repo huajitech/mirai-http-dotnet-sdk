@@ -51,6 +51,7 @@
     "fileMetadataFiles": [],
     "template": [
       "default",
+      "statictoc",
       "default(zh-cn)",
       "templates/material"
     ],
