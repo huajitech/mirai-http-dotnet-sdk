@@ -5,10 +5,11 @@ variables:
   SRC: src
   DOCS: docs
   NUGET_PACKAGES_DIRECTORY: .nuget
+  CONFIGURATION: Release
 
 stages:
   - build
-  - test
+  - pack
   - deploy
 
 cache:
@@ -17,7 +18,6 @@ cache:
       - $SRC/*.csproj
   paths:
     - $NUGET_PACKAGES_DIRECTORY
-    - $DOCS/api/
 
 before_script:
   - dotnet restore $SRC/ --packages $NUGET_PACKAGES_DIRECTORY
@@ -25,23 +25,35 @@ before_script:
 build:
   stage: build
   script: 
-    - dotnet build $SRC/ --no-restore
+    - dotnet build $SRC/ -c $CONFIGURATION --no-restore
+  artifacts:
+    paths:
+      - $SRC/bin/
 
-test:
-  stage: test
+pack:
+  stage: pack
+  needs:
+    - job: build
+      artifacts: true
   script:
-    - dotnet test $SRC/ --no-restore
+    - dotnet pack $SRC/ -o packages/ -c $CONFIGURATION --version-suffix ci.$CI_PIPELINE_ID+git.$CI_COMMIT_SHA --no-build
+  artifacts:
+    paths:
+      - packages/
 
 publish:
   stage: deploy
   only:
-    - master
+    refs:
+      - master
+    variables:
+      - $NUGET_SERVER_URL
+      - $NUGET_API_KEY
+  needs:
+    - job: pack
+      artifacts: true
   script:
-    - dotnet pack $SRC/ -c Release -o packages/ --version-suffix ci.$CI_PIPELINE_ID+git.$CI_COMMIT_SHA --no-restore
     - dotnet nuget push packages/*.nupkg -s $NUGET_SERVER_URL -k $NUGET_API_KEY
-  artifacts:
-    paths:
-      - packages/
 
 pages:
   # DocFX with Mono, .NET Core 3.1 SDK
@@ -49,6 +61,10 @@ pages:
   stage: deploy
   only:
     - master
+  cache:
+    paths:
+      - $DOCS/api/
+      - $DOCS/obj/
   before_script:
     - ''
   script:
