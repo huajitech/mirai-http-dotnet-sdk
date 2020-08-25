@@ -30,7 +30,7 @@ namespace HuajiTech.Mirai.Events
         /// </summary>
         internal void RemoveAllHandlers()
         {
-            foreach (var eventField in GetType().GetEvents().Select(x => GetType().GetField(x.Name)!))
+            foreach (var eventField in GetType().GetEvents().Select(x => GetType().GetField(x.Name)))
             {
                 eventField?.SetValue(this, null);
             }

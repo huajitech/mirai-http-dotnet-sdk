@@ -11,7 +11,7 @@ namespace HuajiTech.Mirai
     /// </summary>
     public class Member : User
     {
-        internal override async Task<string> InternalSendAsync(MessageElement[] message) => await ApiMethods.SendTempMessageAsync(Session.HttpUri, Session.SessionKey, Number, Group.Number, message);
+        internal override Task<string> InternalSendAsync(MessageElement[] message) => ApiMethods.SendTempMessageAsync(Session.HttpUri, Session.SessionKey, Number, Group.Number, message);
 
         public override string ToString() => $"{nameof(Member)}({Number},{Group.Number})";
 

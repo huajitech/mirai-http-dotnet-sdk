@@ -63,12 +63,12 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 异步刷新当前 <see cref="CurrentUser"/> 实例的群列表
         /// </summary>
-        public async Task RefreshMembersAsync() => await GetMemberListAsync(true);
+        public Task RefreshMembersAsync() => GetMemberListAsync(true);
 
         /// <summary>
         /// 异步获取当前 <see cref="Group"/> 实例的成员列表
         /// </summary>
-        public async Task<List<Member>> GetMembersAsync() => await GetMemberListAsync(false);
+        public Task<List<Member>> GetMembersAsync() => GetMemberListAsync(false);
 
         /// <summary>
         /// 异步获取当前 <see cref="Group"/> 实例的成员列表
@@ -191,13 +191,13 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 启用当前 <see cref="Group"/> 实例的坦白说
         /// </summary>
-        public async Task EnableConfessTalk() => await SetConfessTalk(true);
+        public Task EnableConfessTalk() => SetConfessTalk(true);
 
         /// <summary>
         /// 禁用当前 <see cref="Group"/> 实例的坦白说
         /// </summary>
         /// <param name="enabled">是否启用</param>
-        public async Task DisableConfessTalk() => await SetConfessTalk(false);
+        public Task DisableConfessTalk() => SetConfessTalk(false);
 
         /// <summary>
         /// 设置当前 <see cref="Group"/> 实例的邀请
@@ -212,12 +212,12 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 允许当前 <see cref="Group"/> 实例邀请新成员
         /// </summary>
-        public async Task AllowInvite() => await SetInvite(true);
+        public Task AllowInvite() => SetInvite(true);
 
         /// <summary>
         /// 不允许当前 <see cref="Group"/> 实例邀请新成员
         /// </summary>
-        public async Task DisallowInvite() => await SetInvite(false);
+        public Task DisallowInvite() => SetInvite(false);
 
         /// <summary>
         /// 设置当前 <see cref="Group"/> 实例的自动审批入群
@@ -232,12 +232,12 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 启用当前 <see cref="Group"/> 实例的自动审批入群
         /// </summary>
-        public async Task EnableAutoApprove() => await SetAutoApprove(true);
+        public Task EnableAutoApprove() => SetAutoApprove(true);
 
         /// <summary>
         /// 禁用当前 <see cref="Group"/> 实例的自动审批入群
         /// </summary>
-        public async Task DisableAutoApprove() => await SetAutoApprove(false);
+        public Task DisableAutoApprove() => SetAutoApprove(false);
 
         /// <summary>
         /// 设置当前 <see cref="Group"/> 实例的匿名功能
@@ -252,12 +252,12 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 启用当前 <see cref="Group"/> 实例的匿名功能
         /// </summary>
-        public async Task EnableAnonymous() => await SetAnonymous(true);
+        public Task EnableAnonymous() => SetAnonymous(true);
 
         /// <summary>
         /// 禁用当前 <see cref="Group"/> 实例的匿名功能
         /// </summary>
-        public async Task DisableAnonymous() => await SetAnonymous(false);
+        public Task DisableAnonymous() => SetAnonymous(false);
 
         /// <summary>
         /// 创建 <see cref="Group"/> 实例

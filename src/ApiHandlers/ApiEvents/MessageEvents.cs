@@ -22,7 +22,7 @@ namespace HuajiTech.Mirai.ApiHandlers
             var message = await GetMessage(parser, info.MessageChain);
 
             var e = new GroupMessageReceivedEventArgs(member, message);
-            await InvokeAsync<CurrentUserEventSource>(async x => await x.OnGroupMessageReceived(Session, e));
+            await InvokeAsync<CurrentUserEventSource>(x => x.OnGroupMessageReceived(Session, e));
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace HuajiTech.Mirai.ApiHandlers
             var message = await GetMessage(parser, info.MessageChain);
 
             var e = new MemberMessageReceivedEventArgs(member, message);
-            await InvokeAsync<CurrentUserEventSource>(async x => await x.OnMemberMessageReceived(Session, e));
+            await InvokeAsync<CurrentUserEventSource>(x => x.OnMemberMessageReceived(Session, e));
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace HuajiTech.Mirai.ApiHandlers
             var message = await GetMessage(parser, info.MessageChain);
 
             var e = new FriendMessageReceivedEventArgs(friend, message);
-            await InvokeAsync<CurrentUserEventSource>(async x => await x.OnFriendMessageReceived(Session, e));
+            await InvokeAsync<CurrentUserEventSource>(x => x.OnFriendMessageReceived(Session, e));
         }
 
         /// <summary>

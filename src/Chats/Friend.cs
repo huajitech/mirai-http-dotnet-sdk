@@ -8,7 +8,7 @@ namespace HuajiTech.Mirai
     /// </summary>
     public class Friend : User
     {
-        internal override async Task<string> InternalSendAsync(MessageElement[] message) => await ApiMethods.SendFriendMessageAsync(Session.HttpUri, Session.SessionKey, Number, message);
+        internal override Task<string> InternalSendAsync(MessageElement[] message) => ApiMethods.SendFriendMessageAsync(Session.HttpUri, Session.SessionKey, Number, message);
 
         /// <summary>
         /// 当前 <see cref="Friend"/> 实例的昵称

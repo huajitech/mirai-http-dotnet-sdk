@@ -28,11 +28,11 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// 异步处理通过 Websocket 获取的消息
         /// </summary>
         /// <param name="message">通过 Websocket 获取的消息</param>
-        private async Task EventHandlingAsync(string message)
+        private Task EventHandlingAsync(string message)
         {
             var info = JsonConvert.DeserializeObject<EventInfo>(message);
 
-            var task = info.Type switch
+            return info.Type switch
             {
                 "FriendMessage" => FriendMessageEventHandling(message),
                 "GroupMessage" => GroupMessageEventHandling(message),
@@ -41,23 +41,21 @@ namespace HuajiTech.Mirai.ApiHandlers
                 "BotReloginEvent" => BotReloginEvent(message),
                 _ => Task.Delay(0)
             };
-
-            await task;
         }
 
         /// <summary>
         /// 异步调用 <see cref="EventSource"/> 实例的方法
         /// </summary>
         /// <typeparam name="TEventSource">事件源类型</typeparam>
-        /// <param name="action">调用所执行操作</param>
-        private async Task InvokeAsync<TEventSource>(Action<TEventSource> action)
+        /// <param name="func">调用所执行操作</param>
+        private async Task InvokeAsync<TEventSource>(Func<TEventSource, Task> func)
             where TEventSource : EventSource
         {
             var sources = EventSources.OfType<TEventSource>();
 
             foreach (var source in sources)
             {
-                await Task.Run(() => action.Invoke(source));
+                await func.Invoke(source);
             }
         }
 
@@ -73,7 +71,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         public async Task ListenAsync()
         {
             Server = new WebSocket(Session.WebsocketUri + "all?sessionKey=" + Session.SessionKey);
-            Server.OnMessage += async (sender, e) => await EventHandlingAsync(e.Data);
+            Server.OnMessage += (sender, e) => EventHandlingAsync(e.Data);
             await Task.Run(Server.Connect);
         }
 

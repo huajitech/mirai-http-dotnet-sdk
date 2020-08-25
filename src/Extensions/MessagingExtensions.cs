@@ -21,5 +21,12 @@ namespace HuajiTech.Mirai.Extensions
         /// <param name="displayName">提及的显示名称</param>
         /// <returns>指定的目标和显示名称的 <see cref="Messaging.Mention"/> 实例</returns>
         public static Mention Mention(this Member member, string displayName) => new Mention(member, displayName);
+
+        /// <summary>
+        /// 转换字符串到 <see cref="PlainText"/> 实例
+        /// </summary>
+        /// <param name="str">将要转换的字符串</param>
+        /// <returns>内容为指定字符串的 <see cref="PlainText"/> 实例</returns>
+        public static PlainText ToPlainText(this string str) => new PlainText(str);
     }
 }

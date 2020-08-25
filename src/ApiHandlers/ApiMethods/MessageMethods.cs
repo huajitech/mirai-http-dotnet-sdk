@@ -13,7 +13,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <param name="sessionKey">Session Key</param>
         /// <param name="target">目标号码</param>
         /// <param name="messageChain">消息链</param>
-        public static async Task<string> SendFriendMessageAsync(string uri, string sessionKey, long target, MessageElement[] messageChain) => await HttpUtilities.PostAsync(uri + "sendFriendMessage", JsonConvert.SerializeObject(new { sessionKey, target, messageChain }));
+        public static Task<string> SendFriendMessageAsync(string uri, string sessionKey, long target, MessageElement[] messageChain) => HttpUtilities.PostAsync(uri + "sendFriendMessage", JsonConvert.SerializeObject(new { sessionKey, target, messageChain }));
 
         /// <summary>
         /// 异步发送好友消息
@@ -23,7 +23,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <param name="qq">目标用户号码</param>
         /// <param name="group">目标群号码</param>
         /// <param name="messageChain">消息链</param>
-        public static async Task<string> SendTempMessageAsync(string uri, string sessionKey, long qq, long group, MessageElement[] messageChain) => await HttpUtilities.PostAsync(uri + "sendTempMessage", JsonConvert.SerializeObject(new { sessionKey, qq, group, messageChain }));
+        public static Task<string> SendTempMessageAsync(string uri, string sessionKey, long qq, long group, MessageElement[] messageChain) => HttpUtilities.PostAsync(uri + "sendTempMessage", JsonConvert.SerializeObject(new { sessionKey, qq, group, messageChain }));
 
         /// <summary>
         /// 异步发送好友消息
@@ -32,7 +32,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <param name="sessionKey">Session Key</param>
         /// <param name="target">目标号码</param>
         /// <param name="messageChain">消息链</param>
-        public static async Task<string> SendGroupMessageAsync(string uri, string sessionKey, long target, MessageElement[] messageChain) => await HttpUtilities.PostAsync(uri + "sendGroupMessage", JsonConvert.SerializeObject(new { sessionKey, target, messageChain }));
+        public static Task<string> SendGroupMessageAsync(string uri, string sessionKey, long target, MessageElement[] messageChain) => HttpUtilities.PostAsync(uri + "sendGroupMessage", JsonConvert.SerializeObject(new { sessionKey, target, messageChain }));
 
         /// <summary>
         /// 异步撤回消息
@@ -40,7 +40,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <param name="uri">API URI</param>
         /// <param name="sessionKey">Session Key</param>
         /// <param name="target">目标消息 ID</param>
-        public static async Task<string> RecallAsync(string uri, string sessionKey, int target) => await HttpUtilities.PostAsync(uri + "recall", JsonConvert.SerializeObject(new { sessionKey, target }));
+        public static Task<string> RecallAsync(string uri, string sessionKey, int target) => HttpUtilities.PostAsync(uri + "recall", JsonConvert.SerializeObject(new { sessionKey, target }));
 
         /// <summary>
         /// 异步撤回消息
@@ -48,6 +48,6 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <param name="uri">API URI</param>
         /// <param name="sessionKey">Session Key</param>
         /// <param name="id">目标消息 ID</param>
-        public static async Task<string> GetMessageAsync(string uri, string sessionKey, int id) => await HttpUtilities.GetAsync($"{uri}messageFromId?sessionKey={sessionKey}&id={id}");
+        public static Task<string> GetMessageAsync(string uri, string sessionKey, int id) => HttpUtilities.GetAsync($"{uri}messageFromId?sessionKey={sessionKey}&id={id}");
     }
 }

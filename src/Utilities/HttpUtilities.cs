@@ -13,7 +13,7 @@ namespace HuajiTech.Mirai.Utilities
         /// 异步获取 <see cref="HttpResponseMessage"/> 实例的字符串形式内容
         /// </summary>
         /// <param name="message">要获取内容的 <see cref="HttpResponseMessage"/> 实例</param>
-        private static async Task<string> ReadAsStringAsync(HttpResponseMessage message) => message.IsSuccessStatusCode ? await message.Content.ReadAsStringAsync() : throw new HttpRequestException(string.Format(Resources.CannotConnectToApi, message.StatusCode));
+        private static Task<string> ReadAsStringAsync(HttpResponseMessage message) => message.IsSuccessStatusCode ? message.Content.ReadAsStringAsync() : throw new HttpRequestException(string.Format(Resources.CannotConnectToApi, message.StatusCode));
 
         /// <summary>
         /// 异步通过 Get 方式获取字符串形式的内容

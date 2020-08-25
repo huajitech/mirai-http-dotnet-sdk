@@ -26,19 +26,19 @@ namespace HuajiTech.Mirai.Events
         /// 触发 <see cref="FriendMessageReceivedEvent"/> 事件
         /// </summary>
         /// <param name="e"><see cref="FriendMessageReceivedEventArgs"/> 实例</param>
-        internal async Task OnFriendMessageReceived(Session session, FriendMessageReceivedEventArgs e) => await InvokeAsync(FriendMessageReceivedEvent, session, e);
+        internal Task OnFriendMessageReceived(Session session, FriendMessageReceivedEventArgs e) => InvokeAsync(FriendMessageReceivedEvent, session, e);
 
         /// <summary>
         /// 触发 <see cref="GroupMessageReceivedEvent"/> 事件
         /// </summary>
         /// <param name="e"><see cref="GroupMessageReceivedEventArgs"/> 实例</param>
-        internal async Task OnGroupMessageReceived(Session session, GroupMessageReceivedEventArgs e) => await InvokeAsync(GroupMessageReceivedEvent, session, e);
+        internal Task OnGroupMessageReceived(Session session, GroupMessageReceivedEventArgs e) => InvokeAsync(GroupMessageReceivedEvent, session, e);
 
         /// <summary>
         /// 触发 <see cref="MemberMessageReceivedEvent"/> 事件
         /// </summary>
         /// <param name="e"><see cref="MemberMessageReceivedEventArgs"/> 实例</param>
-        internal async Task OnMemberMessageReceived(Session session, MemberMessageReceivedEventArgs e) => await InvokeAsync(MemberMessageReceivedEvent, session, e);
+        internal Task OnMemberMessageReceived(Session session, MemberMessageReceivedEventArgs e) => InvokeAsync(MemberMessageReceivedEvent, session, e);
 
         /// <summary>
         /// 创建 <see cref="CurrentUserEventSource"/> 实例

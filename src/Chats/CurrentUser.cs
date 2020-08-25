@@ -13,7 +13,7 @@ namespace HuajiTech.Mirai
     /// </summary>
     public class CurrentUser : User
     {
-        internal override async Task<string> InternalSendAsync(MessageElement[] message) => await ApiMethods.SendFriendMessageAsync(Session.HttpUri, Session.SessionKey, Number, message);
+        internal override Task<string> InternalSendAsync(MessageElement[] message) => ApiMethods.SendFriendMessageAsync(Session.HttpUri, Session.SessionKey, Number, message);
 
         /// <summary>
         /// 当前 <see cref="CurrentUser"/> 实例的好友列表
@@ -38,17 +38,17 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 异步刷新当前 <see cref="CurrentUser"/> 实例的好友列表
         /// </summary>
-        public async Task RefreshFriendsAsync() => await GetFriendListAsync(true);
+        public Task RefreshFriendsAsync() => GetFriendListAsync(true);
 
         /// <summary>
         /// 异步刷新当前 <see cref="CurrentUser"/> 实例的群列表
         /// </summary>
-        public async Task RefreshGroupsAsync() => await GetGroupListAsync(true);
+        public Task RefreshGroupsAsync() => GetGroupListAsync(true);
 
         /// <summary>
         /// 异步获取当前 <see cref="CurrentUser"/> 实例的好友列表
         /// </summary>
-        public async Task<List<Friend>> GetFriendsAsync() => await GetFriendListAsync(false);
+        public Task<List<Friend>> GetFriendsAsync() => GetFriendListAsync(false);
 
         /// <summary>
         /// 异步获取当前 <see cref="CurrentUser"/> 实例的好友列表
@@ -106,7 +106,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 异步获取当前 <see cref="CurrentUser"/> 实例的群列表
         /// </summary>
-        public async Task<List<Group>> GetGroupsAsync() => await GetGroupListAsync(false);
+        public Task<List<Group>> GetGroupsAsync() => GetGroupListAsync(false);
 
         /// <summary>
         /// 异步获取当前 <see cref="CurrentUser"/> 实例的群列表
@@ -184,7 +184,7 @@ namespace HuajiTech.Mirai
         /// </summary>
         /// <param name="id">消息 ID</param>
         /// <returns>指定 ID 的 <see cref="Message"/> 实例</returns>
-        public async Task<Message> GetMessageAsync(int id) => await Message.GetMessageAsync(this, id);
+        public Task<Message> GetMessageAsync(int id) => Message.GetMessageAsync(this, id);
 
         /// <summary>
         /// 异步获取当前 <see cref="CurrentUser"/> 实例在指定群的成员
