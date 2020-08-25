@@ -3,7 +3,21 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Nullable>disable</Nullable>
-    <Authors>HuajiTech</Authors>
+    <Authors>Ricky8955555</Authors>
+    <Copyright>Copyright (C) 2020 HuajiTech, All Rights Reserved.</Copyright>
+    <Version>0.1.0</Version>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <FileVersion>0.1.0.0</FileVersion>
+    <Description>用于开发 mirai 应用基于 mirai-api-http 的 .NET SDK</Description>
+    <PackageLicenseFile></PackageLicenseFile>
+    <RepositoryUrl>https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>mirai, qq, bot</PackageTags>
+    <PackageProjectUrl>https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk</PackageProjectUrl>
+    <PackageReleaseNotes>这是一个早期访问版本，不建议用于生产环境</PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Company>HuajiTech</Company>
   </PropertyGroup>
 
   <ItemGroup>
