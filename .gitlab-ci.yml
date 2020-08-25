@@ -24,6 +24,9 @@ before_script:
 
 build:
   stage: build
+  only:
+    changes:
+      - $SRC/
   script: 
     - dotnet build $SRC/ -c $CONFIGURATION --no-restore
   artifacts:
@@ -32,6 +35,9 @@ build:
 
 pack:
   stage: pack
+  only:
+    changes:
+      - $SRC/
   needs:
     - job: build
       artifacts: true
@@ -43,6 +49,9 @@ pack:
 
 publish:
   stage: deploy
+  only:
+    changes:
+      - $SRC/
   only:
     refs:
       - master
@@ -59,6 +68,10 @@ pages:
   # DocFX with Mono, .NET Core 3.1 SDK
   image: tizendotnet/tizenfx-build-worker:2.0
   stage: deploy
+  only:
+    changes:
+      - $SRC/
+      - $DOCS/
   only:
     - master
   cache:
