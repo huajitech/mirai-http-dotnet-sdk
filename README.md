@@ -12,7 +12,7 @@
 
 ## 早期访问构建
 
-- packages.huajitech.net 上的 [HuajiTech.Mirai](https://packages.huajitech.net/feeds/early-access/HuajiTech.Mirai/versions)
+- packages.huajitech.net 上的 [HuajiTech.Mirai](https://packages.huajitech.net/feeds/early-access-nuget/HuajiTech.Mirai/versions)
 - GitLab 持续集成的[产物](https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/-/jobs/artifacts/master/download?job=publish)
 
 ## 开发环境
