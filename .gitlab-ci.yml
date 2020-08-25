@@ -1,6 +1,9 @@
 image: mcr.microsoft.com/dotnet/core/sdk:3.1
 
 variables:
+  # Set $NUGET_SERVER_URL and $NUGET_API_KEY in project settings
+  SRC: src
+  DOCS: docs
   NUGET_PACKAGES_DIRECTORY: .nuget
 
 stages:
@@ -11,34 +14,37 @@ stages:
 cache:
   key:
     files:
-      - src/*.csproj
+      - $SRC/*.csproj
   paths:
-    - ${NUGET_PACKAGES_DIRECTORY}
+    - $NUGET_PACKAGES_DIRECTORY
+    - $DOCS/api/
 
 before_script:
-  - dotnet restore src/ --packages ${NUGET_PACKAGES_DIRECTORY}
+  - dotnet restore $SRC/ --packages $NUGET_PACKAGES_DIRECTORY
 
 build:
   stage: build
   script: 
-    - dotnet build src/ --no-restore
+    - dotnet build $SRC/ --no-restore
 
 test:
   stage: test
   script:
-    - dotnet test src/ --no-restore
+    - dotnet test $SRC/ --no-restore
 
 publish:
   stage: deploy
   only:
     - master
   script:
-    - dotnet publish -c Release -o bin/ src/ --no-restore
+    - dotnet pack $SRC/ -c Release -o packages/ --version-suffix ci.$CI_PIPELINE_ID+git.$CI_COMMIT_SHA --no-restore
+    - dotnet nuget push packages/*.nupkg -s $NUGET_SERVER_URL -k $NUGET_API_KEY
   artifacts:
     paths:
-      - bin/
+      - packages/
 
 pages:
+  # DocFX with Mono, .NET Core 3.1 SDK
   image: tizendotnet/tizenfx-build-worker:2.0
   stage: deploy
   only:
@@ -46,7 +52,7 @@ pages:
   before_script:
     - ''
   script:
-    - docfx docs/docfx.json
+    - docfx $DOCS/docfx.json
   artifacts:
     paths:
       - public/
