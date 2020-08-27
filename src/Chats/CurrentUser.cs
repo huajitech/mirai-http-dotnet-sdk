@@ -119,20 +119,21 @@ namespace HuajiTech.Mirai
             {
                 var result = JArray.Parse(await ApiMethods.GetGroupListAsync(Session.HttpUri, Session.SessionKey));
                 GroupList = await Task.Run(GetGroupsFromJson(result).ToList);
+                await GetGroupExtInfoAsync();
             }
 
-            return await GetGroupInfoAsync();
+            return GroupList;
         }
 
         /// <summary>
         /// 异步获取当前 <see cref="CurrentUser"/> 实例的群信息
         /// </summary>
-        private async Task<List<Group>> GetGroupInfoAsync()
+        private async Task<List<Group>> GetGroupExtInfoAsync()
         {
             foreach (var group in GroupList)
             {
                 var info = await ApiMethods.GetGroupConfig(Session.HttpUri, Session.SessionKey, group.Number);
-                group.GroupExtInfo = GetGroupInfoFromJson(info);
+                group.GroupExtInfo = GetGroupExtInfoFromJson(info);
             }
 
             return GroupList;
@@ -178,7 +179,7 @@ namespace HuajiTech.Mirai
         /// 从 Json 中提取成员信息，并创建一个 <see cref="GroupExtInfo"/> 实例
         /// </summary>
         /// <param name="info">以 Json 表达的群信息</param>
-        private GroupExtInfo GetGroupInfoFromJson(string info) => JsonConvert.DeserializeObject<GroupExtInfo>(info);
+        private GroupExtInfo GetGroupExtInfoFromJson(string info) => JsonConvert.DeserializeObject<GroupExtInfo>(info);
 
         /// <summary>
         /// 异步获取指定 ID 的消息

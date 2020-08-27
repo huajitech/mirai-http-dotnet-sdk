@@ -138,7 +138,7 @@ namespace HuajiTech.Mirai
         /// 管理员
         /// </summary>
         Administrator,
-        
+
         /// <summary>
         /// 成员
         /// </summary>
