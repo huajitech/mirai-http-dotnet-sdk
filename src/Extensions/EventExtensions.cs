@@ -2,6 +2,9 @@
 
 namespace HuajiTech.Mirai.Extensions
 {
+    /// <summary>
+    /// 定义 <see cref="Events"/> 中的类型的扩展方法
+    /// </summary>
     public static class EventExtensions
     {
         /// <summary>
