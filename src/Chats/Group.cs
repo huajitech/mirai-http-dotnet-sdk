@@ -29,32 +29,32 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 获取当前 <see cref="Group"/> 实例的信息
         /// </summary>
-        internal GroupExtInfo GroupInfo { get; set; }
+        internal GroupExtInfo GroupExtInfo { get; set; }
 
         /// <summary>
         /// 获取 <see cref="Group"/> 实例的公告
         /// </summary>
-        public string Announcement => GroupInfo.Announcement.CheckEmpty();
+        public string Announcement => GroupExtInfo.Announcement.CheckEmpty();
 
         /// <summary>
         /// 获取 <see cref="Group"/> 实例能否使用坦白说
         /// </summary>
-        public bool CanConfessTalk => GroupInfo.CanConfessTalk;
+        public bool CanConfessTalk => GroupExtInfo.CanConfessTalk;
 
         /// <summary>
         /// 获取 <see cref="Group"/> 实例能否邀请新成员
         /// </summary>
-        public bool CanInvite => GroupInfo.CanInvite;
+        public bool CanInvite => GroupExtInfo.CanInvite;
 
         /// <summary>
         /// 获取 <see cref="Group"/> 实例是否自动审批入群
         /// </summary>
-        public bool IsAutoApprove => GroupInfo.IsAutoApprove;
+        public bool IsAutoApprove => GroupExtInfo.IsAutoApprove;
 
         /// <summary>
         /// 获取 <see cref="Group"/> 实例能否使用匿名功能
         /// </summary>
-        public bool CanAnonymous => GroupInfo.CanAnonymous;
+        public bool CanAnonymous => GroupExtInfo.CanAnonymous;
 
         /// <summary>
         /// 获取当前 <see cref="Group"/> 实例的当前用户
@@ -95,7 +95,7 @@ namespace HuajiTech.Mirai
             foreach (var member in MemberList)
             {
                 var info = await ApiMethods.GetMemberInfo(Session.HttpUri, Session.SessionKey, Number, member.Number);
-                member.MemberInfo = GetMemberInfoFromJson(info);
+                member.MemberExtInfo = GetMemberInfoFromJson(info);
             }
 
             return MemberList;
@@ -145,126 +145,127 @@ namespace HuajiTech.Mirai
         private MemberExtInfo GetMemberInfoFromJson(string info) => JsonConvert.DeserializeObject<MemberExtInfo>(info);
 
         /// <summary>
-        /// 禁言当前 <see cref="Group"/> 实例
+        /// 异步禁言当前 <see cref="Group"/> 实例
         /// </summary>
         public async Task MuteAsync() => (await ApiMethods.MuteAllAsync(Session.HttpUri, Session.SessionKey, Number)).CheckError();
 
         /// <summary>
-        /// 解除当前 <see cref="Group"/> 实例的禁言
+        /// 异步解除当前 <see cref="Group"/> 实例的禁言
         /// </summary>
         public async Task UnmuteAsync() => (await ApiMethods.UnmuteAllAsync(Session.HttpUri, Session.SessionKey, Number)).CheckError();
 
         /// <summary>
-        /// 离开当前 <see cref="Group"/> 实例
+        /// 异步离开当前 <see cref="Group"/> 实例
         /// </summary>
         public async Task LeaveAsync() => (await ApiMethods.QuitAsync(Session.HttpUri, Session.SessionKey, Number)).CheckError();
 
         /// <summary>
-        /// 设置当前 <see cref="Group"/> 实例的名称
+        /// 异步设置当前 <see cref="Group"/> 实例的名称
         /// </summary>
         /// <param name="name">将要设定的名称</param>
-        public async Task SetName(string name)
+        public async Task SetNameAsync(string name)
         {
             (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { name })).CheckError();
             Name = name;
         }
 
         /// <summary>
-        /// 设置当前 <see cref="Group"/> 实例的公告
+        /// 异步设置当前 <see cref="Group"/> 实例的公告
         /// </summary>
         /// <param name="announcement">将要设定的公告</param>
-        public async Task SetAnnouncement(string announcement)
+        public async Task SetAnnouncementAsync(string announcement)
         {
             (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { announcement })).CheckError();
-            GroupInfo.Announcement = announcement;
+            GroupExtInfo.Announcement = announcement;
         }
 
         /// <summary>
-        /// 设置当前 <see cref="Group"/> 实例的坦白说
+        /// 异步设置当前 <see cref="Group"/> 实例的坦白说
         /// </summary>
         /// <param name="enabled">是否启用</param>
-        internal async Task SetConfessTalk(bool enabled)
+        internal async Task SetConfessTalkAsync(bool enabled)
         {
             (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { confessTalk = enabled })).CheckError();
-            GroupInfo.CanConfessTalk = enabled;
+            GroupExtInfo.CanConfessTalk = enabled;
         }
 
         /// <summary>
-        /// 启用当前 <see cref="Group"/> 实例的坦白说
+        /// 异步启用当前 <see cref="Group"/> 实例的坦白说
         /// </summary>
-        public Task EnableConfessTalk() => SetConfessTalk(true);
+        public Task EnableConfessTalkAsync() => SetConfessTalkAsync(true);
 
         /// <summary>
-        /// 禁用当前 <see cref="Group"/> 实例的坦白说
+        /// 异步禁用当前 <see cref="Group"/> 实例的坦白说
         /// </summary>
-        /// <param name="enabled">是否启用</param>
-        public Task DisableConfessTalk() => SetConfessTalk(false);
+        public Task DisableConfessTalkAsync() => SetConfessTalkAsync(false);
 
         /// <summary>
-        /// 设置当前 <see cref="Group"/> 实例的邀请
+        /// 异步设置当前 <see cref="Group"/> 实例的邀请
         /// </summary>
         /// <param name="allowed">是否允许</param>
-        internal async Task SetInvite(bool allowed)
+        internal async Task SetInviteAsync(bool allowed)
         {
             (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { allowMemberInvite = allowed })).CheckError();
-            GroupInfo.CanInvite = allowed;
+            GroupExtInfo.CanInvite = allowed;
         }
 
         /// <summary>
-        /// 允许当前 <see cref="Group"/> 实例邀请新成员
+        /// 异步允许当前 <see cref="Group"/> 实例邀请新成员
         /// </summary>
-        public Task AllowInvite() => SetInvite(true);
+        public Task AllowInviteAsync() => SetInviteAsync(true);
 
         /// <summary>
-        /// 不允许当前 <see cref="Group"/> 实例邀请新成员
+        /// 异步不允许当前 <see cref="Group"/> 实例邀请新成员
         /// </summary>
-        public Task DisallowInvite() => SetInvite(false);
+        public Task DisallowInviteAsync() => SetInviteAsync(false);
 
         /// <summary>
-        /// 设置当前 <see cref="Group"/> 实例的自动审批入群
+        /// 异步设置当前 <see cref="Group"/> 实例的自动审批入群
         /// </summary>
         /// <param name="enabled">是否启用</param>
-        internal async Task SetAutoApprove(bool enabled)
+        internal async Task SetAutoApproveAsync(bool enabled)
         {
             (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { autoApprove = enabled })).CheckError();
-            GroupInfo.IsAutoApprove = enabled;
+            GroupExtInfo.IsAutoApprove = enabled;
         }
 
         /// <summary>
-        /// 启用当前 <see cref="Group"/> 实例的自动审批入群
+        /// 异步启用当前 <see cref="Group"/> 实例的自动审批入群
         /// </summary>
-        public Task EnableAutoApprove() => SetAutoApprove(true);
+        public Task EnableAutoApproveAsync() => SetAutoApproveAsync(true);
 
         /// <summary>
-        /// 禁用当前 <see cref="Group"/> 实例的自动审批入群
+        /// 异步禁用当前 <see cref="Group"/> 实例的自动审批入群
         /// </summary>
-        public Task DisableAutoApprove() => SetAutoApprove(false);
+        public Task DisableAutoApproveAsync() => SetAutoApproveAsync(false);
 
         /// <summary>
-        /// 设置当前 <see cref="Group"/> 实例的匿名功能
+        /// 异步设置当前 <see cref="Group"/> 实例的匿名功能
         /// </summary>
         /// <param name="enabled">是否启用</param>
-        internal async Task SetAnonymous(bool enabled)
+        internal async Task SetAnonymousAsync(bool enabled)
         {
             (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { anonymousChat = enabled })).CheckError();
-            GroupInfo.CanAnonymous = enabled;
+            GroupExtInfo.CanAnonymous = enabled;
         }
 
         /// <summary>
-        /// 启用当前 <see cref="Group"/> 实例的匿名功能
+        /// 异步启用当前 <see cref="Group"/> 实例的匿名功能
         /// </summary>
-        public Task EnableAnonymous() => SetAnonymous(true);
+        public Task EnableAnonymousAsync() => SetAnonymousAsync(true);
 
         /// <summary>
-        /// 禁用当前 <see cref="Group"/> 实例的匿名功能
+        /// 异步禁用当前 <see cref="Group"/> 实例的匿名功能
         /// </summary>
-        public Task DisableAnonymous() => SetAnonymous(false);
+        public Task DisableAnonymousAsync() => SetAnonymousAsync(false);
 
         /// <summary>
         /// 创建 <see cref="Group"/> 实例
         /// </summary>
-        /// <param name="session">指定 <see cref="Group"/> 实例所使用的 Session</param>
+        /// <param name="currentUser">指定 <see cref="Group"/> 实例的当前用户</param>
         /// <param name="number">指定 <see cref="Group"/> 实例的号码</param>
+        /// <param name="name">指定 <see cref="Group"/> 实例的名称</param>
+        /// <param name="currentUserRole">指定 <see cref="Group"/> 实例的当前用户角色</param>
         internal Group(CurrentUser currentUser, long number, string name, MemberRole currentUserRole) : base(currentUser.Session, number)
         {
             Name = name;

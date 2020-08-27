@@ -73,7 +73,6 @@
 ### API
 
 - [图片文件上传](https://github.com/project-mirai/mirai-api-http/#%E5%9B%BE%E7%89%87%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0)
-- [修改群员资料](https://github.com/project-mirai/mirai-api-http/#%E4%BF%AE%E6%94%B9%E7%BE%A4%E5%91%98%E8%B5%84%E6%96%99)
 - [注册指令](https://github.com/project-mirai/mirai-api-http/#%E6%B3%A8%E5%86%8C%E6%8C%87%E4%BB%A4)
 - [发送指令](https://github.com/project-mirai/mirai-api-http/#%E5%8F%91%E9%80%81%E6%8C%87%E4%BB%A4)
 - [监听指令](https://github.com/project-mirai/mirai-api-http/#%E7%9B%91%E5%90%AC%E6%8C%87%E4%BB%A4)

@@ -25,18 +25,21 @@ namespace HuajiTech.Mirai.Events
         /// <summary>
         /// 触发 <see cref="FriendMessageReceivedEvent"/> 事件
         /// </summary>
+        /// <param name="session">会话</param>
         /// <param name="e"><see cref="FriendMessageReceivedEventArgs"/> 实例</param>
         internal Task OnFriendMessageReceived(Session session, FriendMessageReceivedEventArgs e) => InvokeAsync(FriendMessageReceivedEvent, session, e);
 
         /// <summary>
         /// 触发 <see cref="GroupMessageReceivedEvent"/> 事件
         /// </summary>
+        /// <param name="session">会话</param>
         /// <param name="e"><see cref="GroupMessageReceivedEventArgs"/> 实例</param>
         internal Task OnGroupMessageReceived(Session session, GroupMessageReceivedEventArgs e) => InvokeAsync(GroupMessageReceivedEvent, session, e);
 
         /// <summary>
         /// 触发 <see cref="MemberMessageReceivedEvent"/> 事件
         /// </summary>
+        /// <param name="session">会话</param>
         /// <param name="e"><see cref="MemberMessageReceivedEventArgs"/> 实例</param>
         internal Task OnMemberMessageReceived(Session session, MemberMessageReceivedEventArgs e) => InvokeAsync(MemberMessageReceivedEvent, session, e);
 

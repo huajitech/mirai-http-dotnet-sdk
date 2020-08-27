@@ -20,13 +20,15 @@ namespace HuajiTech.Mirai.Events
         /// <summary>
         /// 触发 <see cref="BotLoginedEvent"/> 事件
         /// </summary>
-        /// <param name="number">机器人号码</param>
+        /// <param name="session">会话</param>
+        /// <param name="e"><see cref="BotEventArgs"/> 实例</param>
         internal Task OnBotLogined(Session session, BotEventArgs e) => InvokeAsync(BotLoginedEvent, session, e);
 
         /// <summary>
         /// 触发 <see cref="BotReloginedEvent"/> 事件
         /// </summary>
-        /// <param name="number">机器人号码</param>
+        /// <param name="session">会话</param>
+        /// <param name="e"><see cref="BotEventArgs"/> 实例</param>
         internal Task OnBotRelogined(Session session, BotEventArgs e) => InvokeAsync(BotReloginedEvent, session, e);
 
         /// <summary>

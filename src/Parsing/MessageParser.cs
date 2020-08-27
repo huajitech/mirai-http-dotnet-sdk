@@ -132,7 +132,7 @@ namespace HuajiTech.Mirai.Parsing
         /// <summary>
         /// 创建 <see cref="MessageParser"/> 实例
         /// </summary>
-        /// <param name="session">指定 <see cref="MessageParser"/> 实例所使用的当前用户</param>
+        /// <param name="currentUser">指定 <see cref="MessageParser"/> 实例所使用的当前用户</param>
         public MessageParser(CurrentUser currentUser)
         {
             CurrentUser = currentUser;

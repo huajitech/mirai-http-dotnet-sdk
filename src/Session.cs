@@ -75,6 +75,7 @@ namespace HuajiTech.Mirai
         /// </summary>
         private async Task VerifyAsync() => (await ApiMethods.VerifyAsync(HttpUri, SessionKey, BotNumber)).CheckError();
 
+        /// <inheritdoc/>
         public async ValueTask DisposeAsync()
         {
             await ApiEventHandler.DisposeAsync();

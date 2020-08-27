@@ -32,9 +32,9 @@ namespace HuajiTech.Mirai
         /// <param name="number">指定 <see cref="Friend"/> 实例的号码</param>
         /// <param name="nickname">指定 <see cref="Friend"/> 实例的昵称</param>
         /// <param name="alias">指定 <see cref="Friend"/> 实例的别名</param>
-        internal Friend(Session session, long number, string name, string alias) : base(session, number)
+        internal Friend(Session session, long number, string nickname, string alias) : base(session, number)
         {
-            Nickname = name;
+            Nickname = nickname;
             Alias = alias;
         }
     }

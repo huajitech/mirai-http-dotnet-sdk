@@ -16,18 +16,23 @@ namespace HuajiTech.Mirai
         [JsonProperty(PropertyName = "type")]
         internal abstract string Type { get; }
 
+        /// <inheritdoc/>
         public override string ToString() => TypeStringUtilities.ToTypeString(this);
 
+        /// <inheritdoc/>
         public static implicit operator MessageElement(string str) => new PlainText(str);
 
+        /// <inheritdoc/>
         public static List<MessageElement> operator +(MessageElement left, MessageElement right) => new List<MessageElement>() { left, right };
 
+        /// <inheritdoc/>
         public static List<MessageElement> operator +(List<MessageElement> left, MessageElement right)
         {
             left.Add(right);
             return left;
         }
 
+        /// <inheritdoc/>
         public static List<MessageElement> operator +(MessageElement left, List<MessageElement> right)
         {
             right.Insert(0, left);

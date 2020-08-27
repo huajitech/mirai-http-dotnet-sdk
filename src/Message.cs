@@ -64,6 +64,7 @@ namespace HuajiTech.Mirai
             return new Message(session, elements.ToList());
         }
 
+        /// <inheritdoc/>
         public static implicit operator List<MessageElement>(Message message) => message.Content;
 
         /// <summary>

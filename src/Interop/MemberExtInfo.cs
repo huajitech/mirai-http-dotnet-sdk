@@ -8,12 +8,12 @@
         /// <summary>
         /// 获取当前 <see cref="MemberExtInfo"/> 实例的群名片
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 获取当前 <see cref="MemberExtInfo"/> 实例的头衔
         /// </summary>
-        public string Title { get; }
+        public string Title { get; set; }
 
         /// <summary>
         /// 创建 <see cref="MemberExtInfo"/> 实例

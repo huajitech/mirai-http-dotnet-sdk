@@ -75,6 +75,7 @@ namespace HuajiTech.Mirai.ApiHandlers
             await Task.Run(Server.Connect);
         }
 
+        /// <inheritdoc/>
         public async ValueTask DisposeAsync()
         {
             foreach (var source in EventSources)

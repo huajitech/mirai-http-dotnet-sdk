@@ -15,16 +15,22 @@ namespace HuajiTech.Mirai.Messaging
         [JsonProperty(PropertyName = "text")]
         public string Content { get; }
 
+        /// <inheritdoc/>
         public override string ToString() => Content;
 
+        /// <inheritdoc/>
         public override bool Equals(object obj) => obj is PlainText plainText ? plainText.Content == Content : obj as string == Content;
 
+        /// <inheritdoc/>
         public override int GetHashCode() => base.GetHashCode();
 
+        /// <inheritdoc/>
         public static implicit operator string(PlainText plainText) => plainText.Content ?? string.Empty;
 
+        /// <inheritdoc/>
         public static bool operator ==(PlainText left, PlainText right) => left.Equals(right);
 
+        /// <inheritdoc/>
         public static bool operator !=(PlainText left, PlainText right) => !left.Equals(right);
 
         /// <summary>

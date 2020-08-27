@@ -55,14 +55,19 @@ namespace HuajiTech.Mirai
         /// <returns>表示所发送消息来源的 <see cref="Source"/> 实例</returns>
         private Source GetSource(int id) => new Source(id, (int)TimestampUtilities.FromDateTime(DateTime.Now));
 
+        /// <inheritdoc/>
         public override bool Equals(object obj) => obj is Chat chat && chat.GetType() == GetType() && chat.Number == Number;
 
+        /// <inheritdoc/>
         public override int GetHashCode() => base.GetHashCode();
 
+        /// <inheritdoc/>
         public override string ToString() => $"{GetType().Name}({Number})";
 
+        /// <inheritdoc/>
         public static bool operator ==(Chat left, Chat right) => left.Equals(right);
 
+        /// <inheritdoc/>
         public static bool operator !=(Chat left, Chat right) => !left.Equals(right);
 
         /// <summary>
@@ -70,7 +75,6 @@ namespace HuajiTech.Mirai
         /// </summary>
         /// <param name="session">指定 <see cref="Chat"/> 实例所使用的 Session</param>
         /// <param name="number">指定 <see cref="Chat"/> 实例的号码</param>
-        /// <param name="name">指定 <see cref="Chat"/> 实例的名称</param>
         internal Chat(Session session, long number) : base(session) => Number = number;
     }
 }

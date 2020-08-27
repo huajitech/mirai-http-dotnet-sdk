@@ -11,6 +11,7 @@ namespace HuajiTech.Mirai.Extensions
         /// <summary>
         /// 异步发送消息到当前 <see cref="Chat"/> 实例
         /// </summary>
+        /// <param name="chat">目标聊天</param>
         /// <param name="message">要发送的消息</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
         public static Task<Message> SendAsync(this Chat chat, Message message) => chat.SendAsync(message.Content);
@@ -18,6 +19,7 @@ namespace HuajiTech.Mirai.Extensions
         /// <summary>
         /// 异步发送消息到当前 <see cref="Chat"/> 实例
         /// </summary>
+        /// <param name="chat">目标聊天</param>
         /// <param name="message">要发送的消息</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
         public static Task<Message> SendAsync(this Chat chat, string message) => chat.SendAsync(new MessageElement[] { new PlainText(message) });
@@ -25,6 +27,7 @@ namespace HuajiTech.Mirai.Extensions
         /// <summary>
         /// 异步发送消息到当前 <see cref="Chat"/> 实例
         /// </summary>
+        /// <param name="chat">目标聊天</param>
         /// <param name="message">要发送的消息</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
         public static Task<Message> SendAsync(this Chat chat, MessageElement message) => chat.SendAsync(new MessageElement[] { message });

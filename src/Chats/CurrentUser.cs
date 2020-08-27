@@ -132,7 +132,7 @@ namespace HuajiTech.Mirai
             foreach (var group in GroupList)
             {
                 var info = await ApiMethods.GetGroupConfig(Session.HttpUri, Session.SessionKey, group.Number);
-                group.GroupInfo = GetGroupInfoFromJson(info);
+                group.GroupExtInfo = GetGroupInfoFromJson(info);
             }
 
             return GroupList;
@@ -188,7 +188,7 @@ namespace HuajiTech.Mirai
         public Task<Message> GetMessageAsync(int id) => Message.GetMessageAsync(this, id);
 
         /// <summary>
-        /// 异步获取当前 <see cref="CurrentUser"/> 实例在指定群的成员
+        /// 获取当前 <see cref="CurrentUser"/> 实例在指定群的成员
         /// </summary>
         /// <param name="group">群</param>
         /// <param name="role">成员角色</param>
