@@ -1,5 +1,6 @@
 ﻿using HuajiTech.Mirai.ApiHandlers;
 using HuajiTech.Mirai.Extensions;
+using HuajiTech.Mirai.Interop;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 获取当前 <see cref="Member"/> 实例的信息
         /// </summary>
-        internal MemberInfo MemberInfo { get; set; }
+        internal MemberExtInfo MemberInfo { get; set; }
 
         /// <summary>
         /// 获取当前 <see cref="Member"/> 实例的群名片

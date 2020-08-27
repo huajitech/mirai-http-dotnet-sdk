@@ -1,5 +1,6 @@
 ﻿using HuajiTech.Mirai.ApiHandlers;
 using HuajiTech.Mirai.Extensions;
+using HuajiTech.Mirai.Interop;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
@@ -174,10 +175,10 @@ namespace HuajiTech.Mirai
         private IEnumerable<Group> GetGroupsFromJson(JArray groups) => groups.Select(x => GetGroupFromJson((JObject)x));
 
         /// <summary>
-        /// 从 Json 中提取成员信息，并创建一个 <see cref="GroupInfo"/> 实例
+        /// 从 Json 中提取成员信息，并创建一个 <see cref="GroupExtInfo"/> 实例
         /// </summary>
         /// <param name="info">以 Json 表达的群信息</param>
-        private GroupInfo GetGroupInfoFromJson(string info) => JsonConvert.DeserializeObject<GroupInfo>(info);
+        private GroupExtInfo GetGroupInfoFromJson(string info) => JsonConvert.DeserializeObject<GroupExtInfo>(info);
 
         /// <summary>
         /// 异步获取指定 ID 的消息

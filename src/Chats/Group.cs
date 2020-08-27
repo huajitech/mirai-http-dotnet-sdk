@@ -1,5 +1,6 @@
 ﻿using HuajiTech.Mirai.ApiHandlers;
 using HuajiTech.Mirai.Extensions;
+using HuajiTech.Mirai.Interop;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 获取当前 <see cref="Group"/> 实例的信息
         /// </summary>
-        internal GroupInfo GroupInfo { get; set; }
+        internal GroupExtInfo GroupInfo { get; set; }
 
         /// <summary>
         /// 获取 <see cref="Group"/> 实例的公告
@@ -138,10 +139,10 @@ namespace HuajiTech.Mirai
         private IEnumerable<Member> GetMembersFromJson(JArray members) => members.Select(x => GetMemberFromJson((JObject)x));
 
         /// <summary>
-        /// 从 Json 中提取成员信息，并创建一个 <see cref="MemberInfo"/> 实例
+        /// 从 Json 中提取成员信息，并创建一个 <see cref="MemberExtInfo"/> 实例
         /// </summary>
         /// <param name="info">以 Json 表达的成员信息</param>
-        private MemberInfo GetMemberInfoFromJson(string info) => JsonConvert.DeserializeObject<MemberInfo>(info);
+        private MemberExtInfo GetMemberInfoFromJson(string info) => JsonConvert.DeserializeObject<MemberExtInfo>(info);
 
         /// <summary>
         /// 禁言当前 <see cref="Group"/> 实例
