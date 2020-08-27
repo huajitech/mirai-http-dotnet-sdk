@@ -15,7 +15,7 @@
 - (推荐) packages.huajitech.net 上的 [HuajiTech.Mirai](https://packages.huajitech.net/feeds/early-access-nuget/HuajiTech.Mirai/versions)。
 - [GitLab 持续集成](https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/-/pipelines)的[最新产物](https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/-/jobs/artifacts/master/download?job=pack)。最新产物不一定可用。
 
-### 安装 packages.huajitech.net 上的早期访问包
+### 使用 packages.huajitech.net 上的早期访问包
 
 #### 使用 dotnet CLI 和 PackageReference
 
