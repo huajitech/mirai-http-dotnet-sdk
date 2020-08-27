@@ -2,8 +2,6 @@ image: mcr.microsoft.com/dotnet/core/sdk:3.1
 
 variables:
   # Set $NUGET_SERVER_URL and $NUGET_API_KEY in project settings
-  SRC: src
-  DOCS: docs
   NUGET_PACKAGES_DIRECTORY: .nuget
   CONFIGURATION: Release
 
@@ -15,34 +13,34 @@ stages:
 cache:
   key:
     files:
-      - $SRC/*.csproj
+      - src/*.csproj
   paths:
     - $NUGET_PACKAGES_DIRECTORY
 
 before_script:
-  - dotnet restore $SRC/ --packages $NUGET_PACKAGES_DIRECTORY
+  - dotnet restore src/ --packages $NUGET_PACKAGES_DIRECTORY
 
 build:
   stage: build
   only:
     changes:
-      - $SRC/**/*
+      - src/**/*
   script: 
-    - dotnet build $SRC/ -c $CONFIGURATION --no-restore
+    - dotnet build src/ -c $CONFIGURATION --no-restore
   artifacts:
     paths:
-      - $SRC/bin/
+      - src/bin/
 
 pack:
   stage: pack
   only:
     changes:
-      - $SRC/**/*
+      - src/**/*
   needs:
     - job: build
       artifacts: true
   script:
-    - dotnet pack $SRC/ -o packages/ -c $CONFIGURATION --version-suffix ci.$CI_PIPELINE_ID+git.$CI_COMMIT_SHA --no-build
+    - dotnet pack src/ -o packages/ -c $CONFIGURATION --version-suffix ci.$CI_PIPELINE_ID+git.$CI_COMMIT_SHA --no-build
   artifacts:
     paths:
       - packages/
@@ -53,7 +51,7 @@ publish:
     refs:
       - master
     changes:
-      - $SRC/**/*
+      - src/**/*
     variables:
       - $NUGET_SERVER_URL
       - $NUGET_API_KEY
@@ -71,16 +69,16 @@ pages:
     refs:
       - master
     changes:
-      - $SRC/**/*
-      - $DOCS/**/*
+      - src/**/*
+      - docs/**/*
   cache:
     paths:
-      - $DOCS/api/
-      - $DOCS/obj/
+      - docs/api/
+      - docs/obj/
   before_script:
     - ''
   script:
-    - docfx $DOCS/docfx.json
+    - docfx docs/docfx.json
   artifacts:
     paths:
       - public/
