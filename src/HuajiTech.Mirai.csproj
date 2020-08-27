@@ -1,8 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Nullable>disable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Authors>Ricky8955555</Authors>
     <Copyright>Copyright (C) 2020 HuajiTech, All Rights Reserved.</Copyright>
     <VersionPrefix>0.1.2</VersionPrefix>
