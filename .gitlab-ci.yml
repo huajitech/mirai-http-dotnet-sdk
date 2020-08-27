@@ -40,7 +40,7 @@ pack:
     - job: build
       artifacts: true
   script:
-    - dotnet pack src/ -o packages/ -c $CONFIGURATION --version-suffix ci.$CI_PIPELINE_ID+git.$CI_COMMIT_SHA --no-build
+    - dotnet pack src/ -o packages/ -c $CONFIGURATION --version-suffix ci.$CI_PIPELINE_ID+git.$CI_COMMIT_SHA -p:GenerateDocumentationFile=true --no-build
   artifacts:
     paths:
       - packages/
