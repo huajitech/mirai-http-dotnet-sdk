@@ -16,7 +16,7 @@ namespace HuajiTech.Mirai.Interop
 
         public Member ToMember(CurrentUser currentUser) => new Member(Group.ToGroup(currentUser), Id, Name, Member.MemberRoleDictionary[Permission]);
 
-        public async Task<Member> GetMember(CurrentUser currentUser) => await (await Group.GetGroupAsync(currentUser)).GetMemberAsync(Id);
+        public async Task<Member> GetMemberAsync(CurrentUser currentUser) => await (await Group.GetGroupAsync(currentUser)).GetMemberAsync(Id);
 
         public MemberSenderInfo(long id, string permission, GroupInfo group) : base(id)
         {

@@ -17,7 +17,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         private async Task GroupMessageEventHandling(string data)
         {
             var info = JsonConvert.DeserializeObject<MessageData>(data);
-            var member = info.Sender.ToObject<MemberSenderInfo>().ToMember(Session.CurrentUser);
+            var member = await info.Sender.ToObject<MemberSenderInfo>().GetMemberAsync(Session.CurrentUser);
             var parser = new GroupMessageParser(Session.CurrentUser, member.Group);
             var message = await GetMessage(parser, info.MessageChain);
 
@@ -32,7 +32,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         private async Task MemberMessageEventHandling(string data)
         {
             var info = JsonConvert.DeserializeObject<MessageData>(data);
-            var member = info.Sender.ToObject<MemberSenderInfo>().ToMember(Session.CurrentUser);
+            var member = await info.Sender.ToObject<MemberSenderInfo>().GetMemberAsync(Session.CurrentUser);
             var parser = new MemberMessageParser(Session.CurrentUser);
             var message = await GetMessage(parser, info.MessageChain);
 
@@ -47,7 +47,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         private async Task FriendMessageEventHandling(string data)
         {
             var info = JsonConvert.DeserializeObject<MessageData>(data);
-            var friend = info.Sender.ToObject<FriendSenderInfo>().ToFriend(Session);
+            var friend = await info.Sender.ToObject<FriendSenderInfo>().GetFriendAsync(Session.CurrentUser);
             var parser = new FriendMessageParser(Session.CurrentUser);
             var message = await GetMessage(parser, info.MessageChain);
 
