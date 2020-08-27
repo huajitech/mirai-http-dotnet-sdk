@@ -26,7 +26,7 @@ build:
     changes:
       - src/**/*
   script: 
-    - dotnet build src/ -c $CONFIGURATION -p:GenerateDocumentationFile=true --no-restore
+    - dotnet build src/ -c $CONFIGURATION --no-restore
   artifacts:
     paths:
       - src/bin/
@@ -40,7 +40,7 @@ pack:
     - job: build
       artifacts: true
   script:
-    - dotnet pack src/ -o packages/ -c $CONFIGURATION --version-suffix ci.$CI_PIPELINE_ID+git.$CI_COMMIT_SHA -p:GenerateDocumentationFile=true --no-build
+    - dotnet pack src/ -o packages/ -c $CONFIGURATION --version-suffix ci.$CI_PIPELINE_ID+git.$CI_COMMIT_SHA --no-build
   artifacts:
     paths:
       - packages/
