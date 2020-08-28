@@ -7,23 +7,16 @@ namespace HuajiTech.Mirai.Interop.Messaging
     internal class ImageInfo
     {
         [JsonProperty(PropertyName = "imageId")]
-        public string Id { get; }
+        public string Id { get; set; }
 
         [JsonProperty(PropertyName = "path")]
-        public string FilePath { get; }
+        public string FilePath { get; set; }
 
         [JsonProperty(PropertyName = "url")]
-        public string Uri { get; }
+        public string Uri { get; set; }
 
         public Image ToImage() => new Image(Id, FilePath, new Uri(Uri));
 
         public FlashImage ToFlashImage() => new FlashImage(Id, FilePath, new Uri(Uri));
-
-        public ImageInfo(string id, string path, string uri)
-        {
-            Id = id;
-            FilePath = path;
-            Uri = uri;
-        }
     }
 }

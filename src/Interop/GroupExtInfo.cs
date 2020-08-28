@@ -36,22 +36,5 @@ namespace HuajiTech.Mirai.Interop
         /// </summary>
         [JsonProperty(PropertyName = "anonymousChat")]
         public bool CanAnonymous { get; set; }
-
-        /// <summary>
-        /// 创建 <see cref="GroupExtInfo"/> 实例
-        /// </summary>
-        /// <param name="announcement">指定 <see cref="GroupExtInfo"/> 实例的公告</param>
-        /// <param name="canConfessTalk">指定 <see cref="GroupExtInfo"/> 实例能否使用坦白说</param>
-        /// <param name="canInvite">指定 <see cref="GroupExtInfo"/> 实例能否邀请新成员</param>
-        /// <param name="isAutoApprove">指定 <see cref="GroupExtInfo"/> 实例是否自动审批入群</param>
-        /// <param name="canAnonymous">指定 <see cref="GroupExtInfo"/> 实例能否使用匿名功能</param>
-        public GroupExtInfo(string announcement, bool canConfessTalk, bool canInvite, bool isAutoApprove, bool canAnonymous)
-        {
-            Announcement = announcement;
-            CanConfessTalk = canConfessTalk;
-            CanInvite = canInvite;
-            IsAutoApprove = isAutoApprove;
-            CanAnonymous = canAnonymous;
-        }
     }
 }

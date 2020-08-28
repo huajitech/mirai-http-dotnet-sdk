@@ -6,27 +6,18 @@ namespace HuajiTech.Mirai.Interop.Messaging
     internal class QuoteInfo
     {
         [JsonProperty(PropertyName = "id")]
-        public int Id { get; }
+        public int Id { get; set; }
 
         [JsonProperty(PropertyName = "groupId")]
-        public long GroupId { get; }
+        public long GroupId { get; set; }
 
         [JsonProperty(PropertyName = "senderId")]
-        public long SenderId { get; }
+        public long SenderId { get; set; }
 
         [JsonProperty(PropertyName = "targetId")]
-        public long TargetId { get; }
+        public long TargetId { get; set; }
 
         [JsonProperty(PropertyName = "origin")]
-        public JArray Origin { get; }
-
-        public QuoteInfo(int id, long groupId, long senderId, long targetId, JArray origin)
-        {
-            Id = id;
-            GroupId = groupId;
-            SenderId = senderId;
-            TargetId = targetId;
-            Origin = origin;
-        }
+        public JArray Origin { get; set; }
     }
 }

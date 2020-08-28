@@ -6,23 +6,16 @@ namespace HuajiTech.Mirai.Interop
     internal class GroupInfo
     {
         [JsonProperty(PropertyName = "id")]
-        public long Id { get; }
+        public long Id { get; set; }
 
         [JsonProperty(PropertyName = "name")]
-        public string Name { get; }
+        public string Name { get; set; }
 
         [JsonProperty(PropertyName = "permission")]
-        public string Permission { get; }
+        public string Permission { get; set; }
 
         public Group ToGroup(CurrentUser currentUser) => new Group(currentUser, Id, Name, Member.MemberRoleDictionary[Permission]);
 
         public async Task<Group> GetGroupAsync(CurrentUser currentUser) => await currentUser.GetGroupAsync(Id);
-
-        public GroupInfo(long id, string name, string permission)
-        {
-            Id = id;
-            Name = name;
-            Permission = permission;
-        }
     }
 }

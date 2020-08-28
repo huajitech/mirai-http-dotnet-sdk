@@ -7,21 +7,14 @@ namespace HuajiTech.Mirai.Interop.Messaging
     internal class VoiceInfo
     {
         [JsonProperty(PropertyName = "imageId")]
-        public string Id { get; }
+        public string Id { get; set; }
 
         [JsonProperty(PropertyName = "path")]
-        public string FilePath { get; }
+        public string FilePath { get; set; }
 
         [JsonProperty(PropertyName = "url")]
-        public string Uri { get; }
+        public string Uri { get; set; }
 
         public Voice ToVoice() => new Voice(Id, FilePath, new Uri(Uri));
-
-        public VoiceInfo(string id, string path, string uri)
-        {
-            Id = id;
-            FilePath = path;
-            Uri = uri;
-        }
     }
 }

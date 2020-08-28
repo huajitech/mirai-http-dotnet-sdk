@@ -6,17 +6,11 @@ namespace HuajiTech.Mirai.Interop.Messaging
     internal class FaceInfo
     {
         [JsonProperty(PropertyName = "faceId")]
-        public int Id { get; }
+        public int Id { get; set; }
 
         [JsonProperty(PropertyName = "name")]
-        public string Name { get; }
+        public string Name { get; set; }
 
         public Emoticon ToEmoticon() => new Emoticon(Id, Name);
-
-        public FaceInfo(int id, string name)
-        {
-            Id = id;
-            Name = name;
-        }
     }
 }
