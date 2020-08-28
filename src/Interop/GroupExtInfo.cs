@@ -5,7 +5,6 @@ namespace HuajiTech.Mirai.Interop
     /// <summary>
     /// 定义群信息
     /// </summary>
-    [JsonObject(Id = "config")]
     internal class GroupExtInfo
     {
         /// <summary>
