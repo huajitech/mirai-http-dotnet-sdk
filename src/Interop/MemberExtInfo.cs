@@ -1,7 +1,7 @@
 ﻿namespace HuajiTech.Mirai.Interop
 {
     /// <summary>
-    /// 定义成员信息
+    /// 定义成员额外信息
     /// </summary>
     internal class MemberExtInfo
     {

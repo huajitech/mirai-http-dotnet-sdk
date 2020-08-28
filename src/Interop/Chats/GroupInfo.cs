@@ -3,11 +3,8 @@ using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai.Interop
 {
-    internal class GroupInfo
+    internal class GroupInfo : ChatInfo
     {
-        [JsonProperty(PropertyName = "id")]
-        public long Id { get; set; }
-
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 

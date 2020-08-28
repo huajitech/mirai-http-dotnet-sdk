@@ -2,7 +2,6 @@
 using HuajiTech.Mirai.Extensions;
 using HuajiTech.Mirai.Interop;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -79,7 +78,7 @@ namespace HuajiTech.Mirai
         {
             if (refresh || MemberList == null)
             {
-                var result = JArray.Parse(await ApiMethods.GetMemberListAsync(Session.HttpUri, Session.SessionKey, Number));
+                var result = await ApiMethods.GetMemberListAsync(Session.HttpUri, Session.SessionKey, Number);
                 MemberList = await Task.Run(GetMembersFromJson(result).ToList);
                 MemberList.Add(CurrentUser);
                 await GetMemberExtInfoAsync();
@@ -128,16 +127,16 @@ namespace HuajiTech.Mirai
         }
 
         /// <summary>
-        /// 从 Json 中提取群信息，并创建一个 <see cref="Member"/> 实例
+        /// 异步获取当前 <see cref="Group"/> 实例的成员信息列表
         /// </summary>
-        /// <param name="member">以 Json 表达的群信息</param>
-        private Member GetMemberFromJson(JObject member) => new Member(this, member.Value<long>("id"), member.Value<string>("memberName"), Member.MemberRoleDictionary[member.Value<string>("permission")]);
+        /// <param name="members">以 Json 表达的多个成员信息</param>
+        private IEnumerable<MemberInfo> GetMemberInfoFromJson(string members) => JsonConvert.DeserializeObject<List<MemberInfo>>(members);
 
         /// <summary>
-        /// 从 Json 中提取多个群信息，并创建一个 <see cref="List{Member}"/> 实例
+        /// 异步获取当前 <see cref="Group"/> 实例的成员信息列表
         /// </summary>
-        /// <param name="members">以 Json 表达的多个群信息</param>
-        private IEnumerable<Member> GetMembersFromJson(JArray members) => members.Select(x => GetMemberFromJson((JObject)x));
+        /// <param name="members">以 Json 表达的多个成员信息</param>
+        private IEnumerable<Member> GetMembersFromJson(string members) => GetMemberInfoFromJson(members).Select(x => x.ToMember(this));
 
         /// <summary>
         /// 从 Json 中提取成员信息，并创建一个 <see cref="MemberExtInfo"/> 实例

@@ -1,8 +1,6 @@
 ﻿using HuajiTech.Mirai.ApiHandlers;
-using HuajiTech.Mirai.Extensions;
 using HuajiTech.Mirai.Interop;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -59,7 +57,7 @@ namespace HuajiTech.Mirai
         {
             if (refresh || FriendList == null)
             {
-                var result = JArray.Parse(await ApiMethods.GetFriendListAsync(Session.HttpUri, Session.SessionKey));
+                var result = await ApiMethods.GetFriendListAsync(Session.HttpUri, Session.SessionKey);
                 FriendList = await Task.Run(GetFriendsFromJson(result).ToList);
                 Friend = await GetFriendAsync(Number);
             }
@@ -93,16 +91,16 @@ namespace HuajiTech.Mirai
         }
 
         /// <summary>
-        /// 从 Json 中提取好友信息，并创建一个 <see cref="Mirai.Friend"/> 实例
-        /// </summary>
-        /// <param name="friend">以 Json 表达的好友信息</param>
-        private Friend GetFriendFromJson(JObject friend) => new Friend(Session, friend.Value<long>("id"), friend.Value<string>("nickname"), friend.Value<string>("remark").CheckEmpty());
-
-        /// <summary>
-        /// 从 Json 中提取多个好友信息，并创建一个 <see cref="List{Friend}"/> 实例
+        /// 异步获取当前 <see cref="CurrentUser"/> 实例的好友信息列表
         /// </summary>
         /// <param name="friends">以 Json 表达的多个好友信息</param>
-        private IEnumerable<Friend> GetFriendsFromJson(JArray friends) => friends.Select(x => GetFriendFromJson((JObject)x));
+        private IEnumerable<FriendInfo> GetFriendInfoFromJson(string friends) => JsonConvert.DeserializeObject<List<FriendInfo>>(friends);
+
+        /// <summary>
+        /// 异步获取当前 <see cref="CurrentUser"/> 实例的好友列表
+        /// </summary>
+        /// <param name="friends">以 Json 表达的多个好友信息</param>
+        private IEnumerable<Friend> GetFriendsFromJson(string friends) => GetFriendInfoFromJson(friends).Select(x => x.ToFriend(Session));
 
         /// <summary>
         /// 异步获取当前 <see cref="CurrentUser"/> 实例的群列表
@@ -117,7 +115,7 @@ namespace HuajiTech.Mirai
         {
             if (refresh || GroupList == null)
             {
-                var result = JArray.Parse(await ApiMethods.GetGroupListAsync(Session.HttpUri, Session.SessionKey));
+                var result = await ApiMethods.GetGroupListAsync(Session.HttpUri, Session.SessionKey);
                 GroupList = await Task.Run(GetGroupsFromJson(result).ToList);
                 await GetGroupExtInfoAsync();
             }
@@ -126,7 +124,7 @@ namespace HuajiTech.Mirai
         }
 
         /// <summary>
-        /// 异步获取当前 <see cref="CurrentUser"/> 实例的群信息
+        /// 异步获取当前 <see cref="CurrentUser"/> 实例的群额外信息
         /// </summary>
         private async Task<List<Group>> GetGroupExtInfoAsync()
         {
@@ -164,16 +162,16 @@ namespace HuajiTech.Mirai
         }
 
         /// <summary>
-        /// 从 Json 中提取群信息，并创建一个 <see cref="Group"/> 实例
-        /// </summary>
-        /// <param name="group">以 Json 表达的群信息</param>
-        private Group GetGroupFromJson(JObject group) => new Group(this, group.Value<long>("id"), group.Value<string>("name"), Member.MemberRoleDictionary[group.Value<string>("permission")]);
-
-        /// <summary>
-        /// 从 Json 中提取多个群信息，并创建一个 <see cref="List{Group}"/> 实例
+        /// 异步获取当前 <see cref="CurrentUser"/> 实例的群信息列表
         /// </summary>
         /// <param name="groups">以 Json 表达的多个群信息</param>
-        private IEnumerable<Group> GetGroupsFromJson(JArray groups) => groups.Select(x => GetGroupFromJson((JObject)x));
+        private IEnumerable<GroupInfo> GetGroupInfoFromJson(string groups) => JsonConvert.DeserializeObject<List<GroupInfo>>(groups);
+
+        /// <summary>
+        /// 异步获取当前 <see cref="CurrentUser"/> 实例的群列表
+        /// </summary>
+        /// <param name="groups">以 Json 表达的多个群信息</param>
+        private IEnumerable<Group> GetGroupsFromJson(string groups) => GetGroupInfoFromJson(groups).Select(x => x.ToGroup(this));
 
         /// <summary>
         /// 从 Json 中提取成员信息，并创建一个 <see cref="GroupExtInfo"/> 实例

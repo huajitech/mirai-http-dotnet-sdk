@@ -59,7 +59,7 @@ namespace HuajiTech.Mirai.Parsing
         public static MessageParser GetParser(CurrentUser currentUser, MessageData data) => data.Type switch
         {
             "FriendMessage" => new FriendMessageParser(currentUser),
-            "GroupMessage" => new GroupMessageParser(currentUser, data.Sender.ToObject<MemberSenderInfo>().Group.Id),
+            "GroupMessage" => new GroupMessageParser(currentUser, data.Sender.ToObject<MemberInfo>().Group.Id),
             "TempMessage" => new MemberMessageParser(currentUser),
             _ => null
         };

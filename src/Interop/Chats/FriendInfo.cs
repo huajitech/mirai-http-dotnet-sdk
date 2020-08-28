@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai.Interop
 {
-    internal class FriendSenderInfo : SenderInfo
+    internal class FriendInfo : ChatInfo
     {
         [JsonProperty(PropertyName = "nickname")]
         public string Nickname { get; set; }

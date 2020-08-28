@@ -3,7 +3,7 @@
 namespace HuajiTech.Mirai.Interop
 {
     /// <summary>
-    /// 定义群信息
+    /// 定义群额外信息
     /// </summary>
     internal class GroupExtInfo
     {

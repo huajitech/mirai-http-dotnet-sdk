@@ -65,11 +65,6 @@
 
 ## TODO
 
-### SDK
-
-- 使用数据交互类以改用 Json 反序列化
-- 完善 Session 的 Dispose
-
 ### API
 
 - [图片文件上传](https://github.com/project-mirai/mirai-api-http/#%E5%9B%BE%E7%89%87%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0)
