@@ -90,7 +90,7 @@ namespace HuajiTech.Mirai
         public async Task KickAsync(string msg = null) => (await ApiMethods.KickAsync(Session.HttpUri, Session.SessionKey, Group.Number, Number, msg)).CheckError();
 
         /// <summary>
-        /// 异步设置当前 <see cref="Group"/> 实例的群名片
+        /// 异步设置当前 <see cref="Member"/> 实例的群名片
         /// </summary>
         /// <param name="alias">将要设定的群名片</param>
         public async Task SetAliasAsync(string alias)
@@ -100,7 +100,7 @@ namespace HuajiTech.Mirai
         }
 
         /// <summary>
-        /// 异步设置当前 <see cref="Group"/> 实例的头衔
+        /// 异步设置当前 <see cref="Member"/> 实例的头衔
         /// </summary>
         /// <param name="title">将要设定的头衔</param>
         public async Task SetTitleAsync(string title)
