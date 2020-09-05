@@ -8,13 +8,7 @@
         /// <summary>
         /// 获取当前 <see cref="SessionProcessor"/> 实例的 Session
         /// </summary>
-        internal Session Session { get; private set; } = null;
-
-        /// <summary>
-        /// 设置当前 <see cref="SessionProcessor"/> 实例的 Session
-        /// </summary>
-        /// <param name="session"></param>
-        internal void SetSession(Session session) => Session = session;
+        internal Session Session { get; } = null;
 
         /// <summary>
         /// 创建 <see cref="SessionProcessor"/> 实例

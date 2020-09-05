@@ -60,6 +60,7 @@ namespace HuajiTech.Mirai
                 var result = await ApiMethods.GetFriendListAsync(Session.HttpUri, Session.SessionKey);
                 FriendList = await Task.Run(GetFriendsFromJson(result).ToList);
                 Friend = await GetFriendAsync(Number);
+                FriendList.Remove(Friend);
             }
 
             return FriendList;
@@ -192,6 +193,12 @@ namespace HuajiTech.Mirai
         /// <param name="group">群</param>
         /// <param name="role">成员角色</param>
         internal Member GetMember(Group group, MemberRole role) => new Member(group, Number, Nickname, role);
+
+        /// <summary>
+        /// 异步获取指定号码的用户
+        /// </summary>
+        /// <param name="number">用户号码</param>
+        internal async Task<User> GetUserAsync(long number) => Number == number ? (User)this : await GetFriendAsync(number);
 
         /// <summary>
         /// 创建一个 <see cref="CurrentUser"/> 实例

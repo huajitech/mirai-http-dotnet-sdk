@@ -23,6 +23,16 @@ namespace HuajiTech.Mirai.Events
         public event AsyncEventHandler<MemberMessageReceivedEventArgs> MemberMessageReceivedEvent;
 
         /// <summary>
+        /// 在群消息撤回时引发
+        /// </summary>
+        public event AsyncEventHandler<GroupMessageRecalledEventArgs> GroupMessageRecalledEvent;
+
+        /// <summary>
+        /// 在好友消息撤回时引发
+        /// </summary>
+        public event AsyncEventHandler<MessageRecalledEventArgs> FriendMessageRecalledEvent;
+
+        /// <summary>
         /// 触发 <see cref="FriendMessageReceivedEvent"/> 事件
         /// </summary>
         /// <param name="session">会话</param>
@@ -42,6 +52,20 @@ namespace HuajiTech.Mirai.Events
         /// <param name="session">会话</param>
         /// <param name="e"><see cref="MemberMessageReceivedEventArgs"/> 实例</param>
         internal Task OnMemberMessageReceived(Session session, MemberMessageReceivedEventArgs e) => InvokeAsync(MemberMessageReceivedEvent, session, e);
+
+        /// <summary>
+        /// 触发 <see cref="GroupMessageRecalledEvent"/> 事件
+        /// </summary>
+        /// <param name="session">会话</param>
+        /// <param name="e"><see cref="GroupMessageRecalledEventArgs"/> 实例</param>
+        internal Task OnGroupMessageRecalled(Session session, GroupMessageRecalledEventArgs e) => InvokeAsync(GroupMessageRecalledEvent, session, e);
+
+        /// <summary>
+        /// 触发 <see cref="FriendMessageRecalledEvent"/> 事件
+        /// </summary>
+        /// <param name="session">会话</param>
+        /// <param name="e"><see cref="MessageRecalledEventArgs"/> 实例</param>
+        internal Task OnFriendMessageRecalled(Session session, MessageRecalledEventArgs e) => InvokeAsync(FriendMessageRecalledEvent, session, e);
 
         /// <summary>
         /// 创建 <see cref="CurrentUserEventSource"/> 实例

@@ -18,5 +18,16 @@ namespace HuajiTech.Mirai.Extensions
             currentUserEventSource.GroupMessageReceivedEvent += new AsyncEventHandler<GroupMessageReceivedEventArgs>(handler);
             currentUserEventSource.MemberMessageReceivedEvent += new AsyncEventHandler<MemberMessageReceivedEventArgs>(handler);
         }
+
+        /// <summary>
+        /// 添加消息撤回事件处理程序
+        /// </summary>
+        /// <param name="currentUserEventSource">当前用户事件源</param>
+        /// <param name="handler">事件处理器</param>
+        public static void AddMessageRecalledEventHandler(this CurrentUserEventSource currentUserEventSource, AsyncEventHandler<MessageRecalledEventArgs> handler)
+        {
+            currentUserEventSource.FriendMessageRecalledEvent += handler;
+            currentUserEventSource.GroupMessageRecalledEvent += new AsyncEventHandler<GroupMessageRecalledEventArgs>(handler);
+        }
     }
 }
