@@ -14,7 +14,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         private async Task GroupRecallEventHandling(string data)
         {
             var eventData = JsonConvert.DeserializeObject<GroupRecallEventData>(data);
-            var @operator = await eventData.Operator.GetMemberAsync(Session.CurrentUser);
+            var @operator = await eventData.Operator.GetMemberAsync(Session.CurrentUser) ?? (User)Session.CurrentUser;
             var group = await eventData.Operator.Group.GetGroupAsync(Session.CurrentUser);
             var target = await group.GetMemberAsync(eventData.AuthorId);
             var message = await TryGetMessage(eventData.MessageId);
