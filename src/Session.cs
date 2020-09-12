@@ -48,6 +48,11 @@ namespace HuajiTech.Mirai
         public long BotNumber { get; }
 
         /// <summary>
+        /// 当前 <see cref="Session"/> 实例是否已认证
+        /// </summary>
+        private bool IsVerified = false;
+
+        /// <summary>
         /// 异步释放 <see cref="Session"/> 实例
         /// </summary>
         public async Task ReleaseAsync() => (await ApiMethods.ReleaseAsync(HttpUri, SessionKey, BotNumber)).CheckError();
@@ -73,13 +78,21 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 异步检验 <see cref="Session"/> 实例
         /// </summary>
-        private async Task VerifyAsync() => (await ApiMethods.VerifyAsync(HttpUri, SessionKey, BotNumber)).CheckError();
+        private async Task VerifyAsync()
+        {
+            (await ApiMethods.VerifyAsync(HttpUri, SessionKey, BotNumber)).CheckError();
+            IsVerified = true;
+        }
 
         /// <inheritdoc/>
         public async ValueTask DisposeAsync()
         {
             await ApiEventHandler.DisposeAsync();
-            await ReleaseAsync();
+
+            if (SessionKey != null && IsVerified)
+            {
+                await ReleaseAsync();
+            }
         }
 
         /// <summary>

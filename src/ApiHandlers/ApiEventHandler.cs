@@ -85,7 +85,10 @@ namespace HuajiTech.Mirai.ApiHandlers
                 source.RemoveAllHandlers();
             }
 
-            await Task.Run(Server.Close);
+            if (Server != null)
+            {
+                await Task.Run(Server.Close);
+            }
         }
 
         /// <summary>
