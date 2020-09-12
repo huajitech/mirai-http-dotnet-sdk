@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using HuajiTech.Mirai.Utilities;
+using Newtonsoft.Json;
 
 namespace HuajiTech.Mirai.Messaging
 {
@@ -28,10 +29,10 @@ namespace HuajiTech.Mirai.Messaging
         public static implicit operator string(PlainText plainText) => plainText.Content ?? string.Empty;
 
         /// <inheritdoc/>
-        public static bool operator ==(PlainText left, PlainText right) => left.Equals(right);
+        public static bool operator ==(PlainText left, PlainText right) => left?.Equals(right) ?? NullableUtilities.NullEquals(left, right);
 
         /// <inheritdoc/>
-        public static bool operator !=(PlainText left, PlainText right) => !left.Equals(right);
+        public static bool operator !=(PlainText left, PlainText right) => !(left?.Equals(right) ?? NullableUtilities.NullEquals(left, right));
 
         /// <summary>
         /// 创建 <see cref="PlainText"/> 实例

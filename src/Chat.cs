@@ -65,10 +65,10 @@ namespace HuajiTech.Mirai
         public override string ToString() => $"{GetType().Name}({Number})";
 
         /// <inheritdoc/>
-        public static bool operator ==(Chat left, Chat right) => left.Equals(right);
+        public static bool operator ==(Chat left, Chat right) => left?.Equals(right) ?? NullableUtilities.NullEquals(left, right);
 
         /// <inheritdoc/>
-        public static bool operator !=(Chat left, Chat right) => !left.Equals(right);
+        public static bool operator !=(Chat left, Chat right) => !(left?.Equals(right) ?? NullableUtilities.NullEquals(left, right));
 
         /// <summary>
         /// 创建 <see cref="Chat"/> 实例
