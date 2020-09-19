@@ -2,6 +2,7 @@
 using HuajiTech.Mirai.Utilities;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HuajiTech.Mirai
 {
@@ -28,15 +29,17 @@ namespace HuajiTech.Mirai
         /// <inheritdoc/>
         public static List<MessageElement> operator +(List<MessageElement> left, MessageElement right)
         {
-            left.Add(right);
-            return left;
+            var list = left.ToList();
+            list.Add(right);
+            return list;
         }
 
         /// <inheritdoc/>
         public static List<MessageElement> operator +(MessageElement left, List<MessageElement> right)
         {
-            right.Insert(0, left);
-            return right;
+            var list = right.ToList();
+            list.Insert(0, left);
+            return list;
         }
     }
 }
