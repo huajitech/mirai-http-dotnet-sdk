@@ -77,7 +77,7 @@ namespace HuajiTech.Mirai.Messaging
         {
             Id = id;
             FilePath = filePath;
-            Uri = uri ?? throw new ArgumentNullException(nameof(uri));
+            Uri = uri;
         }
     }
 }
