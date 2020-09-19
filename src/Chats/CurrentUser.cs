@@ -181,13 +181,6 @@ namespace HuajiTech.Mirai
         private GroupExtInfo GetGroupExtInfoFromJson(string info) => JsonConvert.DeserializeObject<GroupExtInfo>(info);
 
         /// <summary>
-        /// 异步获取指定 ID 的消息
-        /// </summary>
-        /// <param name="id">消息 ID</param>
-        /// <returns>指定 ID 的 <see cref="Message"/> 实例</returns>
-        public Task<Message> GetMessageAsync(int id) => Message.GetMessageAsync(this, id);
-
-        /// <summary>
         /// 获取当前 <see cref="CurrentUser"/> 实例在指定群的成员
         /// </summary>
         /// <param name="group">群</param>

@@ -1,4 +1,5 @@
 ﻿using HuajiTech.Mirai.Events;
+using HuajiTech.Mirai.Extensions;
 using HuajiTech.Mirai.Interop.Events;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
