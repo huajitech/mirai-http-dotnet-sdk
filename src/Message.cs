@@ -43,10 +43,14 @@ namespace HuajiTech.Mirai
         internal List<MessageElement> FullContent => Source + Content;
 
         /// <summary>
+        /// 异步撤回指定 ID 的 <see cref="Message"/> 实例
+        /// </summary>
+        public static async Task RecallMessageAsync(Session session, int id) => (await ApiMethods.RecallAsync(session.HttpUri, session.SessionKey, id)).CheckError();
+
+        /// <summary>
         /// 异步撤回当前 <see cref="Message"/> 实例
         /// </summary>
-        /// <returns></returns>
-        public async Task RecallAsync() => (await ApiMethods.RecallAsync(Session.HttpUri, Session.SessionKey, Id)).CheckError();
+        public Task RecallAsync() => RecallMessageAsync(Session, Id);
 
         /// <summary>
         /// 异步获取 <see cref="Message"/> 实例
