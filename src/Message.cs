@@ -35,12 +35,12 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 获取当前 <see cref="Message"/> 实例的内容
         /// </summary>
-        public List<MessageElement> Content { get; }
+        public ComplexMessage Content { get; }
 
         /// <summary>
         /// 获取当前 <see cref="Message"/> 实例的详细内容
         /// </summary>
-        internal List<MessageElement> FullContent => Source + Content;
+        internal ComplexMessage FullContent => Source + Content;
 
         /// <summary>
         /// 异步撤回指定 ID 的 <see cref="Message"/> 实例
@@ -69,7 +69,7 @@ namespace HuajiTech.Mirai
         }
 
         /// <inheritdoc/>
-        public static implicit operator List<MessageElement>(Message message) => message.Content;
+        public static implicit operator ComplexMessage(Message message) => message.Content;
 
         /// <summary>
         /// 创建 <see cref="Message"/> 实例
@@ -79,7 +79,7 @@ namespace HuajiTech.Mirai
         internal Message(Session session, List<MessageElement> content) : base(session)
         {
             Source = content.First() as Source ?? throw new InvalidOperationException();
-            Content = content.Skip(1).ToList();
+            Content = ComplexMessage.Create(content.Skip(1));
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace HuajiTech.Mirai
         /// <param name="session">指定 <see cref="Message"/> 实例所使用的 Session</param>
         /// <param name="source">指定 <see cref="Message"/> 实例的来源</param>
         /// <param name="content">指定 <see cref="Message"/> 实例的内容</param>
-        internal Message(Session session, Source source, List<MessageElement> content) : base(session)
+        internal Message(Session session, Source source, ComplexMessage content) : base(session)
         {
             Source = source;
             Content = content;

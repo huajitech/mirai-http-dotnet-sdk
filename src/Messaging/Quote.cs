@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Linq;
 
 namespace HuajiTech.Mirai.Messaging
 {

@@ -12,7 +12,7 @@ namespace HuajiTech.Mirai.ApiHandlers
     /// <summary>
     /// 用作与 API 通过 Websocket 交互
     /// </summary>
-    public partial class ApiEventHandler : SessionProcessor, IAsyncDisposable
+    public sealed partial class ApiEventHandler : SessionProcessor, IAsyncDisposable
     {
         /// <summary>
         /// 当前 <see cref="ApiEventHandler"/> 的 <see cref="WebSocket"/> 实例

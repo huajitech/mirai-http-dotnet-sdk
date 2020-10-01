@@ -13,6 +13,11 @@ namespace HuajiTech.Mirai.Utilities
         private static readonly string TypeStringFormat = "[{0}({1})]";
 
         /// <summary>
+        /// 以字符串形式表达 <see langword="null"/>
+        /// </summary>
+        private static readonly string NullString = "null";
+
+        /// <summary>
         /// 转换到类型字符串
         /// </summary>
         /// <typeparam name="T">实例类型</typeparam>
@@ -22,7 +27,7 @@ namespace HuajiTech.Mirai.Utilities
         {
             var type = t.GetType();
             var properties = type.GetProperties();
-            var strs = properties.Select(x => $"{x.Name}:{x.GetValue(t, null)}");
+            var strs = properties.Select(x => $"{x.Name}:{x.GetValue(t, null) ?? NullString}");
             string str = string.Join(',', strs);
             return string.Format(TypeStringFormat, type.Name, str);
         }
