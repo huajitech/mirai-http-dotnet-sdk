@@ -3,7 +3,6 @@ using HuajiTech.Mirai.Messaging;
 using HuajiTech.Mirai.Utilities;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,21 +30,10 @@ namespace HuajiTech.Mirai
         /// </summary>
         /// <param name="message">要发送的消息</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public async Task<Message> SendAsync(List<MessageElement> message)
+        public async Task<Message> SendAsync(ComplexMessage message)
         {
             var result = JObject.Parse((await InternalSendAsync(message.ToArray())).CheckError());
             return new Message(Session, GetSource(result.Value<int>("messageId")), message);
-        }
-
-        /// <summary>
-        /// 异步发送消息到当前 <see cref="Chat"/> 实例
-        /// </summary>
-        /// <param name="message">要发送的消息</param>
-        /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public async Task<Message> SendAsync(MessageElement[] message)
-        {
-            var result = JObject.Parse((await InternalSendAsync(message)).CheckError());
-            return new Message(Session, GetSource(result.Value<int>("messageId")), message.ToList());
         }
 
         /// <summary>

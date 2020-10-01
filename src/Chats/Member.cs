@@ -95,7 +95,7 @@ namespace HuajiTech.Mirai
         /// <param name="alias">将要设定的群名片</param>
         public async Task SetAliasAsync(string alias)
         {
-            (await ApiMethods.MemberConfig(Session.HttpUri, Session.SessionKey, Group.Number, Number, new { name = alias })).CheckError();
+            (await ApiMethods.MemberInfo(Session.HttpUri, Session.SessionKey, Group.Number, Number, new { name = alias })).CheckError();
             MemberExtInfo.Name = alias;
         }
 
@@ -105,7 +105,7 @@ namespace HuajiTech.Mirai
         /// <param name="title">将要设定的头衔</param>
         public async Task SetTitleAsync(string title)
         {
-            (await ApiMethods.MemberConfig(Session.HttpUri, Session.SessionKey, Group.Number, Number, new { specialTitle = title })).CheckError();
+            (await ApiMethods.MemberInfo(Session.HttpUri, Session.SessionKey, Group.Number, Number, new { specialTitle = title })).CheckError();
             MemberExtInfo.Title = title;
         }
 
