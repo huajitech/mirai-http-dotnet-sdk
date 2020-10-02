@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 
 namespace HuajiTech.Mirai
 {
@@ -105,6 +106,9 @@ namespace HuajiTech.Mirai
         /// </summary>
         /// <param name="elements">指定 <see cref="ComplexMessage"/> 实例的元素</param>
         public static ComplexMessage Create(params MessageElement[] elements) => new ComplexMessage(elements.ToImmutableList());
+
+        /// <inheritdoc/>
+        public override string ToString() => string.Join(string.Empty, this.Select(x => x.ToString()));
 
         /// <inheritdoc/>
         public static ComplexMessage operator +(ComplexMessage left, MessageElement right) => left.Add(right);
