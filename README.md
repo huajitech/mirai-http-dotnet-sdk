@@ -6,9 +6,11 @@
 
 1. [复读机示例](http://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/snippets/2)
 
-## 文档
+## 链接
 
 - GitLab 文档：https://mirai-http-dotnet-sdk.projects.huajitech.net/
+- mirai 项目：https://github.com/mamoe/mirai
+- mirai-api-http 项目：https://github.com/project-mirai/mirai-api-http
 
 ## 早期访问构建
 
