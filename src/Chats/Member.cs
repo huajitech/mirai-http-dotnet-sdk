@@ -68,7 +68,7 @@ namespace HuajiTech.Mirai
         /// <param name="time">禁言时长</param>
         public async Task MuteAsync(TimeSpan time)
         {
-            if (time.TotalSeconds < 0 || time > TimeSpan.FromDays(30))
+            if (time.TotalSeconds <= 0 || time > TimeSpan.FromDays(30))
             {
                 throw new OverflowException();
             }
