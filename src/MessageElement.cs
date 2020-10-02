@@ -13,8 +13,8 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 指定 <see cref="MessageElement"/> 对应的类型名称
         /// </summary>
-        [JsonProperty(PropertyName = "type")]
-        internal abstract string Type { get; }
+        [JsonProperty(PropertyName = "type", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual string Type { get; } = null;
 
         /// <inheritdoc/>
         public override string ToString() => TypeStringUtilities.ToTypeString(this);

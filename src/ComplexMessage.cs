@@ -131,13 +131,10 @@ namespace HuajiTech.Mirai
 
         MessageElement IList<MessageElement>.this[int index] { get => Elements[index]; set => throw new NotSupportedException(); }
 
-        /// <inheritdoc/>
         IImmutableList<MessageElement> IImmutableList<MessageElement>.Add(MessageElement value) => Elements.Add(value);
 
-        /// <inheritdoc/>
         IImmutableList<MessageElement> IImmutableList<MessageElement>.AddRange(IEnumerable<MessageElement> items) => Elements.AddRange(items);
 
-        /// <inheritdoc/>
         IImmutableList<MessageElement> IImmutableList<MessageElement>.Clear() => Elements.Clear();
 
         /// <inheritdoc/>
@@ -146,37 +143,27 @@ namespace HuajiTech.Mirai
         /// <inheritdoc/>
         public int IndexOf(MessageElement item, int index, int count, IEqualityComparer<MessageElement> equalityComparer) => Elements.IndexOf(item, index, count, equalityComparer);
 
-        /// <inheritdoc/>
         IImmutableList<MessageElement> IImmutableList<MessageElement>.InsertRange(int index, IEnumerable<MessageElement> items) => Elements.InsertRange(index, items);
 
-        /// <inheritdoc/>
         IImmutableList<MessageElement> IImmutableList<MessageElement>.Insert(int index, MessageElement element) => Elements.Insert(index, element);
 
-        /// <inheritdoc/>
         IImmutableList<MessageElement> IImmutableList<MessageElement>.Remove(MessageElement value, IEqualityComparer<MessageElement> equalityComparer) => Elements.Remove(value, equalityComparer);
 
         /// <inheritdoc/>
         public int LastIndexOf(MessageElement item, int index, int count, IEqualityComparer<MessageElement> equalityComparer) => Elements.LastIndexOf(item, index, count, equalityComparer);
 
-        /// <inheritdoc/>
         IImmutableList<MessageElement> IImmutableList<MessageElement>.RemoveAll(Predicate<MessageElement> match) => Elements.RemoveAll(match);
 
-        /// <inheritdoc/>
         IImmutableList<MessageElement> IImmutableList<MessageElement>.RemoveAt(int index) => Elements.RemoveAt(index);
 
-        /// <inheritdoc/>
         IImmutableList<MessageElement> IImmutableList<MessageElement>.RemoveRange(IEnumerable<MessageElement> items, IEqualityComparer<MessageElement> equalityComparer) => Elements.RemoveRange(items, equalityComparer);
 
-        /// <inheritdoc/>
         IImmutableList<MessageElement> IImmutableList<MessageElement>.RemoveRange(int index, int count) => Elements.RemoveRange(index, count);
 
-        /// <inheritdoc/>
         IImmutableList<MessageElement> IImmutableList<MessageElement>.Replace(MessageElement oldValue, MessageElement newValue, IEqualityComparer<MessageElement> equalityComparer) => Elements.Replace(oldValue, newValue, equalityComparer);
 
-        /// <inheritdoc/>
         IImmutableList<MessageElement> IImmutableList<MessageElement>.SetItem(int index, MessageElement value) => Elements.SetItem(index, value);
 
-        /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator() => Elements.GetEnumerator();
 
         /// <inheritdoc/>
