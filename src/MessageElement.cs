@@ -23,6 +23,6 @@ namespace HuajiTech.Mirai
         public static implicit operator MessageElement(string str) => new PlainText(str);
 
         /// <inheritdoc/>
-        public static List<MessageElement> operator +(MessageElement left, MessageElement right) => new List<MessageElement>() { left, right };
+        public static ComplexMessage operator +(MessageElement left, MessageElement right) => ComplexMessage.Create(left, right);
     }
 }

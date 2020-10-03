@@ -6,7 +6,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Authors>Ricky8955555</Authors>
     <Copyright>Copyright (C) 2020 HuajiTech, All Rights Reserved.</Copyright>
-    <VersionPrefix>0.4.5</VersionPrefix>
+    <VersionPrefix>0.4.6</VersionPrefix>
     <VersionSuffix>alpha</VersionSuffix>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>用于开发 mirai 应用基于 mirai-api-http 的 .NET SDK</Description>
