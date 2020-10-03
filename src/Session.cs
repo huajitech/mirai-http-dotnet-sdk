@@ -64,6 +64,7 @@ namespace HuajiTech.Mirai
         {
             await AuthAsync();
             await VerifyAsync();
+            await CurrentUser.GetFriendListAsync(true);
         }
 
         /// <summary>
