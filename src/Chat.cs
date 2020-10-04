@@ -3,7 +3,6 @@ using HuajiTech.Mirai.Messaging;
 using HuajiTech.Mirai.Utilities;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
