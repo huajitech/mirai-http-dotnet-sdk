@@ -1,12 +1,13 @@
 ﻿using HuajiTech.Mirai.Utilities;
 using Newtonsoft.Json;
+using System;
 
 namespace HuajiTech.Mirai.Messaging
 {
     /// <summary>
     /// 表示纯文本的 <see cref="MessageElement"/>
     /// </summary>
-    public class PlainText : MessageElement
+    public class PlainText : MessageElement, IEquatable<PlainText>
     {
         internal override string Type { get; } = "Plain";
 
@@ -17,10 +18,13 @@ namespace HuajiTech.Mirai.Messaging
         public string Content { get; }
 
         /// <inheritdoc/>
+        public bool Equals(PlainText other) => other != null && other.Content == Content;
+
+        /// <inheritdoc/>
         public override string ToString() => Content;
 
         /// <inheritdoc/>
-        public override bool Equals(object obj) => obj is PlainText plainText ? plainText.Content == Content : obj as string == Content;
+        public override bool Equals(object obj) => Equals(obj as PlainText);
 
         /// <inheritdoc/>
         public override int GetHashCode() => base.GetHashCode();

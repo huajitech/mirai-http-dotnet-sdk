@@ -3,6 +3,7 @@ using HuajiTech.Mirai.Messaging;
 using HuajiTech.Mirai.Utilities;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace HuajiTech.Mirai
     /// <summary>
     /// 定义聊天
     /// </summary>
-    public abstract class Chat : SessionProcessor
+    public abstract class Chat : SessionProcessor, IEquatable<Chat>
     {
         /// <summary>
         /// 获取当前 <see cref="Chat"/> 实例的号码
@@ -44,13 +45,16 @@ namespace HuajiTech.Mirai
         private Source GetSource(int id) => new Source(id, (int)TimestampUtilities.FromDateTime(DateTime.Now));
 
         /// <inheritdoc/>
-        public override bool Equals(object obj) => obj is Chat chat && chat.GetType() == GetType() && chat.Number == Number;
+        public bool Equals(Chat other) => other != null && other.GetType() == GetType() && other.Number == Number;
 
         /// <inheritdoc/>
         public override int GetHashCode() => base.GetHashCode();
 
         /// <inheritdoc/>
         public override string ToString() => $"{GetType().Name}({Number})";
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj) => Equals(obj as Chat);
 
         /// <inheritdoc/>
         public static bool operator ==(Chat left, Chat right) => left?.Equals(right) ?? NullableUtilities.NullEquals(left, right);
