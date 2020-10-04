@@ -1,7 +1,6 @@
 ﻿using HuajiTech.Mirai.Messaging;
 using HuajiTech.Mirai.Utilities;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace HuajiTech.Mirai
 {
