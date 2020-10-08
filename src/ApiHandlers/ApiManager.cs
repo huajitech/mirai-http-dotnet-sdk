@@ -1,5 +1,4 @@
 ﻿using HuajiTech.Mirai.Extensions;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 
