@@ -20,7 +20,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 获取当前 <see cref="Session"/> 实例的设置
         /// </summary>
-        internal SessionSettings Settings { get; }
+        public SessionSettings Settings { get; }
 
         /// <summary>
         /// 获取当前 <see cref="Session"/> 实例的当前用户

@@ -13,13 +13,6 @@
         /// <summary>
         /// 创建 <see cref="SessionProcessor"/> 实例
         /// </summary>
-        internal SessionProcessor()
-        {
-        }
-
-        /// <summary>
-        /// 创建 <see cref="SessionProcessor"/> 实例
-        /// </summary>
         /// <param name="session">指定 <see cref="SessionProcessor"/> 实例所使用的 Session</param>
         internal SessionProcessor(Session session) => Session = session;
     }
