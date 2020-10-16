@@ -25,23 +25,23 @@ namespace HuajiTech.Mirai.ApiHandlers
         private ImmutableList<EventSource> EventSources = ImmutableList<EventSource>.Empty;
 
         /// <summary>
-        /// 异步处理通过 Websocket 获取的消息
+        /// 异步处理通过 Websocket 获取的数据
         /// </summary>
-        /// <param name="message">通过 Websocket 获取的消息</param>
-        private Task EventHandlingAsync(string message)
+        /// <param name="data">通过 Websocket 获取的数据</param>
+        private Task EventHandlingAsync(string data)
         {
-            var info = JsonConvert.DeserializeObject<EventInfo>(message);
+            var info = JsonConvert.DeserializeObject<EventInfo>(data);
 
             return info.Type switch
             {
-                "FriendMessage" => FriendMessageEventHandling(message),
-                "GroupMessage" => GroupMessageEventHandling(message),
-                "TempMessage" => MemberMessageEventHandling(message),
-                "BotOnlineEvent" => BotOnlineEvent(message),
-                "BotReloginEvent" => BotReloginEvent(message),
-                "GroupRecallEvent" => GroupRecallEventHandling(message),
-                "FriendRecallEvent" => FriendRecallEventHandling(message),
-                "BotGroupPermissionChangeEvent" => BotGroupPermissionChangeEventHandling(message),
+                "FriendMessage" => FriendMessageEventHandling(data),
+                "GroupMessage" => GroupMessageEventHandling(data),
+                "TempMessage" => MemberMessageEventHandling(data),
+                "BotOnlineEvent" => BotOnlineEvent(data),
+                "BotReloginEvent" => BotReloginEvent(data),
+                "GroupRecallEvent" => GroupRecallEventHandling(data),
+                "FriendRecallEvent" => FriendRecallEventHandling(data),
+                "BotGroupPermissionChangeEvent" => BotGroupPermissionChangeEventHandling(data),
                 _ => Task.Delay(0)
             };
         }
