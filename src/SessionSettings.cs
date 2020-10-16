@@ -10,17 +10,17 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 获取当前 <see cref="SessionSettings"/> 实例的 HTTP URI
         /// </summary>
-        public string HttpUri { get; }
+        internal string HttpUri { get; }
 
         /// <summary>
         /// 获取当前 <see cref="SessionSettings"/> 实例的 Websocket URI
         /// </summary>
-        public string WebsocketUri { get; }
+        internal string WebsocketUri { get; }
 
         /// <summary>
         /// 获取当前 <see cref="SessionSettings"/> 实例的 Auth Key
         /// </summary>
-        public string AuthKey { get; }
+        internal string AuthKey { get; }
 
         /// <summary>
         /// Specifies that the URI is accessed through the Websocket.
