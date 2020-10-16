@@ -30,7 +30,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <param name="data">通过 Websocket 获取的数据</param>
         private Task EventHandlingAsync(string data)
         {
-            var info = JsonConvert.DeserializeObject<EventInfo>(data);
+            var info = JsonConvert.DeserializeObject<EventData>(data);
 
             return info.Type switch
             {

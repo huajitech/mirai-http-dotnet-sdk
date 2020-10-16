@@ -58,9 +58,8 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <summary>
         /// 从 Json 消息链中提取信息，并创建 <see cref="Message"/> 实例
         /// </summary>
-        /// <param name="parser"></param>
-        /// <param name="messageChain"></param>
-        /// <returns></returns>
+        /// <param name="parser">消息解析器</param>
+        /// <param name="messageChain">消息链</param>
         private async Task<Message> GetMessage(MessageParser parser, JArray messageChain)
         {
             var content = await Task.Run(() => parser.ParseMore(messageChain));
