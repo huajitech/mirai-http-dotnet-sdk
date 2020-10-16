@@ -16,10 +16,10 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <param name="data">事件数据</param>
         private async Task GroupMessageEventHandling(string data)
         {
-            var info = JsonConvert.DeserializeObject<MessageData>(data);
-            var member = await info.Sender.ToObject<MemberInfo>().GetMemberAsync(Session.CurrentUser);
+            var messageData = JsonConvert.DeserializeObject<MessageData>(data);
+            var member = await messageData.Sender.ToObject<MemberInfo>().GetMemberAsync(Session.CurrentUser);
             var parser = new GroupMessageParser(Session.CurrentUser, member.Group);
-            var message = await GetMessage(parser, info.MessageChain);
+            var message = await GetMessage(parser, messageData.MessageChain);
 
             var e = new GroupMessageReceivedEventArgs(member, message);
             await InvokeAsync<CurrentUserEventSource>(x => x.OnGroupMessageReceived(Session, e));
@@ -31,10 +31,10 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <param name="data">事件数据</param>
         private async Task MemberMessageEventHandling(string data)
         {
-            var info = JsonConvert.DeserializeObject<MessageData>(data);
-            var member = await info.Sender.ToObject<MemberInfo>().GetMemberAsync(Session.CurrentUser);
+            var messageData = JsonConvert.DeserializeObject<MessageData>(data);
+            var member = await messageData.Sender.ToObject<MemberInfo>().GetMemberAsync(Session.CurrentUser);
             var parser = new MemberMessageParser(Session.CurrentUser);
-            var message = await GetMessage(parser, info.MessageChain);
+            var message = await GetMessage(parser, messageData.MessageChain);
 
             var e = new MemberMessageReceivedEventArgs(member, message);
             await InvokeAsync<CurrentUserEventSource>(x => x.OnMemberMessageReceived(Session, e));
@@ -46,10 +46,10 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <param name="data">事件数据</param>
         private async Task FriendMessageEventHandling(string data)
         {
-            var info = JsonConvert.DeserializeObject<MessageData>(data);
-            var friend = await info.Sender.ToObject<FriendInfo>().GetFriendAsync(Session.CurrentUser);
+            var messageData = JsonConvert.DeserializeObject<MessageData>(data);
+            var friend = await messageData.Sender.ToObject<FriendInfo>().GetFriendAsync(Session.CurrentUser);
             var parser = new FriendMessageParser(Session.CurrentUser);
-            var message = await GetMessage(parser, info.MessageChain);
+            var message = await GetMessage(parser, messageData.MessageChain);
 
             var e = new FriendMessageReceivedEventArgs(friend, message);
             await InvokeAsync<CurrentUserEventSource>(x => x.OnFriendMessageReceived(Session, e));

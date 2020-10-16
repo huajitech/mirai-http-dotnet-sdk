@@ -33,6 +33,11 @@ namespace HuajiTech.Mirai.Events
         public event AsyncEventHandler<MessageRecalledEventArgs> FriendMessageRecalledEvent;
 
         /// <summary>
+        /// 在当前用户的成员角色更改时引发
+        /// </summary>
+        public event AsyncEventHandler<CurrentUserGroupRoleChangedEventArgs> CurrentUserGroupRoleChangedEvent;
+
+        /// <summary>
         /// 触发 <see cref="FriendMessageReceivedEvent"/> 事件
         /// </summary>
         /// <param name="session">会话</param>
@@ -66,6 +71,8 @@ namespace HuajiTech.Mirai.Events
         /// <param name="session">会话</param>
         /// <param name="e"><see cref="MessageRecalledEventArgs"/> 实例</param>
         internal Task OnFriendMessageRecalled(Session session, MessageRecalledEventArgs e) => InvokeAsync(FriendMessageRecalledEvent, session, e);
+
+        internal Task OnCurrentUserGroupRoleChanged(Session session, CurrentUserGroupRoleChangedEventArgs e) => InvokeAsync(CurrentUserGroupRoleChangedEvent, session, e);
 
         /// <summary>
         /// 创建 <see cref="CurrentUserEventSource"/> 实例
