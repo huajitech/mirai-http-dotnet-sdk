@@ -5,7 +5,7 @@ namespace HuajiTech.Mirai.Utilities
     /// <summary>
     /// 提供 <see cref="DateTime"/> 与时间戳之间的转换方法
     /// </summary>
-    internal class TimestampUtilities
+    internal static class TimestampUtilities
     {
         /// <summary>
         /// 表示时间戳起始值所对应的 <see cref="DateTime"/> 实例

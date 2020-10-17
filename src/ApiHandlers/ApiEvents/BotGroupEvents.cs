@@ -7,6 +7,10 @@ namespace HuajiTech.Mirai.ApiHandlers
 {
     public partial class ApiEventHandler
     {
+        /// <summary>
+        /// 处理当前用户的成员角色更改事件
+        /// </summary>
+        /// <param name="data">事件数据</param>
         private async Task BotGroupPermissionChangeEventHandling(string data)
         {
             var eventData = JsonConvert.DeserializeObject<BotGroupPermissionChangeEventData>(data);
