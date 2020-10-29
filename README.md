@@ -50,12 +50,12 @@
 
 ## 开发环境
 
-### 本项目
+### 本项目环境
 
 - Visual Studio 2019
 - .NET Core 3.1
 
-### 推荐
+### 推荐用户环境
 
 - .NET Core 3.1
 - 控制台应用
@@ -67,15 +67,15 @@
 
 ## TODO
 
-### API
+### [API](https://github.com/project-mirai/mirai-api-http/blob/master/docs/API.md)
 
-- [图片文件上传](https://github.com/project-mirai/mirai-api-http/#%E5%9B%BE%E7%89%87%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0)
-- [注册指令](https://github.com/project-mirai/mirai-api-http/#%E6%B3%A8%E5%86%8C%E6%8C%87%E4%BB%A4)
-- [发送指令](https://github.com/project-mirai/mirai-api-http/#%E5%8F%91%E9%80%81%E6%8C%87%E4%BB%A4)
-- [监听指令](https://github.com/project-mirai/mirai-api-http/#%E7%9B%91%E5%90%AC%E6%8C%87%E4%BB%A4)
-- [获取 Managers](https://github.com/project-mirai/mirai-api-http/#%E8%8E%B7%E5%8F%96mangers)
+- 图片文件上传
+- 注册指令
+- 发送指令
+- 监听指令
+- 获取 Managers
 
-### [事件](https://github.com/project-mirai/mirai-api-http/blob/master/EventType.md)（进度）
+### [事件](https://github.com/project-mirai/mirai-api-http/blob/master/docs/EventType.md)（进度）
 - [x] 接收消息
 - [x] Bot 登录成功
 - [ ] Bot 主动离线 (没想好名称)
