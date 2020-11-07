@@ -1,4 +1,5 @@
 ﻿using HuajiTech.Mirai.Messaging;
+using System;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -40,8 +41,11 @@ namespace HuajiTech.Mirai
         /// <returns></returns>
         public static async Task SaveTo(this IMediaElement mediaElement, string path)
         {
+            var uri = mediaElement.Uri ?? throw new NotSupportedException();
+
             var client = new HttpClient();
-            var bytes = await client.GetByteArrayAsync(mediaElement.Uri);
+            var bytes = await client.GetByteArrayAsync(uri);
+
             await File.WriteAllBytesAsync(path, bytes);
         }
     }
