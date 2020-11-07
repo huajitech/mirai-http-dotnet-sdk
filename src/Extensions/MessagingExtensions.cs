@@ -1,6 +1,6 @@
 ﻿using HuajiTech.Mirai.Messaging;
 
-namespace HuajiTech.Mirai.Extensions
+namespace HuajiTech.Mirai
 {
     /// <summary>
     /// 定义 <see cref="Messaging"/> 中的类型的扩展方法

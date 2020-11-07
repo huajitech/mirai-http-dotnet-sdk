@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai.Extensions
+namespace HuajiTech.Mirai
 {
     /// <summary>
     /// 定义 <see cref="CurrentUser"/> 的扩展方法

@@ -1,5 +1,4 @@
-﻿using HuajiTech.Mirai.Extensions;
-using HuajiTech.Mirai.Messaging;
+﻿using HuajiTech.Mirai.Messaging;
 using HuajiTech.Mirai.Utilities;
 using Newtonsoft.Json.Linq;
 using System;

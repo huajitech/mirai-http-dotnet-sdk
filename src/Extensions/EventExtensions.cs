@@ -1,6 +1,6 @@
 ﻿using HuajiTech.Mirai.Events;
 
-namespace HuajiTech.Mirai.Extensions
+namespace HuajiTech.Mirai
 {
     /// <summary>
     /// 定义 <see cref="Events"/> 中的类型的扩展方法

@@ -1,4 +1,4 @@
-﻿namespace HuajiTech.Mirai.Extensions
+﻿namespace HuajiTech.Mirai
 {
     /// <summary>
     /// 定义 <see cref="Mirai"/> 内部的扩展方法

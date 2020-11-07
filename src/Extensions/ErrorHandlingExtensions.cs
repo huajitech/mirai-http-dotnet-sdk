@@ -1,7 +1,7 @@
 ﻿using HuajiTech.Mirai.Interop;
 using Newtonsoft.Json;
 
-namespace HuajiTech.Mirai.Extensions
+namespace HuajiTech.Mirai
 {
     /// <summary>
     /// 定义错误处理的扩展方法

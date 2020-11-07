@@ -1,5 +1,4 @@
-﻿using HuajiTech.Mirai.Extensions;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai.Interop

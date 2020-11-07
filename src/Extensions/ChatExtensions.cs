@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai.Extensions
+namespace HuajiTech.Mirai
 {
     /// <summary>
     /// 定义 <see cref="Chat"/> 类型的扩展方法

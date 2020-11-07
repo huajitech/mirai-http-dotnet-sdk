@@ -1,5 +1,4 @@
 ﻿using HuajiTech.Mirai.ApiHandlers;
-using HuajiTech.Mirai.Extensions;
 using HuajiTech.Mirai.Interop;
 using HuajiTech.Mirai.Messaging;
 using HuajiTech.Mirai.Parsing;
