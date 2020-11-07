@@ -1,4 +1,7 @@
 ﻿using HuajiTech.Mirai.Messaging;
+using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai
 {
@@ -28,5 +31,18 @@ namespace HuajiTech.Mirai
         /// <param name="str">将要转换的字符串</param>
         /// <returns>内容为指定字符串的 <see cref="PlainText"/> 实例</returns>
         public static PlainText ToPlainText(this string str) => new PlainText(str);
+
+        /// <summary>
+        /// 保存 <see cref="IMediaElement"/> 实例为指定目录文件
+        /// </summary>
+        /// <param name="mediaElement">指定 <see cref="IMediaElement"/> 实例</param>
+        /// <param name="path">文件路径</param>
+        /// <returns></returns>
+        public static async Task SaveTo(this IMediaElement mediaElement, string path)
+        {
+            var client = new HttpClient();
+            var bytes = await client.GetByteArrayAsync(mediaElement.Uri);
+            await File.WriteAllBytesAsync(path, bytes);
+        }
     }
 }

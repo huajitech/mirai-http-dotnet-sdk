@@ -6,25 +6,19 @@ namespace HuajiTech.Mirai.Messaging
     /// <summary>
     /// 表示语音的 <see cref="MessageElement"/>
     /// </summary>
-    public class Voice : MessageElement
+    public class Voice : MessageElement, IMediaElement
     {
         internal override string Type { get; } = "Voice";
 
-        /// <summary>
-        /// 获取当前 <see cref="Voice"/> 实例的 ID
-        /// </summary>
+        /// <inheritdoc/>
         [JsonProperty(PropertyName = "voiceId", NullValueHandling = NullValueHandling.Ignore)]
         public string Id { get; }
 
-        /// <summary>
-        /// 获取当前 <see cref="Voice"/> 实例的相对文件路径
-        /// </summary>
+        /// <inheritdoc/>
         [JsonProperty(PropertyName = "path", NullValueHandling = NullValueHandling.Ignore)]
         public string FilePath { get; }
 
-        /// <summary>
-        /// 获取当前 <see cref="Voice"/> 实例的 URI
-        /// </summary>
+        /// <inheritdoc/>
         [JsonIgnore]
         public Uri Uri { get; }
 

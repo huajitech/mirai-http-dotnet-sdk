@@ -6,23 +6,17 @@ namespace HuajiTech.Mirai.Messaging
     /// <summary>
     /// 表示属于图片的 <see cref="MessageElement"/>
     /// </summary>
-    public abstract class ImageBase : MessageElement
+    public abstract class ImageBase : MessageElement, IMediaElement
     {
-        /// <summary>
-        /// 获取当前 <see cref="ImageBase"/> 实例的 ID
-        /// </summary>
+        /// <inheritdoc/>
         [JsonProperty(PropertyName = "imageId", NullValueHandling = NullValueHandling.Ignore)]
         public string Id { get; }
 
-        /// <summary>
-        /// 获取当前 <see cref="ImageBase"/> 实例的相对文件路径
-        /// </summary>
+        /// <inheritdoc/>
         [JsonProperty(PropertyName = "path", NullValueHandling = NullValueHandling.Ignore)]
         public string FilePath { get; }
 
-        /// <summary>
-        /// 获取当前 <see cref="ImageBase"/> 实例的 URI
-        /// </summary>
+        /// <inheritdoc/>
         [JsonIgnore]
         public Uri Uri { get; }
 

@@ -1,4 +1,5 @@
 ﻿using HuajiTech.Mirai.Events;
+using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai
 {
@@ -29,5 +30,32 @@ namespace HuajiTech.Mirai
             currentUserEventSource.FriendMessageRecalledEvent += handler;
             currentUserEventSource.GroupMessageRecalledEvent += new AsyncEventHandler<GroupMessageRecalledEventArgs>(handler);
         }
+
+        /// <summary>
+        /// 回复当前 <see cref="MessageReceivedEventArgs"/> 实例
+        /// </summary>
+        /// <param name="e">指定 <see cref="MessageReceivedEventArgs"/> 实例</param>
+        /// <param name="message">要发送的消息</param>
+        /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
+        public static Task<Message> Reply(this MessageReceivedEventArgs e, ComplexMessage message)
+        {
+            if (e.Source is Group)
+            {
+                var member = e.Sender as Member;
+                return e.Source.SendAsync(member.Mention() + message);
+            }
+            else
+            {
+                return e.Source.SendAsync(message);
+            }
+        }
+
+        /// <summary>
+        /// 回复当前 <see cref="MessageReceivedEventArgs"/> 实例
+        /// </summary>
+        /// <param name="e">指定 <see cref="MessageReceivedEventArgs"/> 实例</param>
+        /// <param name="message">要发送的消息</param>
+        /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
+        public static Task<Message> Reply(this MessageReceivedEventArgs e, MessageElement message) => e.Reply(ComplexMessage.Create(message));
     }
 }
