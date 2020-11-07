@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HuajiTech.Mirai.Messaging
 {
+    /// <summary>
+    /// 表示媒体元素
+    /// </summary>
     public interface IMediaElement
     {
         /// <summary>
