@@ -2,6 +2,8 @@
 
 用于开发 mirai 应用基于 [mirai-api-http](https://github.com/project-mirai/mirai-api-http) 的 .NET SDK
 
+项目目前处于测试阶段，不建议用于生产环境
+
 ## 示例
 
 1. [复读机示例](http://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/snippets/2)
