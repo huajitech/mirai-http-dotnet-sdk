@@ -10,14 +10,14 @@
 
 ## 链接
 
-- GitLab 文档：https://mirai-http-dotnet-sdk.projects.huajitech.net/
+- 文档：https://mirai-http-dotnet-sdk.projects.huajitech.net/
 - mirai 项目：https://github.com/mamoe/mirai
 - mirai-api-http 项目：https://github.com/project-mirai/mirai-api-http
 
 ## 早期访问构建
 
 - (推荐) packages.huajitech.net 上的 [HuajiTech.Mirai](https://packages.huajitech.net/feeds/early-access-nuget/HuajiTech.Mirai/versions)。
-- [GitLab CI](https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/-/pipelines) 的 [最新产物](https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/-/jobs/artifacts/master/download?job=pack)（最新产物不一定可用）
+- [GitLab CI](https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/-/pipelines) 的最新 [Pack 产物](https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/-/jobs/artifacts/master/download?job=pack) / [Build 产物](https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/-/jobs/artifacts/master/download?job=build)
 
 ### 使用 packages.huajitech.net 上的早期访问包
 
@@ -50,6 +50,9 @@
   Update-Package HuajiTech.Mirai -Source https://packages.huajitech.net/nuget/early-access-nuget/v3/index.json
   ```
 
+
+#### 使用 Visual Studio 的 NuGet 包管理器
+
 ## 开发环境
 
 ### 本项目环境
@@ -68,6 +71,10 @@
 - HuajiTech QQ群：[565136444](https://jq.qq.com/?_wv=1027&k=UNTnWwHd)
 
 ## TODO
+
+### SDK
+
+- 优化事件系统（将 EventSource 改为单个事件的处理器和提供源）
 
 ### [API](https://github.com/project-mirai/mirai-api-http/blob/master/docs/API.md)
 
