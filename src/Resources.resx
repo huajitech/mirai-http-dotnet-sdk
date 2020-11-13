@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CannotConnectToApi" xml:space="preserve">
-    <value>与 Mirai HTTP API 交互时发生了错误，HTTP 状态码：{0}</value>
+    <value>与 Mirai HTTP API 交互时发生了错误</value>
   </data>
   <data name="ChatNotFound" xml:space="preserve">
     <value>所指定的聊天类型 {0}，号码为 {1} 的聊天不存在</value>

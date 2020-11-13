@@ -61,7 +61,7 @@ namespace HuajiTech.Mirai {
         }
         
         /// <summary>
-        ///   查找类似 与 Mirai HTTP API 交互时发生了错误，HTTP 状态码：{0} 的本地化字符串。
+        ///   查找类似 与 Mirai HTTP API 交互时发生了错误 的本地化字符串。
         /// </summary>
         internal static string CannotConnectToApi {
             get {
