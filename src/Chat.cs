@@ -40,7 +40,7 @@ namespace HuajiTech.Mirai
         /// </summary>
         /// <param name="id">消息 ID</param>
         /// <returns>表示所发送消息来源的 <see cref="Source"/> 实例</returns>
-        private Source GetSource(int id) => new Source(id, (int)TimestampUtilities.FromDateTime(DateTime.Now));
+        private static Source GetSource(int id) => new Source(id, (int)TimestampUtilities.FromDateTime(DateTime.Now));
 
         /// <inheritdoc/>
         public bool Equals(Chat other) => other != null && other.GetType() == GetType() && other.Number == Number;

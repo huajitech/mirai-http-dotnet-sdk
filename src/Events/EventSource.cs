@@ -16,7 +16,7 @@ namespace HuajiTech.Mirai.Events
         /// <param name="handlers">事件处理器</param>
         /// <param name="session">会话</param>
         /// <param name="e">事件数据</param>
-        internal async Task InvokeAsync<TEventArgs>(AsyncEventHandler<TEventArgs> handlers, Session session, TEventArgs e)
+        internal static async Task InvokeAsync<TEventArgs>(AsyncEventHandler<TEventArgs> handlers, Session session, TEventArgs e)
             where TEventArgs : EventArgs
         {
             if (handlers != null)

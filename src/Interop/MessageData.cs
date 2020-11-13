@@ -6,12 +6,12 @@ namespace HuajiTech.Mirai.Interop
     internal class MessageData
     {
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; }
+        public string Type { get; init; }
 
         [JsonProperty(PropertyName = "messageChain")]
-        public JArray MessageChain { get; set; }
+        public JArray MessageChain { get; init; }
 
         [JsonProperty(PropertyName = "sender")]
-        public JObject Sender { get; set; }
+        public JObject Sender { get; init; }
     }
 }

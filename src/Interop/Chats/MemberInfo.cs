@@ -6,13 +6,13 @@ namespace HuajiTech.Mirai.Interop
     internal class MemberInfo : ChatInfo
     {
         [JsonProperty(PropertyName = "memberName")]
-        public string Name { get; set; }
+        public string Name { get; init; }
 
         [JsonProperty(PropertyName = "permission")]
-        public string Permission { get; set; }
+        public string Permission { get; init; }
 
         [JsonProperty(PropertyName = "group")]
-        public GroupInfo Group { get; set; }
+        public GroupInfo Group { get; init; }
 
         public Member ToMember(Group group) => new Member(group, Id, Name, Member.MemberRoleDictionary[Permission]);
 

@@ -5,12 +5,12 @@ namespace HuajiTech.Mirai.Interop.Events
     internal class BotGroupPermissionChangeEventData
     {
         [JsonProperty(PropertyName = "origin")]
-        public string Origin { get; set; }
+        public string Origin { get; init; }
 
         [JsonProperty(PropertyName = "current")]
-        public string Current { get; set; }
+        public string Current { get; init; }
 
         [JsonProperty(PropertyName = "group")]
-        public GroupInfo Group { get; set; }
+        public GroupInfo Group { get; init; }
     }
 }

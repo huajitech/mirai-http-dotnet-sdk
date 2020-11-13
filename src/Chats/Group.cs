@@ -129,7 +129,7 @@ namespace HuajiTech.Mirai
         /// 异步获取当前 <see cref="Group"/> 实例的成员信息列表
         /// </summary>
         /// <param name="members">以 Json 表达的多个成员信息</param>
-        private IEnumerable<MemberInfo> GetMemberInfoFromJson(string members) => JsonConvert.DeserializeObject<List<MemberInfo>>(members);
+        private static IEnumerable<MemberInfo> GetMemberInfoFromJson(string members) => JsonConvert.DeserializeObject<List<MemberInfo>>(members);
 
         /// <summary>
         /// 异步获取当前 <see cref="Group"/> 实例的成员信息列表
@@ -141,7 +141,7 @@ namespace HuajiTech.Mirai
         /// 从 Json 中提取成员信息，并创建一个 <see cref="MemberExtInfo"/> 实例
         /// </summary>
         /// <param name="info">以 Json 表达的成员信息</param>
-        private MemberExtInfo GetMemberExtInfoFromJson(string info) => JsonConvert.DeserializeObject<MemberExtInfo>(info);
+        private static MemberExtInfo GetMemberExtInfoFromJson(string info) => JsonConvert.DeserializeObject<MemberExtInfo>(info);
 
         /// <summary>
         /// 异步禁言当前 <see cref="Group"/> 实例

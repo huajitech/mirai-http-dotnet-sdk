@@ -6,10 +6,10 @@ namespace HuajiTech.Mirai.Interop
     internal class FriendInfo : ChatInfo
     {
         [JsonProperty(PropertyName = "nickname")]
-        public string Nickname { get; set; }
+        public string Nickname { get; init; }
 
         [JsonProperty(PropertyName = "remark")]
-        public string Remark { get; set; }
+        public string Remark { get; init; }
 
         public Friend ToFriend(Session session) => new Friend(session, Id, Nickname, Remark.CheckEmpty());
 

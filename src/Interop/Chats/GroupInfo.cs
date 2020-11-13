@@ -6,10 +6,10 @@ namespace HuajiTech.Mirai.Interop
     internal class GroupInfo : ChatInfo
     {
         [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
+        public string Name { get; init; }
 
         [JsonProperty(PropertyName = "permission")]
-        public string Permission { get; set; }
+        public string Permission { get; init; }
 
         public Group ToGroup(CurrentUser currentUser) => new Group(currentUser, Id, Name, Member.MemberRoleDictionary[Permission]);
 

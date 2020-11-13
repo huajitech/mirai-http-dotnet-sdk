@@ -95,7 +95,7 @@ namespace HuajiTech.Mirai
         /// 异步获取当前 <see cref="CurrentUser"/> 实例的好友信息列表
         /// </summary>
         /// <param name="friends">以 Json 表达的多个好友信息</param>
-        private IEnumerable<FriendInfo> GetFriendInfoFromJson(string friends) => JsonConvert.DeserializeObject<List<FriendInfo>>(friends);
+        private static IEnumerable<FriendInfo> GetFriendInfoFromJson(string friends) => JsonConvert.DeserializeObject<List<FriendInfo>>(friends);
 
         /// <summary>
         /// 异步获取当前 <see cref="CurrentUser"/> 实例的好友列表
@@ -166,7 +166,7 @@ namespace HuajiTech.Mirai
         /// 异步获取当前 <see cref="CurrentUser"/> 实例的群信息列表
         /// </summary>
         /// <param name="groups">以 Json 表达的多个群信息</param>
-        private IEnumerable<GroupInfo> GetGroupInfoFromJson(string groups) => JsonConvert.DeserializeObject<List<GroupInfo>>(groups);
+        private static IEnumerable<GroupInfo> GetGroupInfoFromJson(string groups) => JsonConvert.DeserializeObject<List<GroupInfo>>(groups);
 
         /// <summary>
         /// 异步获取当前 <see cref="CurrentUser"/> 实例的群列表
@@ -178,7 +178,7 @@ namespace HuajiTech.Mirai
         /// 从 Json 中提取成员信息，并创建一个 <see cref="GroupExtInfo"/> 实例
         /// </summary>
         /// <param name="info">以 Json 表达的群信息</param>
-        private GroupExtInfo GetGroupExtInfoFromJson(string info) => JsonConvert.DeserializeObject<GroupExtInfo>(info);
+        private static GroupExtInfo GetGroupExtInfoFromJson(string info) => JsonConvert.DeserializeObject<GroupExtInfo>(info);
 
         /// <summary>
         /// 获取当前 <see cref="CurrentUser"/> 实例在指定群的成员

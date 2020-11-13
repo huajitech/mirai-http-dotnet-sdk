@@ -7,13 +7,13 @@ namespace HuajiTech.Mirai.Interop.Messaging
     internal class ImageInfo
     {
         [JsonProperty(PropertyName = "imageId")]
-        public string Id { get; set; }
+        public string Id { get; init; }
 
         [JsonProperty(PropertyName = "path")]
-        public string FilePath { get; set; }
+        public string FilePath { get; init; }
 
         [JsonProperty(PropertyName = "url")]
-        public string Uri { get; set; }
+        public string Uri { get; init; }
 
         private Uri GetUri() => Uri == null ? null : new Uri(Uri);
 

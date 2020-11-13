@@ -6,7 +6,7 @@ namespace HuajiTech.Mirai.Interop.Messaging
     internal class PokeInfo
     {
         [JsonProperty(PropertyName = "name")]
-        public string PokeName { get; set; }
+        public string PokeName { get; init; }
 
         public Poke ToPoke() => new Poke(Poke.PokeDictionary[PokeName]);
     }

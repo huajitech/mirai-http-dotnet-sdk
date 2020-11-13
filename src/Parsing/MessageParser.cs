@@ -68,66 +68,66 @@ namespace HuajiTech.Mirai.Parsing
         /// 从 Json 中提取信息，并创建 <see cref="Source"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的来源</param>
-        private Source ToSource(JObject element) => element.ToObject<Source>();
+        private static Source ToSource(JObject element) => element.ToObject<Source>();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="App"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的 App 消息</param>
-        private App ToApp(JObject element) => element.ToObject<App>();
+        private static App ToApp(JObject element) => element.ToObject<App>();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Emoticon"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的表情</param>
-        private Emoticon ToEmoticon(JObject element) => element.ToObject<FaceInfo>().ToEmoticon();
+        private static Emoticon ToEmoticon(JObject element) => element.ToObject<FaceInfo>().ToEmoticon();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="FlashImage"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的闪图</param>
-        private FlashImage ToFlashImage(JObject element) => element.ToObject<ImageInfo>().ToFlashImage();
+        private static FlashImage ToFlashImage(JObject element) => element.ToObject<ImageInfo>().ToFlashImage();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Image"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的图片</param>
-        private Image ToImage(JObject element) => element.ToObject<ImageInfo>().ToImage();
+        private static Image ToImage(JObject element) => element.ToObject<ImageInfo>().ToImage();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Json"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的 Json 消息</param>
-        private Json ToJson(JObject element) => element.ToObject<Json>();
+        private static Json ToJson(JObject element) => element.ToObject<Json>();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="MentionAll"/> 实例
         /// </summary>
-        private MentionAll ToMentionAll() => new MentionAll();
+        private static MentionAll ToMentionAll() => new MentionAll();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="PlainText"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的纯文本</param>
-        private PlainText ToPlainText(JObject element) => element.ToObject<PlainText>();
+        private static PlainText ToPlainText(JObject element) => element.ToObject<PlainText>();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Poke"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的戳一戳</param>
-        private Poke ToPoke(JObject element) => element.ToObject<PokeInfo>().ToPoke();
+        private static Poke ToPoke(JObject element) => element.ToObject<PokeInfo>().ToPoke();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Voice"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的语音</param>
-        private Voice ToVoice(JObject element) => element.ToObject<VoiceInfo>().ToVoice();
+        private static Voice ToVoice(JObject element) => element.ToObject<VoiceInfo>().ToVoice();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Xml"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的 Xml 消息</param>
-        private Xml ToXml(JObject element) => element.ToObject<Xml>();
+        private static Xml ToXml(JObject element) => element.ToObject<Xml>();
 
         /// <summary>
         /// 创建 <see cref="MessageParser"/> 实例
