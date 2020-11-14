@@ -127,7 +127,7 @@
     <value>{0} 消息元素超出数组范围</value>
   </data>
   <data name="UnexpectedMessageFormat" xml:space="preserve">
-    <value>消息格式错误，消息：{0}</value>
+    <value>消息格式错误，错误描述：{0}</value>
   </data>
   <data name="UnexpectedReturnValue" xml:space="preserve">
     <value>Mirai HTTP API 返回了意料之外的值 {0}，错误消息：{1}</value>

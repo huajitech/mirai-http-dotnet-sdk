@@ -50,16 +50,13 @@ namespace HuajiTech.Mirai
         /// <returns>所发送消息需引用的消息 ID</returns>
         private static int? GetQuote(ComplexMessage message)
         {
-            var quotes = message.OfType<Quote>();
-
-            if (quotes.Any())
+            try
             {
-                var quote = quotes.SingleOrDefault() ?? throw new MessageFormatException(string.Format(Resources.MessageElementOutOfRange, nameof(Quote)));
-                return quote.Message.Id;
+                return message.OfType<Quote>().SingleOrDefault()?.Message.Id;
             }
-            else
+            catch (InvalidOperationException)
             {
-                return null;
+                throw new MessageFormatException(string.Format(Resources.MessageElementOutOfRange, nameof(Quote)));
             }
         }
 
