@@ -58,11 +58,11 @@
 ### 本项目环境
 
 - Visual Studio 2019
-- .NET Core 3.1
+- .NET 5
 
 ### 推荐用户环境
 
-- .NET Core 3.1
+- .NET 5
 - 控制台应用
 
 ## 联系
