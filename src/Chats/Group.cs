@@ -60,7 +60,7 @@ namespace HuajiTech.Mirai
         internal Member CurrentUser { get; }
 
         /// <summary>
-        /// 异步刷新当前 <see cref="CurrentUser"/> 实例的群列表
+        /// 异步刷新当前 <see cref="Group"/> 实例的成员列表
         /// </summary>
         public Task RefreshMembersAsync() => GetMemberListAsync(true);
 
