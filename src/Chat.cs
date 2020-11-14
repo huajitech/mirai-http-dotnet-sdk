@@ -21,17 +21,19 @@ namespace HuajiTech.Mirai
         /// 异步发送消息到当前 <see cref="Chat"/> 实例
         /// </summary>
         /// <param name="message">要发送的消息</param>
+        /// <param name="quoteId">要引用的消息 ID</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        internal abstract Task<string> InternalSendAsync(MessageElement[] message);
+        internal abstract Task<string> InternalSendAsync(MessageElement[] message, int? quoteId);
 
         /// <summary>
         /// 异步发送消息到当前 <see cref="Chat"/> 实例
         /// </summary>
         /// <param name="message">要发送的消息</param>
+        /// <param name="quote">要引用的消息</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public async Task<Message> SendAsync(ComplexMessage message)
+        public async Task<Message> SendAsync(ComplexMessage message, Message quote = null)
         {
-            var result = JObject.Parse((await InternalSendAsync(message.ToArray())).CheckError());
+            var result = JObject.Parse((await InternalSendAsync(message.ToArray(), quote?.Id)).CheckError());
             return new Message(Session, GetSource(result.Value<int>("messageId")), message);
         }
 

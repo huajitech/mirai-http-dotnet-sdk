@@ -12,7 +12,7 @@ namespace HuajiTech.Mirai
     /// </summary>
     public class CurrentUser : User
     {
-        internal override Task<string> InternalSendAsync(MessageElement[] message) => ApiMethods.SendFriendMessageAsync(Session.HttpUri, Session.SessionKey, Number, message);
+        internal override Task<string> InternalSendAsync(MessageElement[] message, int? quoteId) => ApiMethods.SendFriendMessageAsync(Session.HttpUri, Session.SessionKey, Number, quoteId, message);
 
         /// <summary>
         /// 当前 <see cref="CurrentUser"/> 实例的好友列表

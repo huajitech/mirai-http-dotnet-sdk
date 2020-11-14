@@ -36,17 +36,20 @@ namespace HuajiTech.Mirai
         /// </summary>
         /// <param name="e">指定 <see cref="MessageReceivedEventArgs"/> 实例</param>
         /// <param name="message">要发送的消息</param>
+        /// <param name="isQuoting">是否引用回复</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public static Task<Message> Reply(this MessageReceivedEventArgs e, ComplexMessage message)
+        public static Task<Message> Reply(this MessageReceivedEventArgs e, ComplexMessage message, bool isQuoting = true)
         {
+            var quote = isQuoting ? e.Message : null;
+
             if (e.Source is Group)
             {
                 var member = e.Sender as Member;
-                return e.Source.SendAsync(member.Mention() + message);
+                return e.Source.SendAsync(member.Mention() + message, quote);
             }
             else
             {
-                return e.Source.SendAsync(message);
+                return e.Source.SendAsync(message, quote);
             }
         }
 
@@ -55,7 +58,8 @@ namespace HuajiTech.Mirai
         /// </summary>
         /// <param name="e">指定 <see cref="MessageReceivedEventArgs"/> 实例</param>
         /// <param name="message">要发送的消息</param>
+        /// <param name="isQuoting">是否引用回复</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public static Task<Message> Reply(this MessageReceivedEventArgs e, MessageElement message) => e.Reply(ComplexMessage.Create(message));
+        public static Task<Message> Reply(this MessageReceivedEventArgs e, MessageElement message, bool isQuoting = true) => e.Reply(ComplexMessage.Create(message), isQuoting);
     }
 }

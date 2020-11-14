@@ -12,7 +12,7 @@ namespace HuajiTech.Mirai
     /// </summary>
     public class Group : Chat
     {
-        internal override async Task<string> InternalSendAsync(MessageElement[] message) => await ApiMethods.SendGroupMessageAsync(Session.HttpUri, Session.SessionKey, Number, message);
+        internal override async Task<string> InternalSendAsync(MessageElement[] message, int? quoteId) => await ApiMethods.SendGroupMessageAsync(Session.HttpUri, Session.SessionKey, Number, quoteId, message);
 
         /// <summary>
         /// 当前 <see cref="Group"/> 实例的名称

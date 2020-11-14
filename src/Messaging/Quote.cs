@@ -64,7 +64,7 @@ namespace HuajiTech.Mirai.Messaging
         /// <param name="message">指定 <see cref="Quote"/> 实例的消息</param>
         /// <param name="sender">指定 <see cref="Quote"/> 实例的发送者</param>
         /// <param name="target">指定 <see cref="Quote"/> 实例的目标</param>
-        public Quote(Message message, User sender, Chat target)
+        internal Quote(Message message, User sender, Chat target)
         {
             Message = message;
             Sender = sender;
