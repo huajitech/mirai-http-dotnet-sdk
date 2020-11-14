@@ -29,11 +29,10 @@ namespace HuajiTech.Mirai
         /// 异步发送消息到当前 <see cref="Chat"/> 实例
         /// </summary>
         /// <param name="message">要发送的消息</param>
-        /// <param name="quote">要引用的消息</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public async Task<Message> SendAsync(ComplexMessage message, Message quote = null)
+        public async Task<Message> SendAsync(ComplexMessage message)
         {
-            var result = JObject.Parse((await InternalSendAsync(message.ToArray(), quote?.Id)).CheckError());
+            var result = JObject.Parse((await InternalSendAsync(RemoveQuote(message).ToArray(), GetQuote(message))).CheckError());
             return new Message(Session, GetSource(result.Value<int>("messageId")), message);
         }
 
@@ -43,6 +42,32 @@ namespace HuajiTech.Mirai
         /// <param name="id">消息 ID</param>
         /// <returns>表示所发送消息来源的 <see cref="Source"/> 实例</returns>
         private static Source GetSource(int id) => new Source(id, (int)TimestampUtilities.FromDateTime(DateTime.Now));
+
+        /// <summary>
+        /// 获取所发送消息的引用
+        /// </summary>
+        /// <param name="message">消息</param>
+        /// <returns>所发送消息需引用的消息 ID</returns>
+        private static int? GetQuote(ComplexMessage message)
+        {
+            var quotes = message.OfType<Quote>();
+
+            if (quotes.Any())
+            {
+                var quote = quotes.SingleOrDefault() ?? throw new MessageFormatException(string.Format(Resources.MessageElementOutOfRange, nameof(Quote)));
+                return quote.Message.Id;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 移除消息中的 <see cref="Quote"/> 元素
+        /// </summary>
+        /// <param name="message">消息</param>
+        private static ComplexMessage RemoveQuote(ComplexMessage message) => message.RemoveAll(x => x is Quote);
 
         /// <inheritdoc/>
         public bool Equals(Chat other) => other != null && other.GetType() == GetType() && other.Number == Number;

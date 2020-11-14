@@ -1,4 +1,5 @@
 ﻿using HuajiTech.Mirai.Events;
+using HuajiTech.Mirai.Messaging;
 using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai
@@ -40,16 +41,16 @@ namespace HuajiTech.Mirai
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
         public static Task<Message> Reply(this MessageReceivedEventArgs e, ComplexMessage message, bool isQuoting = true)
         {
-            var quote = isQuoting ? e.Message : null;
+            var quote = isQuoting ? (MessageElement)new Quote(e.Message) : PlainText.Empty;
 
             if (e.Source is Group)
             {
                 var member = e.Sender as Member;
-                return e.Source.SendAsync(member.Mention() + message, quote);
+                return e.Source.SendAsync(quote + member.Mention() + message);
             }
             else
             {
-                return e.Source.SendAsync(message, quote);
+                return e.Source.SendAsync(quote + message);
             }
         }
 

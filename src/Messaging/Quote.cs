@@ -29,36 +29,6 @@ namespace HuajiTech.Mirai.Messaging
         public Chat Target { get; }
 
         /// <summary>
-        /// 指定当前 <see cref="Quote"/> 实例的消息 ID
-        /// </summary>
-        [JsonProperty(PropertyName = "id")]
-        internal int MessageId => Message.Id;
-
-        /// <summary>
-        /// 指定当前 <see cref="Quote"/> 实例的群号码
-        /// </summary>
-        [JsonProperty(PropertyName = "groupId")]
-        internal long GroupNumber => Sender is Member member ? member.Group.Number : 0;
-
-        /// <summary>
-        /// 指定当前 <see cref="Quote"/> 实例的发送者号码
-        /// </summary>
-        [JsonProperty(PropertyName = "senderId")]
-        internal long SenderNumber => Sender.Number;
-
-        /// <summary>
-        /// 指定当前 <see cref="Quote"/> 实例的目标号码
-        /// </summary>
-        [JsonProperty(PropertyName = "targetId")]
-        internal long TargetNumber => Target.Number;
-
-        /// <summary>
-        /// 指定当前 <see cref="Quote"/> 实例的消息链
-        /// </summary>
-        [JsonProperty(PropertyName = "origin")]
-        internal MessageElement[] MessageChain => Message.FullContent.ToArray();
-
-        /// <summary>
         /// 创建 <see cref="Quote"/> 实例
         /// </summary>
         /// <param name="message">指定 <see cref="Quote"/> 实例的消息</param>
@@ -69,6 +39,15 @@ namespace HuajiTech.Mirai.Messaging
             Message = message;
             Sender = sender;
             Target = target;
+        }
+
+        /// <summary>
+        /// 创建 <see cref="Quote"/> 实例
+        /// </summary>
+        /// <param name="message">指定 <see cref="Quote"/> 实例的消息</param>
+        public Quote(Message message)
+        {
+            Message = message;
         }
     }
 }

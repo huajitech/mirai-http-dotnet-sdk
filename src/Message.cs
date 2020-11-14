@@ -67,6 +67,24 @@ namespace HuajiTech.Mirai
             return new Message(session, elements.ToList());
         }
 
+        /// <summary>
+        /// 异步尝试获取指定 ID 的消息
+        /// </summary>
+        /// <param name="currentUser">指定获取 <see cref="Message"/> 实例的当前用户</param>
+        /// <param name="id">指定获取 <see cref="Message"/> 实例的 ID</param>
+        /// <returns>成功获取则返回指定的当前用户和 ID 的 <see cref="Message"/> 实例，否则返回 null</returns>
+        internal static async Task<Message> TryGetMessageAsync(CurrentUser currentUser, int id)
+        {
+            try
+            {
+                return await GetMessageAsync(currentUser, id);
+            }
+            catch (ApiException ex) when (ex.ErrorCode == 5)
+            {
+                return null;
+            }
+        }
+
         /// <inheritdoc/>
         public static implicit operator ComplexMessage(Message message) => message.Content;
 

@@ -47,8 +47,8 @@ namespace HuajiTech.Mirai {
         }
         
         /// <summary>
-        ///   重写当前线程的 CurrentUICulture 属性
-        ///   重写当前线程的 CurrentUICulture 属性。
+        ///   重写当前线程的 CurrentUICulture 属性，对
+        ///   使用此强类型资源类的所有资源查找执行重写。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static global::System.Globalization.CultureInfo Culture {
@@ -75,6 +75,24 @@ namespace HuajiTech.Mirai {
         internal static string ChatNotFound {
             get {
                 return ResourceManager.GetString("ChatNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0} 消息元素超出数组范围 的本地化字符串。
+        /// </summary>
+        internal static string MessageElementOutOfRange {
+            get {
+                return ResourceManager.GetString("MessageElementOutOfRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 消息格式错误，消息：{0} 的本地化字符串。
+        /// </summary>
+        internal static string UnexpectedMessageFormat {
+            get {
+                return ResourceManager.GetString("UnexpectedMessageFormat", resourceCulture);
             }
         }
         

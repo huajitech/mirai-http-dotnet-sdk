@@ -8,7 +8,7 @@ namespace HuajiTech.Mirai
     public class ChatNotFoundException : Exception
     {
         /// <summary>
-        /// 
+        /// 创建 <see cref="ChatNotFoundException"/> 实例
         /// </summary>
         /// <param name="type">指定 <see cref="Chat"/> 的类型</param>
         /// <param name="number">指定 <see cref="Chat"/> 的号码</param>
