@@ -54,7 +54,7 @@ namespace HuajiTech.Mirai
         /// <param name="e">指定 <see cref="MessageReceivedEventArgs"/> 实例</param>
         /// <param name="message">要发送的消息</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public static Task<Message> QuoteReply(this MessageReceivedEventArgs e, ComplexMessage message) => e.Source.SendAsync(new Quote(e.Message) + GetReplyMessage(e, message));
+        public static Task<Message> QuoteReply(this MessageReceivedEventArgs e, ComplexMessage message) => e.Source.SendAsync(e.Message.Quote() + GetReplyMessage(e, message));
 
         /// <summary>
         /// 引用回复当前 <see cref="MessageReceivedEventArgs"/> 实例

@@ -27,6 +27,13 @@ namespace HuajiTech.Mirai
         public static Mention Mention(this Member member, string displayName) => new Mention(member, displayName);
 
         /// <summary>
+        /// 以指定的消息，创建一个 <see cref="Messaging.Quote"/> 实例
+        /// </summary>
+        /// <param name="message">消息</param>
+        /// <returns>指定消息的 <see cref="Messaging.Quote"/> 实例</returns>
+        public static Quote Quote(this Message message) => new Quote(message);
+
+        /// <summary>
         /// 转换字符串到 <see cref="PlainText"/> 实例
         /// </summary>
         /// <param name="str">将要转换的字符串</param>
