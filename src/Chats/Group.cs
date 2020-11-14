@@ -182,7 +182,7 @@ namespace HuajiTech.Mirai
         /// 异步设置当前 <see cref="Group"/> 实例的坦白说
         /// </summary>
         /// <param name="enabled">是否启用</param>
-        internal async Task SetConfessTalkAsync(bool enabled)
+        private async Task SetConfessTalkAsync(bool enabled)
         {
             (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { confessTalk = enabled })).CheckError();
             GroupExtInfo.CanConfessTalk = enabled;
@@ -202,7 +202,7 @@ namespace HuajiTech.Mirai
         /// 异步设置当前 <see cref="Group"/> 实例的邀请
         /// </summary>
         /// <param name="allowed">是否允许</param>
-        internal async Task SetInviteAsync(bool allowed)
+        private async Task SetInviteAsync(bool allowed)
         {
             (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { allowMemberInvite = allowed })).CheckError();
             GroupExtInfo.CanInvite = allowed;
@@ -222,7 +222,7 @@ namespace HuajiTech.Mirai
         /// 异步设置当前 <see cref="Group"/> 实例的自动审批入群
         /// </summary>
         /// <param name="enabled">是否启用</param>
-        internal async Task SetAutoApproveAsync(bool enabled)
+        private async Task SetAutoApproveAsync(bool enabled)
         {
             (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { autoApprove = enabled })).CheckError();
             GroupExtInfo.IsAutoApprove = enabled;
@@ -242,7 +242,7 @@ namespace HuajiTech.Mirai
         /// 异步设置当前 <see cref="Group"/> 实例的匿名功能
         /// </summary>
         /// <param name="enabled">是否启用</param>
-        internal async Task SetAnonymousAsync(bool enabled)
+        private async Task SetAnonymousAsync(bool enabled)
         {
             (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { anonymousChat = enabled })).CheckError();
             GroupExtInfo.CanAnonymous = enabled;
