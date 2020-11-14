@@ -52,11 +52,12 @@ namespace HuajiTech.Mirai
         {
             try
             {
-                return message.OfType<Quote>().SingleOrDefault()?.Message.Id;
+                var quote = message.OfType<Quote>().SingleOrDefault();
+                return (quote == null || message.FirstOrDefault() == quote) ? quote?.Message.Id : throw new MessageFormatException(nameof(Quote));
             }
             catch (InvalidOperationException)
             {
-                throw new MessageFormatException(string.Format(Resources.MessageElementOutOfRange, nameof(Quote)));
+                throw new MessageFormatException(nameof(Quote));
             }
         }
 

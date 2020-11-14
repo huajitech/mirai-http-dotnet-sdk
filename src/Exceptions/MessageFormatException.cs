@@ -14,8 +14,8 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 创建 <see cref="MessageFormatException"/> 实例
         /// </summary>
-        /// <param name="message">错误消息</param>
-        public MessageFormatException(string message) : base(string.Format(Resources.UnexpectedMessageFormat, message))
+        /// <param name="name">错误消息</param>
+        public MessageFormatException(string name) : base(string.Format(Resources.UnexpectedMessageFormat, name))
         {
         }
     }

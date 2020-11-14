@@ -37,30 +37,39 @@ namespace HuajiTech.Mirai
         /// </summary>
         /// <param name="e">指定 <see cref="MessageReceivedEventArgs"/> 实例</param>
         /// <param name="message">要发送的消息</param>
-        /// <param name="isQuoting">是否引用回复</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public static Task<Message> Reply(this MessageReceivedEventArgs e, ComplexMessage message, bool isQuoting = true)
-        {
-            var quote = isQuoting ? (MessageElement)new Quote(e.Message) : PlainText.Empty;
-
-            if (e.Source is Group)
-            {
-                var member = e.Sender as Member;
-                return e.Source.SendAsync(quote + member.Mention() + message);
-            }
-            else
-            {
-                return e.Source.SendAsync(quote + message);
-            }
-        }
+        public static Task<Message> Reply(this MessageReceivedEventArgs e, ComplexMessage message) => e.Source.SendAsync(GetReplyMessage(e, message));
 
         /// <summary>
         /// 回复当前 <see cref="MessageReceivedEventArgs"/> 实例
         /// </summary>
         /// <param name="e">指定 <see cref="MessageReceivedEventArgs"/> 实例</param>
         /// <param name="message">要发送的消息</param>
-        /// <param name="isQuoting">是否引用回复</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public static Task<Message> Reply(this MessageReceivedEventArgs e, MessageElement message, bool isQuoting = true) => e.Reply(ComplexMessage.Create(message), isQuoting);
+        public static Task<Message> Reply(this MessageReceivedEventArgs e, MessageElement message) => e.Reply(ComplexMessage.Create(message));
+
+        /// <summary>
+        /// 引用回复当前 <see cref="MessageReceivedEventArgs"/> 实例
+        /// </summary>
+        /// <param name="e">指定 <see cref="MessageReceivedEventArgs"/> 实例</param>
+        /// <param name="message">要发送的消息</param>
+        /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
+        public static Task<Message> QuoteReply(this MessageReceivedEventArgs e, ComplexMessage message) => e.Source.SendAsync(new Quote(e.Message) + GetReplyMessage(e, message));
+
+        /// <summary>
+        /// 引用回复当前 <see cref="MessageReceivedEventArgs"/> 实例
+        /// </summary>
+        /// <param name="e">指定 <see cref="MessageReceivedEventArgs"/> 实例</param>
+        /// <param name="message">要发送的消息</param>
+        /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
+        public static Task<Message> QuoteReply(this MessageReceivedEventArgs e, MessageElement message) => e.QuoteReply(ComplexMessage.Create(message));
+
+        /// <summary>
+        /// 获取回复消息
+        /// </summary>
+        /// <param name="e">指定 <see cref="MessageReceivedEventArgs"/> 实例</param>
+        /// <param name="message">要发送的消息</param>
+        /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
+        private static ComplexMessage GetReplyMessage(MessageReceivedEventArgs e, ComplexMessage message) => e.Source is Group ? (e.Sender as Member).Mention() + message : message;
     }
 }

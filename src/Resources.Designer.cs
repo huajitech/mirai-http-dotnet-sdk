@@ -79,16 +79,7 @@ namespace HuajiTech.Mirai {
         }
         
         /// <summary>
-        ///   查找类似 {0} 消息元素超出数组范围 的本地化字符串。
-        /// </summary>
-        internal static string MessageElementOutOfRange {
-            get {
-                return ResourceManager.GetString("MessageElementOutOfRange", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 消息格式错误，错误描述：{0} 的本地化字符串。
+        ///   查找类似 消息格式错误，导致错误的消息元素：{0} 的本地化字符串。
         /// </summary>
         internal static string UnexpectedMessageFormat {
             get {
