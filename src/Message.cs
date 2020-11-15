@@ -14,7 +14,7 @@ namespace HuajiTech.Mirai
     /// <summary>
     /// 表示消息
     /// </summary>
-    public class Message : SessionProcessor
+    public sealed class Message : SessionProcessor
     {
         /// <summary>
         /// 指定当前 <see cref="Message"/> 实例的来源

@@ -3,7 +3,7 @@
     /// <summary>
     /// 用作基于 Session 处理的基类
     /// </summary>
-    public class SessionProcessor
+    public abstract class SessionProcessor
     {
         /// <summary>
         /// 获取当前 <see cref="SessionProcessor"/> 实例的 Session

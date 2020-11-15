@@ -9,7 +9,7 @@ namespace HuajiTech.Mirai
     /// <summary>
     /// 定义 Session
     /// </summary>
-    public class Session : IAsyncDisposable
+    public sealed class Session : IAsyncDisposable
     {
         /// <summary>
         /// 获取当前 <see cref="Session"/> 实例的 Session Key
