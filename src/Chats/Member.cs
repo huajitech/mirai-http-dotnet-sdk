@@ -54,7 +54,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 成员角色 <see cref="string"/> 对 <see cref="MemberRole"/> 的字典
         /// </summary>
-        internal static readonly Dictionary<string, MemberRole> MemberRoleDictionary = new Dictionary<string, MemberRole>()
+        internal static readonly Dictionary<string, MemberRole> MemberRoleDictionary = new()
         {
             ["OWNER"] = MemberRole.Owner,
             ["ADMINISTRATOR"] = MemberRole.Administrator,
@@ -69,7 +69,7 @@ namespace HuajiTech.Mirai
         {
             if (time.TotalSeconds <= 0 || time > TimeSpan.FromDays(30))
             {
-                throw new OverflowException();
+                throw new ArgumentOutOfRangeException(nameof(time));
             }
             else
             {

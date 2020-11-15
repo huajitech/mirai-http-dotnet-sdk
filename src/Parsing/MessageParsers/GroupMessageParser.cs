@@ -27,7 +27,7 @@ namespace HuajiTech.Mirai.Parsing
         /// 从 Json 中提取信息，并创建 <see cref="Mention"/> 实例
         /// </summary>
         /// <param name="element">以 Json 表达的提及</param>
-        private Mention ToMention(JObject element) => new Mention(Group.GetMemberAsync(element.Value<long>("target")).Result, element.Value<string>("display").TrimStart('@'));
+        private Mention ToMention(JObject element) => new(Group.GetMemberAsync(element.Value<long>("target")).Result, element.Value<string>("display").TrimStart('@'));
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Quote"/> 实例
@@ -39,7 +39,7 @@ namespace HuajiTech.Mirai.Parsing
             var message = new Message(CurrentUser.Session, ParseMore(info.Origin).ToList());
             var member = Group.GetMemberAsync(info.SenderId).Result;
 
-            return new Quote(message, member, Group);
+            return new(message, member, Group);
         }
 
         /// <summary>

@@ -23,7 +23,7 @@ namespace HuajiTech.Mirai.Parsing
             var message = new Message(CurrentUser.Session, ParseMore(info.Origin).ToList());
             var friend = CurrentUser.GetFriendAsync(info.SenderId).Result;
 
-            return new Quote(message, friend, CurrentUser);
+            return new(message, friend, CurrentUser);
         }
 
         /// <summary>

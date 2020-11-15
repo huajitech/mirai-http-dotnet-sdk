@@ -14,9 +14,9 @@ namespace HuajiTech.Mirai.Interop
         [JsonProperty(PropertyName = "group")]
         public GroupInfo Group { get; init; }
 
-        public Member ToMember(Group group) => new Member(group, Id, Name, Member.MemberRoleDictionary[Permission]);
+        public Member ToMember(Group group) => new(group, Id, Name, Member.MemberRoleDictionary[Permission]);
 
-        public Member ToMember(CurrentUser currentUser) => new Member(Group.ToGroup(currentUser), Id, Name, Member.MemberRoleDictionary[Permission]);
+        public Member ToMember(CurrentUser currentUser) => new(Group.ToGroup(currentUser), Id, Name, Member.MemberRoleDictionary[Permission]);
 
         public async Task<Member> GetMemberAsync(CurrentUser currentUser) => await (await Group.GetGroupAsync(currentUser)).GetMemberAsync(Id);
     }

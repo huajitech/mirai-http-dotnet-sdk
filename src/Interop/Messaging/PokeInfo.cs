@@ -8,6 +8,6 @@ namespace HuajiTech.Mirai.Interop.Messaging
         [JsonProperty(PropertyName = "name")]
         public string PokeName { get; init; }
 
-        public Poke ToPoke() => new Poke(Poke.PokeDictionary[PokeName]);
+        public Poke ToPoke() => new(Poke.PokeDictionary[PokeName]);
     }
 }

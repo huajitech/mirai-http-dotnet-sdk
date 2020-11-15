@@ -63,7 +63,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         private async Task<Message> GetMessage(MessageParser parser, JArray messageChain)
         {
             var content = await Task.Run(() => parser.ParseMore(messageChain));
-            return new Message(Session, content.ToList());
+            return new(Session, content.ToList());
         }
     }
 }

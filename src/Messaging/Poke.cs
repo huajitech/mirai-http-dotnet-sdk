@@ -15,7 +15,7 @@ namespace HuajiTech.Mirai.Messaging
         /// 戳一戳类型 <see cref="Messaging.PokeType"/> 对 <see cref="string"/> 的字典
         /// </summary>
         [JsonIgnore]
-        internal static readonly Dictionary<string, PokeType> PokeDictionary = new Dictionary<string, PokeType>()
+        internal static readonly Dictionary<string, PokeType> PokeDictionary = new()
         {
             ["Poke"] = PokeType.Poke,
             ["ShowLove"] = PokeType.Love,

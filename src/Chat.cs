@@ -33,7 +33,7 @@ namespace HuajiTech.Mirai
         public async Task<Message> SendAsync(ComplexMessage message)
         {
             var result = JObject.Parse((await InternalSendAsync(RemoveQuote(message).ToArray(), GetQuote(message))).CheckError());
-            return new Message(Session, GetSource(result.Value<int>("messageId")), message);
+            return new(Session, GetSource(result.Value<int>("messageId")), message);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace HuajiTech.Mirai
         /// </summary>
         /// <param name="id">消息 ID</param>
         /// <returns>表示所发送消息来源的 <see cref="Source"/> 实例</returns>
-        private static Source GetSource(int id) => new Source(id, (int)TimestampUtilities.FromDateTime(DateTime.Now));
+        private static Source GetSource(int id) => new(id, (int)TimestampUtilities.FromDateTime(DateTime.Now));
 
         /// <summary>
         /// 获取所发送消息的引用
@@ -57,7 +57,7 @@ namespace HuajiTech.Mirai
             }
             catch (InvalidOperationException)
             {
-                throw new MessageFormatException(nameof(Quote));
+                throw new(nameof(Quote));
             }
         }
 

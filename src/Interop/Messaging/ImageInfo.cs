@@ -15,10 +15,10 @@ namespace HuajiTech.Mirai.Interop.Messaging
         [JsonProperty(PropertyName = "url")]
         public string Uri { get; init; }
 
-        private Uri GetUri() => Uri == null ? null : new Uri(Uri);
+        private Uri GetUri() => Uri == null ? null : new(Uri);
 
-        public Image ToImage() => new Image(Id, FilePath, GetUri());
+        public Image ToImage() => new(Id, FilePath, GetUri());
 
-        public FlashImage ToFlashImage() => new FlashImage(Id, FilePath, GetUri());
+        public FlashImage ToFlashImage() => new(Id, FilePath, GetUri());
     }
 }

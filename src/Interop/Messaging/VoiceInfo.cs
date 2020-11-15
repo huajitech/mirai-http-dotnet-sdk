@@ -15,8 +15,8 @@ namespace HuajiTech.Mirai.Interop.Messaging
         [JsonProperty(PropertyName = "url")]
         public string Uri { get; init; }
 
-        private Uri GetUri() => Uri == null ? null : new Uri(Uri);
+        private Uri GetUri() => Uri == null ? null : new(Uri);
 
-        public Voice ToVoice() => new Voice(Id, FilePath, GetUri());
+        public Voice ToVoice() => new(Id, FilePath, GetUri());
     }
 }

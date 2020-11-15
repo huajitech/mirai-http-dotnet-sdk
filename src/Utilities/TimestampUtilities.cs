@@ -10,7 +10,7 @@ namespace HuajiTech.Mirai.Utilities
         /// <summary>
         /// 表示时间戳起始值所对应的 <see cref="DateTime"/> 实例
         /// </summary>
-        public static readonly DateTime Zero = TimeZoneInfo.ConvertTimeFromUtc(new DateTime(1970, 1, 1), TimeZoneInfo.Local);
+        public static readonly DateTime Zero = TimeZoneInfo.ConvertTimeFromUtc(new(1970, 1, 1), TimeZoneInfo.Local);
 
         /// <summary>
         /// 转换时间戳到 <see cref="DateTime"/> 实例

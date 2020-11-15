@@ -11,7 +11,7 @@ namespace HuajiTech.Mirai.Interop
         [JsonProperty(PropertyName = "remark")]
         public string Remark { get; init; }
 
-        public Friend ToFriend(Session session) => new Friend(session, Id, Nickname, Remark.CheckEmpty());
+        public Friend ToFriend(Session session) => new(session, Id, Nickname, Remark.CheckEmpty());
 
         public async Task<Friend> GetFriendAsync(CurrentUser currentUser) => await currentUser.GetFriendAsync(Id);
     }

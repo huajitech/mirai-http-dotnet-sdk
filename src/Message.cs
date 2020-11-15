@@ -64,7 +64,7 @@ namespace HuajiTech.Mirai
             var data = JObject.Parse(result)["data"].ToObject<MessageData>();
             var parser = MessageParser.GetParser(currentUser, data);
             var elements = await Task.Run(() => parser.ParseMore(data.MessageChain));
-            return new Message(session, elements.ToList());
+            return new(session, elements.ToList());
         }
 
         /// <summary>

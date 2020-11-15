@@ -1,5 +1,4 @@
 ﻿using HuajiTech.Mirai.Events;
-using HuajiTech.Mirai.Messaging;
 using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai
@@ -16,9 +15,9 @@ namespace HuajiTech.Mirai
         /// <param name="handler">事件处理器</param>
         public static void AddMessageReceivedEventHandler(this CurrentUserEventSource currentUserEventSource, AsyncEventHandler<MessageReceivedEventArgs> handler)
         {
-            currentUserEventSource.FriendMessageReceivedEvent += new AsyncEventHandler<FriendMessageReceivedEventArgs>(handler);
-            currentUserEventSource.GroupMessageReceivedEvent += new AsyncEventHandler<GroupMessageReceivedEventArgs>(handler);
-            currentUserEventSource.MemberMessageReceivedEvent += new AsyncEventHandler<MemberMessageReceivedEventArgs>(handler);
+            currentUserEventSource.FriendMessageReceivedEvent += new(handler);
+            currentUserEventSource.GroupMessageReceivedEvent += new(handler);
+            currentUserEventSource.MemberMessageReceivedEvent += new(handler);
         }
 
         /// <summary>
@@ -29,7 +28,7 @@ namespace HuajiTech.Mirai
         public static void AddMessageRecalledEventHandler(this CurrentUserEventSource currentUserEventSource, AsyncEventHandler<MessageRecalledEventArgs> handler)
         {
             currentUserEventSource.FriendMessageRecalledEvent += handler;
-            currentUserEventSource.GroupMessageRecalledEvent += new AsyncEventHandler<GroupMessageRecalledEventArgs>(handler);
+            currentUserEventSource.GroupMessageRecalledEvent += new(handler);
         }
 
         /// <summary>

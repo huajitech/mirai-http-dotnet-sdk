@@ -18,14 +18,14 @@ namespace HuajiTech.Mirai
         /// </summary>
         /// <param name="value">指定 <see cref="MessageElement"/> 实例</param>
         /// <returns>已将指定 <see cref="MessageElement"/> 实例添加至末尾的 <see cref="ComplexMessage"/> 实例</returns>
-        public ComplexMessage Add(MessageElement value) => new ComplexMessage(Elements.Add(value));
+        public ComplexMessage Add(MessageElement value) => new(Elements.Add(value));
 
         /// <summary>
         /// 添加指定 <see cref="IEnumerable"/> 实例的所有元素至当前 <see cref="ComplexMessage"/> 实例的末尾
         /// </summary>
         /// <param name="items">指定 <see cref="IEnumerable"/> 实例</param>
         /// <returns>已将指定 <see cref="IEnumerable"/> 实例的所有元素添加至末尾的 <see cref="ComplexMessage"/> 实例</returns>
-        public ComplexMessage AddRange(IEnumerable<MessageElement> items) => new ComplexMessage(Elements.AddRange(items));
+        public ComplexMessage AddRange(IEnumerable<MessageElement> items) => new(Elements.AddRange(items));
 
         /// <summary>
         /// 插入指定 <see cref="MessageElement"/> 实例至当前 <see cref="ComplexMessage"/> 实例的指定位置
@@ -33,7 +33,7 @@ namespace HuajiTech.Mirai
         /// <param name="index">指定插入位置</param>
         /// <param name="element">指定 <see cref="MessageElement"/> 实例</param>
         /// <returns>已将指定 <see cref="MessageElement"/> 实例插入至指定位置的 <see cref="ComplexMessage"/> 实例</returns>
-        public ComplexMessage Insert(int index, MessageElement element) => new ComplexMessage(Elements.Insert(index, element));
+        public ComplexMessage Insert(int index, MessageElement element) => new(Elements.Insert(index, element));
 
         /// <summary>
         /// 插入指定 <see cref="IEnumerable"/> 实例的所有元素至当前 <see cref="ComplexMessage"/> 实例的指定位置
@@ -41,35 +41,35 @@ namespace HuajiTech.Mirai
         /// <param name="index">指定插入位置</param>
         /// <param name="items">指定 <see cref="IEnumerable"/> 实例</param>
         /// <returns>已将指定 <see cref="IEnumerable"/> 实例的所有元素插入至指定位置的 <see cref="ComplexMessage"/> 实例</returns>
-        public ComplexMessage InsertRange(int index, IEnumerable<MessageElement> items) => new ComplexMessage(Elements.InsertRange(index, items));
+        public ComplexMessage InsertRange(int index, IEnumerable<MessageElement> items) => new(Elements.InsertRange(index, items));
 
         /// <summary>
         /// 从当前 <see cref="ComplexMessage"/> 实例移除指定元素
         /// </summary>
         /// <param name="value">指定元素</param>
         /// <returns>已将指定元素移除的 <see cref="ComplexMessage"/> 实例</returns>
-        public ComplexMessage Remove(MessageElement value) => new ComplexMessage(Elements.Remove(value));
+        public ComplexMessage Remove(MessageElement value) => new(Elements.Remove(value));
 
         /// <summary>
         /// 从当前 <see cref="ComplexMessage"/> 实例移除所有符合指定条件的元素
         /// </summary>
         /// <param name="match">指定条件</param>
         /// <returns>已将所有符合指定条件的元素实例移除的 <see cref="ComplexMessage"/> 实例</returns>
-        public ComplexMessage RemoveAll(Predicate<MessageElement> match) => new ComplexMessage(Elements.RemoveAll(match));
+        public ComplexMessage RemoveAll(Predicate<MessageElement> match) => new(Elements.RemoveAll(match));
 
         /// <summary>
         /// 从当前 <see cref="ComplexMessage"/> 实例移除指定索引处的元素
         /// </summary>
         /// <param name="index">指定索引</param>
         /// <returns>已将指定索引处的元素移除的 <see cref="ComplexMessage"/> 实例</returns>
-        public ComplexMessage RemoveAt(int index) => new ComplexMessage(Elements.RemoveAt(index));
+        public ComplexMessage RemoveAt(int index) => new(Elements.RemoveAt(index));
 
         /// <summary>
         /// 从当前 <see cref="ComplexMessage"/> 实例移除指定集合内所包含所有元素
         /// </summary>
         /// <param name="items">指定集合</param>
         /// <returns>已将指定集合内所包含所有元素移除的 <see cref="ComplexMessage"/> 实例</returns>
-        public ComplexMessage RemoveRange(IEnumerable<MessageElement> items) => new ComplexMessage(Elements.RemoveRange(items));
+        public ComplexMessage RemoveRange(IEnumerable<MessageElement> items) => new(Elements.RemoveRange(items));
 
         /// <summary>
         /// 从当前 <see cref="ComplexMessage"/> 实例移除指定范围内所有元素
@@ -77,7 +77,7 @@ namespace HuajiTech.Mirai
         /// <param name="index">指定索引</param>
         /// <param name="count">指定数量</param>
         /// <returns>已将移除指定范围内所有元素移除的 <see cref="ComplexMessage"/> 实例</returns>
-        public ComplexMessage RemoveRange(int index, int count) => new ComplexMessage(Elements.RemoveRange(index, count));
+        public ComplexMessage RemoveRange(int index, int count) => new(Elements.RemoveRange(index, count));
 
         /// <summary>
         /// 替换当前 <see cref="ComplexMessage"/> 实例的指定元素至指定 <see cref="MessageElement"/> 实例
@@ -85,7 +85,7 @@ namespace HuajiTech.Mirai
         /// <param name="oldValue">指定替换元素</param>
         /// <param name="newValue">指定 <see cref="MessageElement"/> 实例</param>
         /// <returns></returns>
-        public ComplexMessage Replace(MessageElement oldValue, MessageElement newValue) => new ComplexMessage(Elements.Replace(oldValue, newValue));
+        public ComplexMessage Replace(MessageElement oldValue, MessageElement newValue) => new(Elements.Replace(oldValue, newValue));
 
         /// <summary>
         /// 设置当前 <see cref="ComplexMessage"/> 实例的指定索引处元素为指定 <see cref="MessageElement"/> 实例
@@ -93,19 +93,19 @@ namespace HuajiTech.Mirai
         /// <param name="index">指定索引</param>
         /// <param name="value">指定 <see cref="MessageElement"/> 实例</param>
         /// <returns></returns>
-        public ComplexMessage SetItem(int index, MessageElement value) => new ComplexMessage(Elements.SetItem(index, value));
+        public ComplexMessage SetItem(int index, MessageElement value) => new(Elements.SetItem(index, value));
 
         /// <summary>
         /// 创建 <see cref="ComplexMessage"/> 实例
         /// </summary>
         /// <param name="elements">指定 <see cref="ComplexMessage"/> 实例的元素</param>
-        public static ComplexMessage Create(IEnumerable<MessageElement> elements) => new ComplexMessage(elements.ToImmutableList());
+        public static ComplexMessage Create(IEnumerable<MessageElement> elements) => new(elements.ToImmutableList());
 
         /// <summary>
         /// 创建 <see cref="ComplexMessage"/> 实例
         /// </summary>
         /// <param name="elements">指定 <see cref="ComplexMessage"/> 实例的元素</param>
-        public static ComplexMessage Create(params MessageElement[] elements) => new ComplexMessage(elements.ToImmutableList());
+        public static ComplexMessage Create(params MessageElement[] elements) => new(elements.ToImmutableList());
 
         /// <inheritdoc/>
         public override string ToString() => string.Join(string.Empty, this.Select(x => x.ToString()));

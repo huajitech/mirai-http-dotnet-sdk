@@ -104,8 +104,8 @@ namespace HuajiTech.Mirai
         {
             Settings = settings;
             BotNumber = number;
-            CurrentUser = new CurrentUser(this);
-            ApiEventHandler = new ApiEventHandler(this);
+            CurrentUser = new(this);
+            ApiEventHandler = new(this);
         }
     }
 }

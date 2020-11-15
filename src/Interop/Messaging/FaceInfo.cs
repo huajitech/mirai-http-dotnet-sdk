@@ -11,6 +11,6 @@ namespace HuajiTech.Mirai.Interop.Messaging
         [JsonProperty(PropertyName = "name")]
         public string Name { get; init; }
 
-        public Emoticon ToEmoticon() => new Emoticon(Id, Name);
+        public Emoticon ToEmoticon() => new(Id, Name);
     }
 }

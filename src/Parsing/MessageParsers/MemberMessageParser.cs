@@ -24,7 +24,7 @@ namespace HuajiTech.Mirai.Parsing
             var group = CurrentUser.GetGroupAsync(info.GroupId).Result;
             var member = group.GetMemberAsync(info.SenderId).Result;
 
-            return new Quote(message, member, CurrentUser);
+            return new(message, member, CurrentUser);
         }
 
         /// <summary>
