@@ -6,7 +6,7 @@ namespace HuajiTech.Mirai.ApiHandlers
     /// <summary>
     /// 提供 API 的管理方法
     /// </summary>
-    public static class ApiManager
+    public static class ApiManaging
     {
         /// <summary>
         /// 获取 API 信息
