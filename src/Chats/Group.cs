@@ -12,7 +12,7 @@ namespace HuajiTech.Mirai
     /// </summary>
     public class Group : Chat
     {
-        internal override async Task<string> InternalSendAsync(MessageElement[] message, int? quoteId) => await ApiMethods.SendGroupMessageAsync(Session.HttpUri, Session.SessionKey, Number, quoteId, message);
+        internal override Task<string> InternalSendAsync(MessageElement[] message, int? quoteId) => ApiMethods.SendGroupMessageAsync(Session.Settings.HttpUri, Session.SessionKey, Number, quoteId, message);
 
         /// <summary>
         /// 当前 <see cref="Group"/> 实例的名称
@@ -77,7 +77,7 @@ namespace HuajiTech.Mirai
         {
             if (refresh || MemberList == null)
             {
-                var result = await ApiMethods.GetMemberListAsync(Session.HttpUri, Session.SessionKey, Number);
+                var result = await ApiMethods.GetMemberListAsync(Session.Settings.HttpUri, Session.SessionKey, Number);
                 MemberList = await Task.Run(GetMembersFromJson(result).ToList);
                 MemberList.Add(CurrentUser);
                 await GetMemberExtInfoAsync();
@@ -93,7 +93,7 @@ namespace HuajiTech.Mirai
         {
             foreach (var member in MemberList)
             {
-                var info = await ApiMethods.GetMemberInfo(Session.HttpUri, Session.SessionKey, Number, member.Number);
+                var info = await ApiMethods.GetMemberInfo(Session.Settings.HttpUri, Session.SessionKey, Number, member.Number);
                 member.MemberExtInfo = GetMemberExtInfoFromJson(info);
             }
 
@@ -146,17 +146,17 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 异步禁言当前 <see cref="Group"/> 实例
         /// </summary>
-        public async Task MuteAsync() => (await ApiMethods.MuteAllAsync(Session.HttpUri, Session.SessionKey, Number)).CheckError();
+        public async Task MuteAsync() => (await ApiMethods.MuteAllAsync(Session.Settings.HttpUri, Session.SessionKey, Number)).CheckError();
 
         /// <summary>
         /// 异步解除当前 <see cref="Group"/> 实例的禁言
         /// </summary>
-        public async Task UnmuteAsync() => (await ApiMethods.UnmuteAllAsync(Session.HttpUri, Session.SessionKey, Number)).CheckError();
+        public async Task UnmuteAsync() => (await ApiMethods.UnmuteAllAsync(Session.Settings.HttpUri, Session.SessionKey, Number)).CheckError();
 
         /// <summary>
         /// 异步离开当前 <see cref="Group"/> 实例
         /// </summary>
-        public async Task LeaveAsync() => (await ApiMethods.QuitAsync(Session.HttpUri, Session.SessionKey, Number)).CheckError();
+        public async Task LeaveAsync() => (await ApiMethods.QuitAsync(Session.Settings.HttpUri, Session.SessionKey, Number)).CheckError();
 
         /// <summary>
         /// 异步设置当前 <see cref="Group"/> 实例的名称
@@ -164,7 +164,7 @@ namespace HuajiTech.Mirai
         /// <param name="name">将要设定的名称</param>
         public async Task SetNameAsync(string name)
         {
-            (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { name })).CheckError();
+            (await ApiMethods.GroupConfig(Session.Settings.HttpUri, Session.SessionKey, Number, new { name })).CheckError();
             Name = name;
         }
 
@@ -174,7 +174,7 @@ namespace HuajiTech.Mirai
         /// <param name="announcement">将要设定的公告</param>
         public async Task SetAnnouncementAsync(string announcement)
         {
-            (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { announcement })).CheckError();
+            (await ApiMethods.GroupConfig(Session.Settings.HttpUri, Session.SessionKey, Number, new { announcement })).CheckError();
             GroupExtInfo.Announcement = announcement;
         }
 
@@ -184,7 +184,7 @@ namespace HuajiTech.Mirai
         /// <param name="enabled">是否启用</param>
         private async Task SetConfessTalkAsync(bool enabled)
         {
-            (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { confessTalk = enabled })).CheckError();
+            (await ApiMethods.GroupConfig(Session.Settings.HttpUri, Session.SessionKey, Number, new { confessTalk = enabled })).CheckError();
             GroupExtInfo.CanConfessTalk = enabled;
         }
 
@@ -204,7 +204,7 @@ namespace HuajiTech.Mirai
         /// <param name="allowed">是否允许</param>
         private async Task SetInviteAsync(bool allowed)
         {
-            (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { allowMemberInvite = allowed })).CheckError();
+            (await ApiMethods.GroupConfig(Session.Settings.HttpUri, Session.SessionKey, Number, new { allowMemberInvite = allowed })).CheckError();
             GroupExtInfo.CanInvite = allowed;
         }
 
@@ -224,7 +224,7 @@ namespace HuajiTech.Mirai
         /// <param name="enabled">是否启用</param>
         private async Task SetAutoApproveAsync(bool enabled)
         {
-            (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { autoApprove = enabled })).CheckError();
+            (await ApiMethods.GroupConfig(Session.Settings.HttpUri, Session.SessionKey, Number, new { autoApprove = enabled })).CheckError();
             GroupExtInfo.IsAutoApprove = enabled;
         }
 
@@ -244,7 +244,7 @@ namespace HuajiTech.Mirai
         /// <param name="enabled">是否启用</param>
         private async Task SetAnonymousAsync(bool enabled)
         {
-            (await ApiMethods.GroupConfig(Session.HttpUri, Session.SessionKey, Number, new { anonymousChat = enabled })).CheckError();
+            (await ApiMethods.GroupConfig(Session.Settings.HttpUri, Session.SessionKey, Number, new { anonymousChat = enabled })).CheckError();
             GroupExtInfo.CanAnonymous = enabled;
         }
 

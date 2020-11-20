@@ -73,7 +73,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// </summary>
         public async Task ListenAsync()
         {
-            Server = new(Session.WebsocketUri + "all?sessionKey=" + Session.SessionKey);
+            Server = new(Session.Settings.WebsocketUri + "all?sessionKey=" + Session.SessionKey);
             Server.OnMessage += (sender, e) => EventHandlingAsync(e.Data);
             await Task.Run(Server.Connect);
         }

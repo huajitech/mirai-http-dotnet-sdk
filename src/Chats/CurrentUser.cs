@@ -12,7 +12,7 @@ namespace HuajiTech.Mirai
     /// </summary>
     public class CurrentUser : User
     {
-        internal override Task<string> InternalSendAsync(MessageElement[] message, int? quoteId) => ApiMethods.SendFriendMessageAsync(Session.HttpUri, Session.SessionKey, Number, quoteId, message);
+        internal override Task<string> InternalSendAsync(MessageElement[] message, int? quoteId) => ApiMethods.SendFriendMessageAsync(Session.Settings.HttpUri, Session.SessionKey, Number, quoteId, message);
 
         /// <summary>
         /// 当前 <see cref="CurrentUser"/> 实例的好友列表
@@ -57,7 +57,7 @@ namespace HuajiTech.Mirai
         {
             if (refresh || FriendList == null)
             {
-                var result = await ApiMethods.GetFriendListAsync(Session.HttpUri, Session.SessionKey);
+                var result = await ApiMethods.GetFriendListAsync(Session.Settings.HttpUri, Session.SessionKey);
                 FriendList = await Task.Run(GetFriendsFromJson(result).ToList);
                 Friend = await GetFriendAsync(Number);
                 FriendList.Remove(Friend);
@@ -116,7 +116,7 @@ namespace HuajiTech.Mirai
         {
             if (refresh || GroupList == null)
             {
-                var result = await ApiMethods.GetGroupListAsync(Session.HttpUri, Session.SessionKey);
+                var result = await ApiMethods.GetGroupListAsync(Session.Settings.HttpUri, Session.SessionKey);
                 GroupList = await Task.Run(GetGroupsFromJson(result).ToList);
                 await GetGroupExtInfoAsync();
             }
@@ -131,7 +131,7 @@ namespace HuajiTech.Mirai
         {
             foreach (var group in GroupList)
             {
-                var info = await ApiMethods.GetGroupConfig(Session.HttpUri, Session.SessionKey, group.Number);
+                var info = await ApiMethods.GetGroupConfig(Session.Settings.HttpUri, Session.SessionKey, group.Number);
                 group.GroupExtInfo = GetGroupExtInfoFromJson(info);
             }
 
@@ -197,7 +197,7 @@ namespace HuajiTech.Mirai
         /// 创建一个 <see cref="CurrentUser"/> 实例
         /// </summary>
         /// <param name="session">指定 <see cref="CurrentUser"/> 实例所使用的 Session</param>
-        internal CurrentUser(Session session) : base(session, session.BotNumber)
+        internal CurrentUser(Session session) : base(session, Session.BotNumber)
         {
         }
     }

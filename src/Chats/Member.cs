@@ -11,7 +11,7 @@ namespace HuajiTech.Mirai
     /// </summary>
     public class Member : User
     {
-        internal override Task<string> InternalSendAsync(MessageElement[] message, int? quoteId) => ApiMethods.SendTempMessageAsync(Session.HttpUri, Session.SessionKey, Number, Group.Number, quoteId, message);
+        internal override Task<string> InternalSendAsync(MessageElement[] message, int? quoteId) => ApiMethods.SendTempMessageAsync(Session.Settings.HttpUri, Session.SessionKey, Number, Group.Number, quoteId, message);
 
         /// <inheritdoc/>
         public override string ToString() => $"{nameof(Member)}({Number},{Group.Number})";
@@ -73,20 +73,20 @@ namespace HuajiTech.Mirai
             }
             else
             {
-                (await ApiMethods.MuteAsync(Session.HttpUri, Session.SessionKey, Group.Number, Number, (int)time.TotalSeconds)).CheckError();
+                (await ApiMethods.MuteAsync(Session.Settings.HttpUri, Session.SessionKey, Group.Number, Number, (int)time.TotalSeconds)).CheckError();
             }
         }
 
         /// <summary>
         /// 异步解除当前 <see cref="Member"/> 实例的禁言
         /// </summary>
-        public async Task UnmuteAsync() => (await ApiMethods.UnmuteAsync(Session.HttpUri, Session.SessionKey, Group.Number, Number)).CheckError();
+        public async Task UnmuteAsync() => (await ApiMethods.UnmuteAsync(Session.Settings.HttpUri, Session.SessionKey, Group.Number, Number)).CheckError();
 
         /// <summary>
         /// 异步移除当前 <see cref="Member"/> 实例
         /// </summary>
         /// <param name="msg">移除消息</param>
-        public async Task KickAsync(string msg = null) => (await ApiMethods.KickAsync(Session.HttpUri, Session.SessionKey, Group.Number, Number, msg)).CheckError();
+        public async Task KickAsync(string msg = null) => (await ApiMethods.KickAsync(Session.Settings.HttpUri, Session.SessionKey, Group.Number, Number, msg)).CheckError();
 
         /// <summary>
         /// 异步设置当前 <see cref="Member"/> 实例的群名片
@@ -94,7 +94,7 @@ namespace HuajiTech.Mirai
         /// <param name="alias">将要设定的群名片</param>
         public async Task SetAliasAsync(string alias)
         {
-            (await ApiMethods.MemberInfo(Session.HttpUri, Session.SessionKey, Group.Number, Number, new { name = alias })).CheckError();
+            (await ApiMethods.MemberInfo(Session.Settings.HttpUri, Session.SessionKey, Group.Number, Number, new { name = alias })).CheckError();
             MemberExtInfo.Name = alias;
         }
 
@@ -104,7 +104,7 @@ namespace HuajiTech.Mirai
         /// <param name="title">将要设定的头衔</param>
         public async Task SetTitleAsync(string title)
         {
-            (await ApiMethods.MemberInfo(Session.HttpUri, Session.SessionKey, Group.Number, Number, new { specialTitle = title })).CheckError();
+            (await ApiMethods.MemberInfo(Session.Settings.HttpUri, Session.SessionKey, Group.Number, Number, new { specialTitle = title })).CheckError();
             MemberExtInfo.Title = title;
         }
 

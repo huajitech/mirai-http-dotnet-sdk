@@ -32,14 +32,9 @@ namespace HuajiTech.Mirai
         public ApiEventHandler ApiEventHandler { get; }
 
         /// <summary>
-        /// 获取当前 <see cref="Session"/> 实例的 HTTP URI
+        /// 获取当前 <see cref="Session"/> 实例的 API 管理器
         /// </summary>
-        internal string HttpUri => Settings.HttpUri;
-
-        /// <summary>
-        /// 获取当前 <see cref="Session"/> 实例的 Websocket URI
-        /// </summary>
-        internal string WebsocketUri => Settings.WebsocketUri;
+        public ApiManager ApiManager { get; }
 
         /// <summary>
         /// 获取当前 <see cref="Session"/> 实例的机器人号码
@@ -54,7 +49,7 @@ namespace HuajiTech.Mirai
         /// <summary>
         /// 异步释放 <see cref="Session"/> 实例
         /// </summary>
-        public async Task ReleaseAsync() => (await ApiMethods.ReleaseAsync(HttpUri, SessionKey, BotNumber)).CheckError();
+        public async Task ReleaseAsync() => (await ApiMethods.ReleaseAsync(Settings.HttpUri, SessionKey, BotNumber)).CheckError();
 
         /// <summary>
         /// 异步连接 <see cref="Session"/> 实例
@@ -71,7 +66,7 @@ namespace HuajiTech.Mirai
         /// </summary>
         private async Task AuthAsync()
         {
-            var info = JsonConvert.DeserializeObject<AuthInfo>((await ApiMethods.AuthAsync(HttpUri, Settings.AuthKey)).CheckError());
+            var info = JsonConvert.DeserializeObject<AuthInfo>((await ApiMethods.AuthAsync(Settings.HttpUri, Settings.AuthKey)).CheckError());
             SessionKey = info.SessionKey;
         }
 
@@ -80,7 +75,7 @@ namespace HuajiTech.Mirai
         /// </summary>
         private async Task VerifyAsync()
         {
-            (await ApiMethods.VerifyAsync(HttpUri, SessionKey, BotNumber)).CheckError();
+            (await ApiMethods.VerifyAsync(Settings.HttpUri, SessionKey, BotNumber)).CheckError();
             IsVerified = true;
         }
 
@@ -106,6 +101,7 @@ namespace HuajiTech.Mirai
             BotNumber = number;
             CurrentUser = new(this);
             ApiEventHandler = new(this);
+            ApiManager = new(this);
         }
     }
 }
