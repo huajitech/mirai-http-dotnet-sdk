@@ -37,7 +37,7 @@ namespace HuajiTech.Mirai
         /// <param name="e">指定 <see cref="MessageReceivedEventArgs"/> 实例</param>
         /// <param name="message">要发送的消息</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public static Task<Message> Reply(this MessageReceivedEventArgs e, ComplexMessage message) => e.Source.SendAsync(GetReplyMessage(e, message));
+        public static Task<Message> ReplyAsync(this MessageReceivedEventArgs e, ComplexMessage message) => e.Source.SendAsync(GetReplyMessage(e, message));
 
         /// <summary>
         /// 回复当前 <see cref="MessageReceivedEventArgs"/> 实例
@@ -45,7 +45,7 @@ namespace HuajiTech.Mirai
         /// <param name="e">指定 <see cref="MessageReceivedEventArgs"/> 实例</param>
         /// <param name="message">要发送的消息</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public static Task<Message> Reply(this MessageReceivedEventArgs e, MessageElement message) => e.Reply(ComplexMessage.Create(message));
+        public static Task<Message> ReplyAsync(this MessageReceivedEventArgs e, MessageElement message) => e.ReplyAsync(ComplexMessage.Create(message));
 
         /// <summary>
         /// 引用回复当前 <see cref="MessageReceivedEventArgs"/> 实例
@@ -53,7 +53,7 @@ namespace HuajiTech.Mirai
         /// <param name="e">指定 <see cref="MessageReceivedEventArgs"/> 实例</param>
         /// <param name="message">要发送的消息</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public static Task<Message> QuoteReply(this MessageReceivedEventArgs e, ComplexMessage message) => e.Source.SendAsync(e.Message.Quote() + GetReplyMessage(e, message));
+        public static Task<Message> QuoteReplyAsync(this MessageReceivedEventArgs e, ComplexMessage message) => e.Source.SendAsync(e.Message.Quote() + GetReplyMessage(e, message));
 
         /// <summary>
         /// 引用回复当前 <see cref="MessageReceivedEventArgs"/> 实例
@@ -61,7 +61,7 @@ namespace HuajiTech.Mirai
         /// <param name="e">指定 <see cref="MessageReceivedEventArgs"/> 实例</param>
         /// <param name="message">要发送的消息</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public static Task<Message> QuoteReply(this MessageReceivedEventArgs e, MessageElement message) => e.QuoteReply(ComplexMessage.Create(message));
+        public static Task<Message> QuoteReplyAsync(this MessageReceivedEventArgs e, MessageElement message) => e.QuoteReplyAsync(ComplexMessage.Create(message));
 
         /// <summary>
         /// 获取回复消息

@@ -88,7 +88,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <param name="sessionKey">Session Key</param>
         /// <param name="target">目标群号码</param>
         /// <param name="memberId">目标成员号码</param>
-        public static Task<string> GetMemberInfo(string uri, string sessionKey, long target, long memberId) => ApiHttpUtilities.GetAsync($"{uri}memberInfo?sessionKey={sessionKey}&target={target}&memberId={memberId}");
+        public static Task<string> GetMemberInfoAsync(string uri, string sessionKey, long target, long memberId) => ApiHttpUtilities.GetAsync($"{uri}memberInfo?sessionKey={sessionKey}&target={target}&memberId={memberId}");
 
         /// <summary>
         /// 异步获取群设置
@@ -96,7 +96,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <param name="uri">API URI</param>
         /// <param name="sessionKey">Session Key</param>
         /// <param name="target">目标群号码</param>
-        public static Task<string> GetGroupConfig(string uri, string sessionKey, long target) => ApiHttpUtilities.GetAsync($"{uri}groupConfig?sessionKey={sessionKey}&target={target}");
+        public static Task<string> GetGroupConfigAsync(string uri, string sessionKey, long target) => ApiHttpUtilities.GetAsync($"{uri}groupConfig?sessionKey={sessionKey}&target={target}");
 
         /// <summary>
         /// 异步修改群设置
@@ -105,7 +105,7 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <param name="sessionKey">Session Key</param>
         /// <param name="target">目标群号码</param>
         /// <param name="config">配置</param>
-        public static Task<string> GroupConfig(string uri, string sessionKey, long target, object config) => ApiHttpUtilities.PostAsync(uri + "groupConfig", JsonConvert.SerializeObject(new { sessionKey, target, config }));
+        public static Task<string> GroupConfigAsync(string uri, string sessionKey, long target, object config) => ApiHttpUtilities.PostAsync(uri + "groupConfig", JsonConvert.SerializeObject(new { sessionKey, target, config }));
 
         /// <summary>
         /// 异步修改群成员信息
@@ -115,6 +115,6 @@ namespace HuajiTech.Mirai.ApiHandlers
         /// <param name="target">目标群号码</param>
         /// <param name="memberId">目标成员号码</param>
         /// <param name="info">配置</param>
-        public static Task<string> MemberInfo(string uri, string sessionKey, long target, long memberId, object info) => ApiHttpUtilities.PostAsync(uri + "memberInfo", JsonConvert.SerializeObject(new { sessionKey, target, memberId, info }));
+        public static Task<string> MemberInfoAsync(string uri, string sessionKey, long target, long memberId, object info) => ApiHttpUtilities.PostAsync(uri + "memberInfo", JsonConvert.SerializeObject(new { sessionKey, target, memberId, info }));
     }
 }

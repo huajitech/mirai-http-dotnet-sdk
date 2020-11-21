@@ -131,7 +131,7 @@ namespace HuajiTech.Mirai
         {
             foreach (var group in GroupList)
             {
-                var info = await ApiMethods.GetGroupConfig(Session.Settings.HttpUri, Session.SessionKey, group.Number);
+                var info = await ApiMethods.GetGroupConfigAsync(Session.Settings.HttpUri, Session.SessionKey, group.Number);
                 group.GroupExtInfo = GetGroupExtInfoFromJson(info);
             }
 
