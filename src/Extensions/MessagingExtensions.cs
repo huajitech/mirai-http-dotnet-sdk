@@ -45,7 +45,6 @@ namespace HuajiTech.Mirai
         /// </summary>
         /// <param name="mediaElement">指定 <see cref="IMediaElement"/> 实例</param>
         /// <param name="path">文件路径</param>
-        /// <returns></returns>
         public static async Task SaveTo(this IMediaElement mediaElement, string path)
         {
             var uri = mediaElement.Uri ?? throw new NotSupportedException();

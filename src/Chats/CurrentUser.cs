@@ -197,7 +197,7 @@ namespace HuajiTech.Mirai
         /// 创建一个 <see cref="CurrentUser"/> 实例
         /// </summary>
         /// <param name="session">指定 <see cref="CurrentUser"/> 实例所使用的 Session</param>
-        internal CurrentUser(Session session) : base(session, Session.BotNumber)
+        internal CurrentUser(Session session) : base(session, session.BotNumber)
         {
         }
     }
