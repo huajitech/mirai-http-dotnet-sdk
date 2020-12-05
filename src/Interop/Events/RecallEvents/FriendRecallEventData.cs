@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace HuajiTech.Mirai.Interop.Events
+namespace HuajiTech.Mirai.Http.Interop.Events
 {
     internal class FriendRecallEventData : RecallEventData
     {

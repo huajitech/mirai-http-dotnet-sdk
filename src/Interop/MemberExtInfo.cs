@@ -1,4 +1,4 @@
-﻿namespace HuajiTech.Mirai.Interop
+﻿namespace HuajiTech.Mirai.Http.Interop
 {
     /// <summary>
     /// 定义成员额外信息

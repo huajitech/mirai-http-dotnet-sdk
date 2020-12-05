@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HuajiTech.Mirai
+namespace HuajiTech.Mirai.Http
 {
     /// <summary>
     /// 调用 API 时所引发的异常

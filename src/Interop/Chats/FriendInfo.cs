@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai.Interop
+namespace HuajiTech.Mirai.Http.Interop
 {
     internal class FriendInfo : ChatInfo
     {

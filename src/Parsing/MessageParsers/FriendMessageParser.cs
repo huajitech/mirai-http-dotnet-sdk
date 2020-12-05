@@ -1,10 +1,10 @@
-﻿using HuajiTech.Mirai.Interop.Messaging;
-using HuajiTech.Mirai.Messaging;
+﻿using HuajiTech.Mirai.Http.Interop.Messaging;
+using HuajiTech.Mirai.Http.Messaging;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
 
-namespace HuajiTech.Mirai.Parsing
+namespace HuajiTech.Mirai.Http.Parsing
 {
     /// <summary>
     /// 用作解析用户消息的 <see cref="MessageParser"/>

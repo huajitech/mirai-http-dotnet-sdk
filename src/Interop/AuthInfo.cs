@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace HuajiTech.Mirai.Interop
+namespace HuajiTech.Mirai.Http.Interop
 {
     internal class AuthInfo
     {

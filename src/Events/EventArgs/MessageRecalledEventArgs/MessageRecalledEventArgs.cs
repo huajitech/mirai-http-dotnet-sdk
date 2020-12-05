@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HuajiTech.Mirai.Events
+namespace HuajiTech.Mirai.Http.Events
 {
     /// <summary>
     /// 为消息撤回事件提供数据

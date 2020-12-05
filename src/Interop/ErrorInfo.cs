@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace HuajiTech.Mirai.Interop
+namespace HuajiTech.Mirai.Http.Interop
 {
     /// <summary>
     /// 定义错误信息

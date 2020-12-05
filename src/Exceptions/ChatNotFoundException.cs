@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HuajiTech.Mirai
+namespace HuajiTech.Mirai.Http
 {
     /// <summary>
     /// 所指定的 <see cref="Chat"/> 未找到时引发的异常

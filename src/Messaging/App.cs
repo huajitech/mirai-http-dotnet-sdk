@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace HuajiTech.Mirai.Messaging
+namespace HuajiTech.Mirai.Http.Messaging
 {
     /// <summary>
     /// 表示 App 的 <see cref="MessageElement"/>

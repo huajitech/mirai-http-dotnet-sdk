@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HuajiTech.Mirai
+namespace HuajiTech.Mirai.Http
 {
     /// <summary>
     /// 消息格式不正确时所引发的异常

@@ -1,10 +1,10 @@
-﻿using HuajiTech.Mirai.Messaging;
+﻿using HuajiTech.Mirai.Http.Messaging;
 using System;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai
+namespace HuajiTech.Mirai.Http
 {
     /// <summary>
     /// 定义 <see cref="Messaging"/> 中的类型的扩展方法

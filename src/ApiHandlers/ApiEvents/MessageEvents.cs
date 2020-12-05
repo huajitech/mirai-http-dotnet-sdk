@@ -1,12 +1,12 @@
-﻿using HuajiTech.Mirai.Events;
-using HuajiTech.Mirai.Interop;
-using HuajiTech.Mirai.Parsing;
+﻿using HuajiTech.Mirai.Http.Events;
+using HuajiTech.Mirai.Http.Interop;
+using HuajiTech.Mirai.Http.Parsing;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai.ApiHandlers
+namespace HuajiTech.Mirai.Http.ApiHandlers
 {
     public partial class ApiEventHandler
     {

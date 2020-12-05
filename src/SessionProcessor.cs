@@ -1,4 +1,4 @@
-﻿namespace HuajiTech.Mirai
+﻿namespace HuajiTech.Mirai.Http
 {
     /// <summary>
     /// 用作基于 Session 处理的基类

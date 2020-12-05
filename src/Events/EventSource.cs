@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai.Events
+namespace HuajiTech.Mirai.Http.Events
 {
     /// <summary>
     /// 定义事件源

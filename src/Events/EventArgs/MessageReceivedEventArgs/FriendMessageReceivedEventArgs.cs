@@ -1,4 +1,4 @@
-﻿namespace HuajiTech.Mirai.Events
+﻿namespace HuajiTech.Mirai.Http.Events
 {
     /// <summary>
     /// 为好友消息接收事件提供数据

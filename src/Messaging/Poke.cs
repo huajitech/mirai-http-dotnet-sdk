@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace HuajiTech.Mirai.Messaging
+namespace HuajiTech.Mirai.Http.Messaging
 {
     /// <summary>
     /// 表示戳一戳的 <see cref="MessageElement"/>

@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai.Utilities
+namespace HuajiTech.Mirai.Http.Utilities
 {
     /// <summary>
     /// 提供与 HTTP 交互的方法

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai.Events
+namespace HuajiTech.Mirai.Http.Events
 {
     /// <summary>
     /// Represents the method that will handle an event when the event provides data.

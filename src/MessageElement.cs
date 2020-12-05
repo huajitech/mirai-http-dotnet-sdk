@@ -1,8 +1,8 @@
-﻿using HuajiTech.Mirai.Messaging;
-using HuajiTech.Mirai.Utilities;
+﻿using HuajiTech.Mirai.Http.Messaging;
+using HuajiTech.Mirai.Http.Utilities;
 using Newtonsoft.Json;
 
-namespace HuajiTech.Mirai
+namespace HuajiTech.Mirai.Http
 {
     /// <summary>
     /// 表示消息元素

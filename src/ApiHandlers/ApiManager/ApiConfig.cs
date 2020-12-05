@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai.ApiHandlers
+namespace HuajiTech.Mirai.Http.ApiHandlers
 {
     /// <summary>
     /// 表示 API 配置

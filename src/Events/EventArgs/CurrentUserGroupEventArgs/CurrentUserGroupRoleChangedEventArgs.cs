@@ -1,4 +1,4 @@
-﻿namespace HuajiTech.Mirai.Events
+﻿namespace HuajiTech.Mirai.Http.Events
 {
     /// <summary>
     /// 为当前用户的成员角色更改事件提供数据

@@ -1,4 +1,4 @@
-﻿namespace HuajiTech.Mirai.Utilities
+﻿namespace HuajiTech.Mirai.Http.Utilities
 {
     internal static class NullableUtilities
     {

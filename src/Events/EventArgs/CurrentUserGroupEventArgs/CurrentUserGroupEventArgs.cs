@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HuajiTech.Mirai.Events
+namespace HuajiTech.Mirai.Http.Events
 {
     /// <summary>
     /// 为当前用户群事件提供数据

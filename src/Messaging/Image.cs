@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HuajiTech.Mirai.Messaging
+namespace HuajiTech.Mirai.Http.Messaging
 {
     /// <summary>
     /// 表示图片的 <see cref="MessageElement"/>

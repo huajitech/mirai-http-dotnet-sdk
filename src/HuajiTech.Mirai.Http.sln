@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HuajiTech.Mirai", "HuajiTech.Mirai.csproj", "{E4548FCC-DE39-40F0-8838-2D8B2035A90F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HuajiTech.Mirai.Http", "HuajiTech.Mirai.Http.csproj", "{E4548FCC-DE39-40F0-8838-2D8B2035A90F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

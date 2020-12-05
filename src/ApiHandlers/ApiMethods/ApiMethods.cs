@@ -1,7 +1,7 @@
-﻿using HuajiTech.Mirai.Utilities;
+﻿using HuajiTech.Mirai.Http.Utilities;
 using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai.ApiHandlers
+namespace HuajiTech.Mirai.Http.ApiHandlers
 {
     internal static partial class ApiMethods
     {

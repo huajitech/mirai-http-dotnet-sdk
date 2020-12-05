@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai.Events
+namespace HuajiTech.Mirai.Http.Events
 {
     /// <summary>
     /// 指定机器人事件源

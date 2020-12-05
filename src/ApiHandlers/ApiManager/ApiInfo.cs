@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace HuajiTech.Mirai.ApiHandlers
+namespace HuajiTech.Mirai.Http.ApiHandlers
 {
     /// <summary>
     /// 表示 API 信息

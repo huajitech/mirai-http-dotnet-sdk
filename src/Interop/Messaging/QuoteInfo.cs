@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace HuajiTech.Mirai.Interop.Messaging
+namespace HuajiTech.Mirai.Http.Interop.Messaging
 {
     internal class QuoteInfo
     {

@@ -1,7 +1,7 @@
-﻿using HuajiTech.Mirai.Events;
+﻿using HuajiTech.Mirai.Http.Events;
 using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai
+namespace HuajiTech.Mirai.Http
 {
     /// <summary>
     /// 定义 <see cref="Events"/> 中的类型的扩展方法

@@ -1,7 +1,7 @@
-﻿using HuajiTech.Mirai.Messaging;
+﻿using HuajiTech.Mirai.Http.Messaging;
 using Newtonsoft.Json;
 
-namespace HuajiTech.Mirai.Interop.Messaging
+namespace HuajiTech.Mirai.Http.Interop.Messaging
 {
     internal class FaceInfo
     {

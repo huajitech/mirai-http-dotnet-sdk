@@ -1,5 +1,5 @@
-﻿using HuajiTech.Mirai.Events;
-using HuajiTech.Mirai.Interop;
+﻿using HuajiTech.Mirai.Http.Events;
+using HuajiTech.Mirai.Http.Interop;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Immutable;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebSocketSharp;
 
-namespace HuajiTech.Mirai.ApiHandlers
+namespace HuajiTech.Mirai.Http.ApiHandlers
 {
     /// <summary>
     /// 用作与 API 通过 Websocket 交互

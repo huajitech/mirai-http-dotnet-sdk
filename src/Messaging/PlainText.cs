@@ -1,8 +1,8 @@
-﻿using HuajiTech.Mirai.Utilities;
+﻿using HuajiTech.Mirai.Http.Utilities;
 using Newtonsoft.Json;
 using System;
 
-namespace HuajiTech.Mirai.Messaging
+namespace HuajiTech.Mirai.Http.Messaging
 {
     /// <summary>
     /// 表示纯文本的 <see cref="MessageElement"/>

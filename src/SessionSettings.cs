@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HuajiTech.Mirai
+namespace HuajiTech.Mirai.Http
 {
     /// <summary>
     /// 定义 Session 设置

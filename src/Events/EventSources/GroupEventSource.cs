@@ -1,4 +1,4 @@
-﻿namespace HuajiTech.Mirai.Events
+﻿namespace HuajiTech.Mirai.Http.Events
 {
     /// <summary>
     /// 指定群事件源

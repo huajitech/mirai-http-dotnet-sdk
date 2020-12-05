@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace HuajiTech.Mirai.Utilities
+namespace HuajiTech.Mirai.Http.Utilities
 {
     /// <summary>
     /// 提供实例转换为类型字符串的方法

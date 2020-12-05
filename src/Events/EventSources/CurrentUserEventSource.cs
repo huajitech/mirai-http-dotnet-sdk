@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai.Events
+namespace HuajiTech.Mirai.Http.Events
 {
     /// <summary>
     /// 指定当前用户事件源

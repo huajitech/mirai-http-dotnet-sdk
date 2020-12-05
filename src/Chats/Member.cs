@@ -1,10 +1,10 @@
-﻿using HuajiTech.Mirai.ApiHandlers;
-using HuajiTech.Mirai.Interop;
+﻿using HuajiTech.Mirai.Http.ApiHandlers;
+using HuajiTech.Mirai.Http.Interop;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai
+namespace HuajiTech.Mirai.Http
 {
     /// <summary>
     /// 定义成员

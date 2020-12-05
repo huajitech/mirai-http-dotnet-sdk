@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai.ApiHandlers
+namespace HuajiTech.Mirai.Http.ApiHandlers
 {
     /// <summary>
     /// 用作对 API 的管理器

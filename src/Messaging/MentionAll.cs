@@ -1,4 +1,4 @@
-﻿namespace HuajiTech.Mirai.Messaging
+﻿namespace HuajiTech.Mirai.Http.Messaging
 {
     /// <summary>
     /// 表示提及全体成员的 <see cref="MessageElement"/>

@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace HuajiTech.Mirai.Interop
+namespace HuajiTech.Mirai.Http.Interop
 {
     internal class MessageData
     {

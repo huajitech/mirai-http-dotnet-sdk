@@ -1,11 +1,11 @@
-﻿using HuajiTech.Mirai.Messaging;
-using HuajiTech.Mirai.Utilities;
+﻿using HuajiTech.Mirai.Http.Messaging;
+using HuajiTech.Mirai.Http.Utilities;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai
+namespace HuajiTech.Mirai.Http
 {
     /// <summary>
     /// 定义聊天

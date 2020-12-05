@@ -1,9 +1,9 @@
-﻿using HuajiTech.Mirai.Events;
-using HuajiTech.Mirai.Interop.Events;
+﻿using HuajiTech.Mirai.Http.Events;
+using HuajiTech.Mirai.Http.Interop.Events;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai.ApiHandlers
+namespace HuajiTech.Mirai.Http.ApiHandlers
 {
     public partial class ApiEventHandler
     {

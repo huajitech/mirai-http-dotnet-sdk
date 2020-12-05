@@ -1,7 +1,7 @@
-﻿using HuajiTech.Mirai.ApiHandlers;
+﻿using HuajiTech.Mirai.Http.ApiHandlers;
 using System.Threading.Tasks;
 
-namespace HuajiTech.Mirai
+namespace HuajiTech.Mirai.Http
 {
     /// <summary>
     /// 定义好友

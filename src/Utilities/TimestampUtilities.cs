@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HuajiTech.Mirai.Utilities
+namespace HuajiTech.Mirai.Http.Utilities
 {
     /// <summary>
     /// 提供 <see cref="DateTime"/> 与时间戳之间的转换方法

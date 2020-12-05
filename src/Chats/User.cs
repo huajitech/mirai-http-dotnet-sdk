@@ -1,4 +1,4 @@
-﻿namespace HuajiTech.Mirai
+﻿namespace HuajiTech.Mirai.Http
 {
     /// <summary>
     /// 定义用户
