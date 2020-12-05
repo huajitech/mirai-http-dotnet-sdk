@@ -10,7 +10,7 @@ namespace HuajiTech.Mirai.Http.Events
     public class FriendMessageRecalledEventSource : EventSource<MessageRecalledEventArgs>
     {
         /// <inheritdoc/>
-        internal override string Type { get; } = "FriendRecall";
+        internal override string Type { get; } = "FriendRecallEvent";
 
         /// <inheritdoc/>
         private protected override async Task<MessageRecalledEventArgs> ToEventArgs(string data, Session session)
