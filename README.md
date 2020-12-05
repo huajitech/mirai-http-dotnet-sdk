@@ -74,7 +74,6 @@
 
 ### SDK
 
-- 优化事件系统（将 EventSource 改为单个事件的处理器和提供源）
 - 优化文档，统一文档风格
 
 ### [API](https://github.com/project-mirai/mirai-api-http/blob/master/docs/API.md)
