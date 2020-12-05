@@ -9,7 +9,8 @@ namespace HuajiTech.Mirai.Http.Messaging
     /// </summary>
     public class PlainText : MessageElement, IEquatable<PlainText>
     {
-        internal override string Type { get; } = "Plain";
+        /// <inheritdoc/>
+        protected override string Type { get; } = "Plain";
 
         /// <summary>
         /// 获取当前 <see cref="PlainText"/> 实例的内容

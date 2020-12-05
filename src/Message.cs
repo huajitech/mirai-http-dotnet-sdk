@@ -63,7 +63,20 @@ namespace HuajiTech.Mirai.Http
             var result = (await ApiMethods.GetMessageAsync(session.Settings.HttpUri, session.SessionKey, id)).CheckError();
             var data = JObject.Parse(result)["data"].ToObject<MessageData>();
             var parser = MessageParser.GetParser(currentUser, data);
-            var elements = await Task.Run(() => parser.ParseMore(data.MessageChain));
+
+            return await ToMessageAsync(session, parser, data.MessageChain);
+        }
+
+        /// <summary>
+        /// 异步转换消息链 Json 至 <see cref="Message"/> 实例
+        /// </summary>
+        /// <param name="session">会话</param>
+        /// <param name="parser">消息解析器</param>
+        /// <param name="messageChain">消息链</param>
+        /// <returns></returns>
+        internal static async Task<Message> ToMessageAsync(Session session, MessageParser parser, JArray messageChain)
+        {
+            var elements = await Task.Run(() => parser.ParseMore(messageChain));
             return new(session, elements.ToList());
         }
 

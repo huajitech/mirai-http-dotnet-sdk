@@ -7,7 +7,8 @@ namespace HuajiTech.Mirai.Http.Messaging
     /// </summary>
     public class Json : MessageElement
     {
-        internal override string Type { get; } = "Json";
+        /// <inheritdoc/>
+        protected override string Type { get; } = "Json";
 
         /// <summary>
         /// 获取当前 <see cref="Json"/> 实例的内容

@@ -7,7 +7,8 @@ namespace HuajiTech.Mirai.Http.Messaging
     /// </summary>
     public class Mention : MessageElement
     {
-        internal override string Type { get; } = "At";
+        /// <inheritdoc/>
+        protected override string Type { get; } = "At";
 
         /// <summary>
         /// 获取当前 <see cref="Mention"/> 实例的目标

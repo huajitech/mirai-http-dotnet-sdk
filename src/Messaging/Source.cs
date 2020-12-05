@@ -7,7 +7,7 @@ namespace HuajiTech.Mirai.Http.Messaging
     /// </summary>
     internal class Source : MessageElement
     {
-        internal override string Type { get; } = "Source";
+        protected override string Type { get; } = "Source";
 
         /// <summary>
         /// 获取当前 <see cref="Source"/> 实例的 ID

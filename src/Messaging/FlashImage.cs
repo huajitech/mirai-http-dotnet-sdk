@@ -7,7 +7,8 @@ namespace HuajiTech.Mirai.Http.Messaging
     /// </summary>
     public class FlashImage : ImageBase
     {
-        internal override string Type { get; } = "FlashImage";
+        /// <inheritdoc/>
+        protected override string Type { get; } = "FlashImage";
 
         /// <summary>
         /// 创建 <see cref="FlashImage"/> 实例

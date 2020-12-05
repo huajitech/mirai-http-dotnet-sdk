@@ -22,7 +22,7 @@ namespace HuajiTech.Mirai.Http.Utilities
             }
             catch (HttpRequestException e)
             {
-                throw new HttpRequestException(Resources.CannotConnectToApi, e); 
+                throw new HttpRequestException(Resources.CannotConnectToApi, e);
             }
         }
 

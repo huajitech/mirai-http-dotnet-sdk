@@ -7,7 +7,8 @@ namespace HuajiTech.Mirai.Http.Messaging
     /// </summary>
     public class Emoticon : MessageElement
     {
-        internal override string Type { get; } = "Face";
+        /// <inheritdoc/>
+        protected override string Type { get; } = "Face";
 
         /// <summary>
         /// 获取当前 <see cref="Emoticon"/> 实例的 ID

@@ -9,29 +9,6 @@ namespace HuajiTech.Mirai.Http
     public static class EventExtensions
     {
         /// <summary>
-        /// 添加消息接收事件处理程序
-        /// </summary>
-        /// <param name="currentUserEventSource">当前用户事件源</param>
-        /// <param name="handler">事件处理器</param>
-        public static void AddMessageReceivedEventHandler(this CurrentUserEventSource currentUserEventSource, AsyncEventHandler<MessageReceivedEventArgs> handler)
-        {
-            currentUserEventSource.FriendMessageReceivedEvent += new(handler);
-            currentUserEventSource.GroupMessageReceivedEvent += new(handler);
-            currentUserEventSource.MemberMessageReceivedEvent += new(handler);
-        }
-
-        /// <summary>
-        /// 添加消息撤回事件处理程序
-        /// </summary>
-        /// <param name="currentUserEventSource">当前用户事件源</param>
-        /// <param name="handler">事件处理器</param>
-        public static void AddMessageRecalledEventHandler(this CurrentUserEventSource currentUserEventSource, AsyncEventHandler<MessageRecalledEventArgs> handler)
-        {
-            currentUserEventSource.FriendMessageRecalledEvent += handler;
-            currentUserEventSource.GroupMessageRecalledEvent += new(handler);
-        }
-
-        /// <summary>
         /// 回复当前 <see cref="MessageReceivedEventArgs"/> 实例
         /// </summary>
         /// <param name="e">指定 <see cref="MessageReceivedEventArgs"/> 实例</param>

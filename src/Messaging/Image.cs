@@ -7,7 +7,8 @@ namespace HuajiTech.Mirai.Http.Messaging
     /// </summary>
     public class Image : ImageBase
     {
-        internal override string Type { get; } = "Image";
+        /// <inheritdoc/>
+        protected override string Type { get; } = "Image";
 
         /// <summary>
         /// 创建 <see cref="Image"/> 实例

@@ -9,7 +9,8 @@ namespace HuajiTech.Mirai.Http.Messaging
     /// </summary>
     public class Poke : MessageElement
     {
-        internal override string Type { get; } = "Poke";
+        /// <inheritdoc/>
+        protected override string Type { get; } = "Poke";
 
         /// <summary>
         /// 戳一戳类型 <see cref="Messaging.PokeType"/> 对 <see cref="string"/> 的字典

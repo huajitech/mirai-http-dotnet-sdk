@@ -7,7 +7,8 @@ namespace HuajiTech.Mirai.Http.Messaging
     /// </summary>
     public class Xml : MessageElement
     {
-        internal override string Type { get; } = "Xml";
+        /// <inheritdoc/>
+        protected override string Type { get; } = "Xml";
 
         /// <summary>
         /// 获取当前 <see cref="Xml"/> 实例的内容

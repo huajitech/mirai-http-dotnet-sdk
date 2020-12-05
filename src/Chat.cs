@@ -23,7 +23,7 @@ namespace HuajiTech.Mirai.Http
         /// <param name="message">要发送的消息</param>
         /// <param name="quoteId">要引用的消息 ID</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        internal abstract Task<string> InternalSendAsync(MessageElement[] message, int? quoteId);
+        private protected abstract Task<string> InternalSendAsync(MessageElement[] message, int? quoteId);
 
         /// <summary>
         /// 异步发送消息到当前 <see cref="Chat"/> 实例

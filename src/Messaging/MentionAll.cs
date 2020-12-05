@@ -5,7 +5,8 @@
     /// </summary>
     public class MentionAll : MessageElement
     {
-        internal override string Type { get; } = "AtAll";
+        /// <inheritdoc/>
+        protected override string Type { get; } = "AtAll";
 
         /// <summary>
         /// 创建 <see cref="MentionAll"/> 实例

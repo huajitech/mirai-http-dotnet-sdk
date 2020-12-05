@@ -8,7 +8,8 @@ namespace HuajiTech.Mirai.Http.Messaging
     /// </summary>
     public class Voice : MessageElement, IMediaElement
     {
-        internal override string Type { get; } = "Voice";
+        /// <inheritdoc/>
+        protected override string Type { get; } = "Voice";
 
         /// <inheritdoc/>
         [JsonProperty(PropertyName = "voiceId", NullValueHandling = NullValueHandling.Ignore)]

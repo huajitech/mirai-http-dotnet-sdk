@@ -7,7 +7,8 @@ namespace HuajiTech.Mirai.Http.Messaging
     /// </summary>
     public class App : MessageElement
     {
-        internal override string Type { get; } = "App";
+        /// <inheritdoc/>
+        protected override string Type { get; } = "App";
 
         /// <summary>
         /// 获取当前 <see cref="App"/> 实例的内容

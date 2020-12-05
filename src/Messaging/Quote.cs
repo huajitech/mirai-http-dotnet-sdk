@@ -7,7 +7,8 @@ namespace HuajiTech.Mirai.Http.Messaging
     /// </summary>
     public class Quote : MessageElement
     {
-        internal override string Type { get; } = "Quote";
+        /// <inheritdoc/>
+        protected override string Type { get; } = "Quote";
 
         /// <summary>
         /// 获取当前 <see cref="Quote"/> 实例的消息
