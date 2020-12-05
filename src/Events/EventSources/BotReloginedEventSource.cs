@@ -12,7 +12,7 @@ namespace HuajiTech.Mirai.Http.Events
         internal override string Type { get; } = "BotReloginEvent";
 
         /// <inheritdoc/>
-        private protected override async Task<BotEventArgs> ToEventArgs(string data, Session session)
+        private protected override async Task<BotEventArgs> ToEventArgsAsync(string data, Session session)
         {
             await Task.Delay(0);
             return JsonConvert.DeserializeObject<BotEventArgs>(data);

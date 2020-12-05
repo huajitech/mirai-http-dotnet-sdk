@@ -14,7 +14,7 @@ namespace HuajiTech.Mirai.Http.Events
         internal override string Type { get; } = "GroupMessage";
 
         /// <inheritdoc/>
-        private protected override async Task<GroupMessageReceivedEventArgs> ToEventArgs(string data, Session session)
+        private protected override async Task<GroupMessageReceivedEventArgs> ToEventArgsAsync(string data, Session session)
         {
             var messageData = JsonConvert.DeserializeObject<MessageData>(data);
             var member = await messageData.Sender.ToObject<MemberInfo>().GetMemberAsync(session.CurrentUser);

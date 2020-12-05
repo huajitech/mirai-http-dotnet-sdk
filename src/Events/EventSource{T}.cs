@@ -25,14 +25,14 @@ namespace HuajiTech.Mirai.Http.Events
         string IEventSource.Type => Type;
 
         /// <inheritdoc/>
-        async Task IEventSource.InvokeAsync(string data, Session session) => await InvokeAsync(Event, session, await ToEventArgs(data, session));
+        async Task IEventSource.InvokeAsync(string data, Session session) => await InvokeAsync(Event, session, await ToEventArgsAsync(data, session));
 
         /// <summary>
         /// 将事件信息 Json 转换为 <typeparamref name="TEventArgs"/> 实例
         /// </summary>
         /// <param name="data">事件信息 Json</param>
         /// <param name="session">会话</param>
-        private protected abstract Task<TEventArgs> ToEventArgs(string data, Session session);
+        private protected abstract Task<TEventArgs> ToEventArgsAsync(string data, Session session);
 
         /// <summary>
         /// 异步调用事件

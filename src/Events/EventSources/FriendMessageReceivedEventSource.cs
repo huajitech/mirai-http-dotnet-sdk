@@ -14,7 +14,7 @@ namespace HuajiTech.Mirai.Http.Events
         internal override string Type { get; } = "FriendMessage";
 
         /// <inheritdoc/>
-        private protected override async Task<FriendMessageReceivedEventArgs> ToEventArgs(string data, Session session)
+        private protected override async Task<FriendMessageReceivedEventArgs> ToEventArgsAsync(string data, Session session)
         {
             var messageData = JsonConvert.DeserializeObject<MessageData>(data);
             var friend = await messageData.Sender.ToObject<FriendInfo>().GetFriendAsync(session.CurrentUser);

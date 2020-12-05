@@ -13,7 +13,7 @@ namespace HuajiTech.Mirai.Http.Events
         internal override string Type { get; } = "GroupRecallEvent";
 
         /// <inheritdoc/>
-        private protected override async Task<GroupMessageRecalledEventArgs> ToEventArgs(string data, Session session)
+        private protected override async Task<GroupMessageRecalledEventArgs> ToEventArgsAsync(string data, Session session)
         {
             var eventData = JsonConvert.DeserializeObject<GroupRecallEventData>(data);
             var group = await eventData.Group.GetGroupAsync(session.CurrentUser);

@@ -13,7 +13,7 @@ namespace HuajiTech.Mirai.Http.Events
         internal override string Type { get; } = "FriendRecallEvent";
 
         /// <inheritdoc/>
-        private protected override async Task<MessageRecalledEventArgs> ToEventArgs(string data, Session session)
+        private protected override async Task<MessageRecalledEventArgs> ToEventArgsAsync(string data, Session session)
         {
             var eventData = JsonConvert.DeserializeObject<FriendRecallEventData>(data);
             var @operator = await session.CurrentUser.GetUserAsync(eventData.Operator);
