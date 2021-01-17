@@ -17,5 +17,12 @@ namespace HuajiTech.Mirai.Http.Events
             await Task.Delay(0);
             return JsonConvert.DeserializeObject<BotEventArgs>(data);
         }
+
+        /// <summary>
+        /// 创建 <see cref="BotLoginedEventSource"/> 实例
+        /// </summary>
+        public BotLoginedEventSource()
+        {
+        }
     }
 }

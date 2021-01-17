@@ -22,5 +22,12 @@ namespace HuajiTech.Mirai.Http.Events
 
             return new(@operator, target, message);
         }
+
+        /// <summary>
+        /// 创建 <see cref="FriendMessageRecalledEventSource"/> 实例
+        /// </summary>
+        public FriendMessageRecalledEventSource()
+        {
+        }
     }
 }
