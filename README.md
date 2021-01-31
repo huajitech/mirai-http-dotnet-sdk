@@ -26,7 +26,7 @@
 - 运行以下命令，添加 HuajiTech 早期访问 NuGet 源：
 
   ```bash
-  dotnet nuget add source https://gitlab.example.com/api/v4/projects/18/packages/nuget/index.json --name huajitech-early-access
+  dotnet nuget add source https://gitlab.huajitech.net/api/v4/projects/18/packages/nuget/index.json --name huajitech-early-access
   ```
 
 - 编辑 `.csproj` （或 `.vbproj`、`.fsproj`）文件，并添加一行以指定最新版本的 HuajiTech.Mirai.Http 早期访问包。
@@ -41,13 +41,13 @@
 - 在**程序包管理器控制台**中运行以下命令，安装 HuajiTech.Mirai.Http 早期访问包：
 
   ```powershell
-  Install-Package HuajiTech.Mirai.Http -Source https://gitlab.example.com/api/v4/projects/18/packages/nuget/index.json
+  Install-Package HuajiTech.Mirai.Http -Source https://gitlab.huajitech.net/api/v4/projects/18/packages/nuget/index.json
   ```
 
 - 在**程序包管理器控制台**中运行以下命令，更新包：
 
   ```powershell
-  Update-Package HuajiTech.Mirai.Http -Source https://gitlab.example.com/api/v4/projects/18/packages/nuget/index.json
+  Update-Package HuajiTech.Mirai.Http -Source https://gitlab.huajitech.net/api/v4/projects/18/packages/nuget/index.json
   ```
 
 
