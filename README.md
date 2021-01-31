@@ -23,10 +23,10 @@
 
 #### 使用 dotnet CLI 和 PackageReference
 
-- 运行以下命令，添加 HuajiTech 早期访问 NuGet 源：
+- 运行以下命令，添加项目 GitLab Package Registry NuGet 源：
 
   ```bash
-  dotnet nuget add source https://gitlab.huajitech.net/api/v4/projects/18/packages/nuget/index.json --name huajitech-early-access
+  dotnet nuget add source https://gitlab.huajitech.net/api/v4/projects/18/packages/nuget/index.json --name mirai-http-dotnet-sdk
   ```
 
 - 编辑 `.csproj` （或 `.vbproj`、`.fsproj`）文件，并添加一行以指定最新版本的 HuajiTech.Mirai.Http 早期访问包。
