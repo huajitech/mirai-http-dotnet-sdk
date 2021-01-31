@@ -12,7 +12,7 @@
 
 - 文档：https://mirai-http-dotnet-sdk.projects.huajitech.net/
 - mirai 项目：https://github.com/mamoe/mirai
-- mirai-api-http 项目：https://github.com/project-mirai/mirai-api-http
+- mirai-api-http 项目：https://github.com/mamoe/mirai-api-http
 
 ## 早期访问构建
 
