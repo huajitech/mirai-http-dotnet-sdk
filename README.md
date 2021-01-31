@@ -16,20 +16,20 @@
 
 ## 早期访问构建
 
-- (推荐) packages.huajitech.net 上的 [HuajiTech.Mirai.Http](https://packages.huajitech.net/feeds/early-access-nuget/HuajiTech.Mirai.Http/versions)。
+- (推荐) GitLab Package Registry 上的 [HuajiTech.Mirai.Http](https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/-/packages)。
 - [GitLab CI](https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/-/pipelines) 的最新 [Pack 产物](https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/-/jobs/artifacts/master/download?job=pack) / [Build 产物](https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/-/jobs/artifacts/master/download?job=build)
 
-### 使用 packages.huajitech.net 上的早期访问包
+### 使用 [GitLab Package Registry](https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/-/packages) 上的早期访问包
 
 #### 使用 dotnet CLI 和 PackageReference
 
 - 运行以下命令，添加 HuajiTech 早期访问 NuGet 源：
 
   ```bash
-  dotnet nuget add source https://packages.huajitech.net/nuget/early-access-nuget/v3/index.json --name huajitech-early-access
+  dotnet nuget add source https://gitlab.example.com/api/v4/projects/18/packages/nuget/index.json --name huajitech-early-access
   ```
 
-- 编辑 `.csproj` （或 `.vbproj`、`.fsproj`）文件，并添加一行以指定最新版本的 [HuajiTech.Mirai.Http](https://packages.huajitech.net/feeds/early-access-nuget/HuajiTech.Mirai.Http/versions) 早期访问包。
+- 编辑 `.csproj` （或 `.vbproj`、`.fsproj`）文件，并添加一行以指定最新版本的 HuajiTech.Mirai.Http 早期访问包。
   例如，`.csproj` 文件可能包含如下所示的 `PackageReference`：
 
   ```xml
@@ -41,13 +41,13 @@
 - 在**程序包管理器控制台**中运行以下命令，安装 HuajiTech.Mirai.Http 早期访问包：
 
   ```powershell
-  Install-Package HuajiTech.Mirai.Http -Source https://packages.huajitech.net/nuget/early-access-nuget/v3/index.json
+  Install-Package HuajiTech.Mirai.Http -Source https://gitlab.example.com/api/v4/projects/18/packages/nuget/index.json
   ```
 
 - 在**程序包管理器控制台**中运行以下命令，更新包：
 
   ```powershell
-  Update-Package HuajiTech.Mirai.Http -Source https://packages.huajitech.net/nuget/early-access-nuget/v3/index.json
+  Update-Package HuajiTech.Mirai.Http -Source https://gitlab.example.com/api/v4/projects/18/packages/nuget/index.json
   ```
 
 
@@ -55,15 +55,8 @@
 
 ## 开发环境
 
-### 本项目环境
-
 - Visual Studio 2019
-- .NET 5
-
-### 推荐用户环境
-
-- .NET 5
-- 控制台应用
+- .NET Standard 2.1
 
 ## 联系
 
