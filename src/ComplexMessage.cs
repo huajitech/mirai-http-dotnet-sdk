@@ -77,22 +77,26 @@ namespace HuajiTech.Mirai.Http
         /// <inheritdoc/>
         public static ComplexMessage operator +(ComplexMessage left, MessageElement right)
         {
-            left.Add(right);
-            return left;
+            var complexMessage = new ComplexMessage(left) { right };
+            return complexMessage;
         }
 
         /// <inheritdoc/>
         public static ComplexMessage operator +(MessageElement left, ComplexMessage right)
         {
-            right.Insert(0, left);
-            return right;
+            var complexMessage = new ComplexMessage(right);
+            complexMessage.Insert(0, left);
+
+            return complexMessage;
         }
 
         /// <inheritdoc/>
         public static ComplexMessage operator +(ComplexMessage left, ComplexMessage right)
         {
-            left.AddRange(right);
-            return left;
+            var complexMessage = new ComplexMessage(left);
+            complexMessage.AddRange(right);
+
+            return complexMessage;
         }
 
         /// <summary>
