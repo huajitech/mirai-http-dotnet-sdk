@@ -55,7 +55,7 @@ namespace HuajiTech.Mirai.Http
         /// <summary>
         /// 成员角色 <see cref="string"/> 对 <see cref="MemberRole"/> 的字典
         /// </summary>
-        internal static readonly Dictionary<string, MemberRole> MemberRoleDictionary = new()
+        internal static readonly Dictionary<string, MemberRole> MemberRoleDictionary = new Dictionary<string, MemberRole>()
         {
             ["OWNER"] = MemberRole.Owner,
             ["ADMINISTRATOR"] = MemberRole.Administrator,

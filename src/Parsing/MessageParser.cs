@@ -103,7 +103,7 @@ namespace HuajiTech.Mirai.Http.Parsing
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="MentionAll"/> 实例
         /// </summary>
-        private static MentionAll ToMentionAll() => new();
+        private static MentionAll ToMentionAll() => new MentionAll();
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="PlainText"/> 实例

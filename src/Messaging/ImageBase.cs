@@ -39,7 +39,7 @@ namespace HuajiTech.Mirai.Http.Messaging
                     Id = str;
                     break;
                 case ElementSource.Uri:
-                    Uri = new(str);
+                    Uri = new Uri(str);
                     break;
                 case ElementSource.File:
                     FilePath = str;

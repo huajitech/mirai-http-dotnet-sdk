@@ -5,9 +5,9 @@ namespace HuajiTech.Mirai.Http.Interop.Events
     internal class GroupRecallEventData : RecallEventData
     {
         [JsonProperty(PropertyName = "group")]
-        public GroupInfo Group { get; init; }
+        public GroupInfo Group { get; set; }
 
         [JsonProperty(PropertyName = "operator")]
-        public MemberInfo Operator { get; init; }
+        public MemberInfo Operator { get; set; }
     }
 }

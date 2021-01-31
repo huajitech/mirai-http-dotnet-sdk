@@ -5,6 +5,6 @@ namespace HuajiTech.Mirai.Http.Interop
     internal class AuthInfo
     {
         [JsonProperty(PropertyName = "session")]
-        public string SessionKey { get; init; }
+        public string SessionKey { get; set; }
     }
 }

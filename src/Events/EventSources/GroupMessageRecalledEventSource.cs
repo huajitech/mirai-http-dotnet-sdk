@@ -21,7 +21,7 @@ namespace HuajiTech.Mirai.Http.Events
             var target = await group.GetMemberAsync(eventData.AuthorId);
             var message = await Message.TryGetMessageAsync(session.CurrentUser, eventData.MessageId);
 
-            return new(@operator, target, message);
+            return new GroupMessageRecalledEventArgs(@operator, target, message);
         }
 
         /// <summary>

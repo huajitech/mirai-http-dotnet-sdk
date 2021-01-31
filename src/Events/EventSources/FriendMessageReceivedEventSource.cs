@@ -21,7 +21,7 @@ namespace HuajiTech.Mirai.Http.Events
             var parser = new FriendMessageParser(session.CurrentUser);
             var message = await Message.ToMessageAsync(session, parser, messageData.MessageChain);
 
-            return new(friend, message);
+            return new FriendMessageReceivedEventArgs(friend, message);
         }
 
         /// <summary>

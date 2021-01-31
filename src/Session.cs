@@ -99,9 +99,9 @@ namespace HuajiTech.Mirai.Http
         {
             Settings = settings;
             BotNumber = number;
-            CurrentUser = new(this);
-            ApiEventHandler = new(this);
-            ApiManager = new(this);
+            CurrentUser = new CurrentUser(this);
+            ApiEventHandler = new ApiEventHandler(this);
+            ApiManager = new ApiManager(this);
         }
     }
 }

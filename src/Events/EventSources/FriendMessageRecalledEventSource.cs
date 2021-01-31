@@ -20,7 +20,7 @@ namespace HuajiTech.Mirai.Http.Events
             var target = await session.CurrentUser.GetUserAsync(eventData.AuthorId);
             var message = await Message.TryGetMessageAsync(session.CurrentUser, eventData.MessageId);
 
-            return new(@operator, target, message);
+            return new MessageRecalledEventArgs(@operator, target, message);
         }
 
         /// <summary>

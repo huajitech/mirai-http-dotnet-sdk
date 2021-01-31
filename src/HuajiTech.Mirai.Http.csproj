@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Authors>Ricky8955555</Authors>
     <Copyright>Copyright (C) 2020 HuajiTech, All Rights Reserved.</Copyright>
-    <VersionPrefix>0.12.4</VersionPrefix>
+    <VersionPrefix>0.13.0</VersionPrefix>
     <VersionSuffix>alpha</VersionSuffix>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>用于开发 mirai 应用基于 mirai-api-http 的 .NET SDK</Description>

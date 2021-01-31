@@ -2,7 +2,7 @@
 using HuajiTech.Mirai.Http.Interop;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Immutable;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebSocketSharp;
 
@@ -21,7 +21,7 @@ namespace HuajiTech.Mirai.Http.ApiHandlers
         /// <summary>
         /// 当前 <see cref="ApiEventHandler"/> 的 <see cref="IEventSource"/> 列表
         /// </summary>
-        private ImmutableList<IEventSource> EventSources = ImmutableList<IEventSource>.Empty;
+        private List<IEventSource> EventSources = new List<IEventSource>();
 
         /// <summary>
         /// 异步处理通过 Websocket 获取的数据
@@ -44,14 +44,14 @@ namespace HuajiTech.Mirai.Http.ApiHandlers
         /// 绑定指定 <see cref="IEventSource"/> 实例
         /// </summary>
         /// <param name="source">将要绑定的 <see cref="IEventSource"/> 实例</param>
-        public void Bind(params IEventSource[] source) => EventSources = ImmutableList.Create(source);
+        public void Bind(params IEventSource[] source) => EventSources = new List<IEventSource>(source);
 
         /// <summary>
         /// 异步监听 Websocket
         /// </summary>
         public async Task ListenAsync()
         {
-            Server = new(Session.Settings.WebsocketUri + "all?sessionKey=" + Session.SessionKey);
+            Server = new WebSocket(Session.Settings.WebsocketUri + "all?sessionKey=" + Session.SessionKey);
             Server.OnMessage += async (sender, e) => await EventHandlingAsync(e.Data);
             await Task.Run(Server.Connect);
         }

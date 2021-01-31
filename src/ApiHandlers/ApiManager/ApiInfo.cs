@@ -11,7 +11,7 @@ namespace HuajiTech.Mirai.Http.ApiHandlers
         /// API 版本
         /// </summary>
         [JsonProperty(PropertyName = "version")]
-        public string Version { get; internal init; }
+        public string Version { get; internal set; }
 
         internal ApiInfo()
         {

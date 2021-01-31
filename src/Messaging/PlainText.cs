@@ -21,7 +21,7 @@ namespace HuajiTech.Mirai.Http.Messaging
         /// <summary>
         /// 表示空 <see cref="PlainText"/>
         /// </summary>
-        public static readonly PlainText Empty = new(string.Empty);
+        public static readonly PlainText Empty = new PlainText(string.Empty);
 
         /// <inheritdoc/>
         public bool Equals(PlainText other) => other != null && other.Content == Content;

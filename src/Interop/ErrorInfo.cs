@@ -11,12 +11,12 @@ namespace HuajiTech.Mirai.Http.Interop
         /// 获取当前 <see cref="ErrorInfo"/> 实例的错误代码
         /// </summary>
         [JsonProperty(PropertyName = "code")]
-        public int ErrorCode { get; init; }
+        public int ErrorCode { get; set; }
 
         /// <summary>
         /// 获取当前 <see cref="ErrorInfo"/> 实例的消息
         /// </summary>
         [JsonProperty(PropertyName = "msg")]
-        public string Message { get; init; }
+        public string Message { get; set; }
     }
 }

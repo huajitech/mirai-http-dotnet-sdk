@@ -33,7 +33,7 @@ namespace HuajiTech.Mirai.Http
         public async Task<Message> SendAsync(ComplexMessage message)
         {
             var result = JObject.Parse((await InternalSendAsync(RemoveQuote(message).ToArray(), GetQuote(message))).CheckError());
-            return new(Session, GetSource(result.Value<int>("messageId")), message);
+            return new Message(Session, GetSource(result.Value<int>("messageId")), message);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace HuajiTech.Mirai.Http
         /// </summary>
         /// <param name="id">消息 ID</param>
         /// <returns>表示所发送消息来源的 <see cref="Source"/> 实例</returns>
-        private static Source GetSource(int id) => new(id, (int)TimestampUtilities.FromDateTime(DateTime.Now));
+        private static Source GetSource(int id) => new Source(id, (int)TimestampUtilities.FromDateTime(DateTime.Now));
 
         /// <summary>
         /// 获取所发送消息的引用
@@ -57,7 +57,7 @@ namespace HuajiTech.Mirai.Http
             }
             catch (InvalidOperationException)
             {
-                throw new(nameof(Quote));
+                throw new MessageFormatException(nameof(Quote));
             }
         }
 
@@ -65,7 +65,11 @@ namespace HuajiTech.Mirai.Http
         /// 移除消息中的 <see cref="Quote"/> 元素
         /// </summary>
         /// <param name="message">消息</param>
-        private static ComplexMessage RemoveQuote(ComplexMessage message) => message.RemoveAll(x => x is Quote);
+        private static ComplexMessage RemoveQuote(ComplexMessage message)
+        {
+            message.RemoveAll(x => x is Quote);
+            return message;
+        }
 
         /// <inheritdoc/>
         public bool Equals(Chat other) => other != null && other.GetType() == GetType() && other.Number == Number;

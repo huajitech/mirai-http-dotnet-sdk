@@ -77,7 +77,7 @@ namespace HuajiTech.Mirai.Http
         internal static async Task<Message> ToMessageAsync(Session session, MessageParser parser, JArray messageChain)
         {
             var elements = await Task.Run(() => parser.ParseMore(messageChain));
-            return new(session, elements.ToList());
+            return new Message(session, elements.ToList());
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace HuajiTech.Mirai.Http
         internal Message(Session session, List<MessageElement> content) : base(session)
         {
             Source = content.First() as Source ?? throw new InvalidOperationException();
-            Content = ComplexMessage.Create(content.Skip(1));
+            Content = new ComplexMessage(content.Skip(1));
         }
 
         /// <summary>

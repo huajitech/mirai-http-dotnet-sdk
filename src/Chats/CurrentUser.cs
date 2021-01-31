@@ -186,7 +186,7 @@ namespace HuajiTech.Mirai.Http
         /// </summary>
         /// <param name="group">群</param>
         /// <param name="role">成员角色</param>
-        internal Member GetMember(Group group, MemberRole role) => new(group, Number, Nickname, role);
+        internal Member GetMember(Group group, MemberRole role) => new Member(group, Number, Nickname, role);
 
         /// <summary>
         /// 异步获取指定号码的用户

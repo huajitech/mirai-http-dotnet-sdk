@@ -11,13 +11,13 @@ namespace HuajiTech.Mirai.Http.ApiHandlers
         /// 获取对应 <see cref="Session"/> 实例的缓存大小
         /// </summary>
         [JsonProperty(PropertyName = "cacheSize")]
-        public int CacheSize { get; internal init; }
+        public int CacheSize { get; internal set; }
 
         /// <summary>
         /// 获取对应 <see cref="Session"/> 实例是否启用 Websocket
         /// </summary>
         [JsonProperty(PropertyName = "enableWebsocket")]
-        public bool WebsocketEnabled { get; internal init; }
+        public bool WebsocketEnabled { get; internal set; }
 
         internal ApiConfig()
         {
