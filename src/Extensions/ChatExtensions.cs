@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai.Http
 {
@@ -13,6 +14,6 @@ namespace HuajiTech.Mirai.Http
         /// <param name="chat">目标聊天</param>
         /// <param name="message">要发送的消息</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public static Task<Message> SendAsync(this Chat chat, MessageElement message) => chat.SendAsync(new ComplexMessage(message));
+        public static Task<Message> SendAsync(this Chat chat, MessageElement message) => chat?.SendAsync(new ComplexMessage(message)) ?? throw new ArgumentNullException(nameof(chat));
     }
 }
