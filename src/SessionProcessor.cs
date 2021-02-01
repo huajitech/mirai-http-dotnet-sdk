@@ -8,7 +8,7 @@
         /// <summary>
         /// 获取当前 <see cref="SessionProcessor"/> 实例的 Session
         /// </summary>
-        internal Session Session { get; } = null;
+        internal Session Session { get; }
 
         /// <summary>
         /// 创建 <see cref="SessionProcessor"/> 实例

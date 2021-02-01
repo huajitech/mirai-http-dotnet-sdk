@@ -20,7 +20,7 @@ namespace HuajiTech.Mirai.Http.Parsing
         {
             "At" => ToMention(element),
             "Quote" => ToQuote(element),
-            _ => throw new InvalidOperationException()
+            _ => throw new InvalidMessageTypeException(element.Value<string>("type"))
         };
 
         /// <summary>
@@ -54,6 +54,6 @@ namespace HuajiTech.Mirai.Http.Parsing
         /// </summary>
         /// <param name="currentUser">指定 <see cref="GroupMessageParser"/> 实例所使用的当前用户</param>
         /// <param name="group">指定 <see cref="GroupMessageParser"/> 实例所使用的群</param>
-        internal GroupMessageParser(CurrentUser currentUser, Group group) : base(currentUser) => Group = group;
+        internal GroupMessageParser(CurrentUser currentUser, Group group) : base(currentUser) => Group = group ?? throw new ArgumentNullException(nameof(group));
     }
 }

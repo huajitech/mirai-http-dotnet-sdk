@@ -103,13 +103,13 @@ namespace HuajiTech.Mirai.Http
         /// 创建 <see cref="ComplexMessage"/> 实例
         /// </summary>
         /// <param name="elements">指定 <see cref="ComplexMessage"/> 实例的元素</param>
-        public ComplexMessage(IEnumerable<MessageElement> elements) => Elements = elements.ToList();
+        public ComplexMessage(IEnumerable<MessageElement> elements) => Elements = elements?.ToList();
 
         /// <summary>
         /// 创建 <see cref="ComplexMessage"/> 实例
         /// </summary>
         /// <param name="elements">指定 <see cref="ComplexMessage"/> 实例的元素</param>
-        public ComplexMessage(params MessageElement[] elements) => Elements = elements.ToList();
+        public ComplexMessage(params MessageElement[] elements) => Elements = elements?.ToList();
     }
 
     public partial class ComplexMessage : IList<MessageElement>, IReadOnlyList<MessageElement>

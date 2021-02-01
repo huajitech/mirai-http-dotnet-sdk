@@ -20,7 +20,7 @@ namespace HuajiTech.Mirai.Http.Parsing
         /// </summary>
         /// <param name="element">要解析的 Json 消息元素</param>
         /// <returns>解析 Json 消息元素后的 <see cref="MessageElement"/> 实例</returns>
-        protected virtual MessageElement ParseExt(JObject element) => throw new InvalidOperationException();
+        protected virtual MessageElement ParseExt(JObject element) => throw new InvalidMessageTypeException(element.Value<string>("type"));
 
         /// <summary>
         /// 将 Json 消息元素解析为 <see cref="MessageElement"/>
@@ -133,9 +133,6 @@ namespace HuajiTech.Mirai.Http.Parsing
         /// 创建 <see cref="MessageParser"/> 实例
         /// </summary>
         /// <param name="currentUser">指定 <see cref="MessageParser"/> 实例所使用的当前用户</param>
-        public MessageParser(CurrentUser currentUser)
-        {
-            CurrentUser = currentUser;
-        }
+        public MessageParser(CurrentUser currentUser) => CurrentUser = currentUser ?? throw new ArgumentNullException(nameof(currentUser));
     }
 }

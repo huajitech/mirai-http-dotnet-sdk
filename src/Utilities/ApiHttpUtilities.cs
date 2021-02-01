@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace HuajiTech.Mirai.Http.Utilities
@@ -14,6 +15,8 @@ namespace HuajiTech.Mirai.Http.Utilities
         /// <param name="uri">目标 URI</param>
         public static Task<string> GetAsync(string uri)
         {
+            uri = uri ?? throw new ArgumentNullException(nameof(uri));
+
             var client = new HttpClient();
 
             try
@@ -33,6 +36,8 @@ namespace HuajiTech.Mirai.Http.Utilities
         /// <param name="content">要 Post 的内容</param>
         public static async Task<string> PostAsync(string uri, string content)
         {
+            uri = uri ?? throw new ArgumentNullException(nameof(uri));
+
             var client = new HttpClient();
 
             try

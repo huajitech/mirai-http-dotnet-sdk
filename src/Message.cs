@@ -59,6 +59,8 @@ namespace HuajiTech.Mirai.Http
         /// <returns>指定的当前用户和 ID 的 <see cref="Message"/> 实例</returns>
         public static async Task<Message> GetMessageAsync(CurrentUser currentUser, int id)
         {
+            currentUser = currentUser ?? throw new ArgumentNullException(nameof(currentUser));
+
             var session = currentUser.Session;
             var result = (await ApiMethods.GetMessageAsync(session.Settings.HttpUri, session.SessionKey, id)).CheckError();
             var data = JObject.Parse(result)["data"].ToObject<MessageData>();
@@ -76,6 +78,10 @@ namespace HuajiTech.Mirai.Http
         /// <returns></returns>
         internal static async Task<Message> ToMessageAsync(Session session, MessageParser parser, JArray messageChain)
         {
+            session = session ?? throw new ArgumentNullException(nameof(session));
+            parser = parser ?? throw new ArgumentNullException(nameof(parser));
+            messageChain = messageChain ?? throw new ArgumentNullException(nameof(messageChain));
+
             var elements = await Task.Run(() => parser.ParseMore(messageChain));
             return new Message(session, elements.ToList());
         }
@@ -88,6 +94,8 @@ namespace HuajiTech.Mirai.Http
         /// <returns>成功获取则返回指定的当前用户和 ID 的 <see cref="Message"/> 实例，否则返回 null</returns>
         internal static async Task<Message> TryGetMessageAsync(CurrentUser currentUser, int id)
         {
+            currentUser = currentUser ?? throw new ArgumentNullException(nameof(currentUser));
+
             try
             {
                 return await GetMessageAsync(currentUser, id);
@@ -108,7 +116,9 @@ namespace HuajiTech.Mirai.Http
         /// <param name="content">指定 <see cref="Message"/> 实例的完整内容</param>
         internal Message(Session session, List<MessageElement> content) : base(session)
         {
-            Source = content.First() as Source ?? throw new InvalidOperationException();
+            content = content ?? throw new ArgumentNullException(nameof(content));
+
+            Source = content.First() as Source ?? throw new MessageFormatException(nameof(Messaging.Source));
             Content = new ComplexMessage(content.Skip(1));
         }
 
@@ -120,8 +130,8 @@ namespace HuajiTech.Mirai.Http
         /// <param name="content">指定 <see cref="Message"/> 实例的内容</param>
         internal Message(Session session, Source source, ComplexMessage content) : base(session)
         {
-            Source = source;
-            Content = content;
+            Source = source ?? throw new ArgumentNullException(nameof(source));
+            Content = content ?? throw new ArgumentNullException(nameof(content));
         }
     }
 }

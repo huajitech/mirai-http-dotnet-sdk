@@ -79,7 +79,16 @@ namespace HuajiTech.Mirai.Http {
         }
         
         /// <summary>
-        ///   查找类似 消息格式错误，导致错误的消息元素：{0} 的本地化字符串。
+        ///   查找类似 无效的消息类型：{0} 的本地化字符串。
+        /// </summary>
+        internal static string InvalidMessageType {
+            get {
+                return ResourceManager.GetString("InvalidMessageType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 消息格式错误，导致错误的消息元素类型：{0} 的本地化字符串。
         /// </summary>
         internal static string UnexpectedMessageFormat {
             get {

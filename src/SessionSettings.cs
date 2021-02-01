@@ -36,6 +36,8 @@ namespace HuajiTech.Mirai.Http
         /// <param name="authKey">指定 <see cref="SessionSettings"/> 实例的 Auth Key</param>
         public SessionSettings(string address, int port, string authKey)
         {
+            address = address ?? throw new ArgumentNullException(nameof(address));
+
             HttpUri = new UriBuilder(Uri.UriSchemeHttp, address, port).Uri.AbsoluteUri;
             WebsocketUri = new UriBuilder(UriSchemeWebsocket, address, port).Uri.AbsoluteUri;
             AuthKey = authKey ?? throw new ArgumentNullException(nameof(authKey));

@@ -152,6 +152,7 @@ namespace HuajiTech.Mirai.Http
             else
             {
                 var result = (await GetGroupListAsync(false)).SingleOrDefault(x => x.Number == number);
+
                 if (result == null)
                 {
                     return (await GetGroupListAsync(true)).SingleOrDefault(x => x.Number == number) ?? throw new ChatNotFoundException(typeof(Group), number);

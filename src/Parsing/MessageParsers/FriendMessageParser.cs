@@ -11,7 +11,7 @@ namespace HuajiTech.Mirai.Http.Parsing
     /// </summary>
     internal class FriendMessageParser : MessageParser
     {
-        protected override MessageElement ParseExt(JObject element) => element.Value<string>("type") == "Quote" ? ToQuote(element) : throw new InvalidOperationException();
+        protected override MessageElement ParseExt(JObject element) => element.Value<string>("type") == "Quote" ? ToQuote(element) : throw new InvalidMessageTypeException(element.Value<string>("type"));
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Quote"/> 实例

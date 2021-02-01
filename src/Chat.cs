@@ -32,6 +32,8 @@ namespace HuajiTech.Mirai.Http
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
         public async Task<Message> SendAsync(ComplexMessage message)
         {
+            message = message ?? throw new ArgumentNullException(nameof(message));
+
             var result = JObject.Parse((await InternalSendAsync(RemoveQuote(message).ToArray(), GetQuote(message))).CheckError());
             return new Message(Session, GetSource(result.Value<int>("messageId")), message);
         }
@@ -50,6 +52,8 @@ namespace HuajiTech.Mirai.Http
         /// <returns>所发送消息需引用的消息 ID</returns>
         private static int? GetQuote(ComplexMessage message)
         {
+            message = message ?? throw new ArgumentNullException(nameof(message));
+
             try
             {
                 var quote = message.OfType<Quote>().SingleOrDefault();
@@ -67,6 +71,8 @@ namespace HuajiTech.Mirai.Http
         /// <param name="message">消息</param>
         private static ComplexMessage RemoveQuote(ComplexMessage message)
         {
+            message = message ?? throw new ArgumentNullException(nameof(message));
+
             message.RemoveAll(x => x is Quote);
             return message;
         }

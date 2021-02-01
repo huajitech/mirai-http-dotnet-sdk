@@ -47,6 +47,9 @@ namespace HuajiTech.Mirai.Http
         /// <param name="path">文件路径</param>
         public static async Task SaveToAsync(this IMediaElement mediaElement, string path)
         {
+            mediaElement = mediaElement ?? throw new ArgumentNullException(nameof(mediaElement));
+            path = path ?? throw new ArgumentNullException(nameof(path));
+
             var uri = mediaElement.Uri ?? throw new NotSupportedException();
 
             var client = new HttpClient();

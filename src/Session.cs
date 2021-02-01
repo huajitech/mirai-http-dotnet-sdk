@@ -97,7 +97,7 @@ namespace HuajiTech.Mirai.Http
         /// <param name="number">指定 <see cref="Session"/> 实例的机器人号码</param>
         public Session(SessionSettings settings, long number)
         {
-            Settings = settings;
+            Settings = settings ?? throw new ArgumentNullException(nameof(settings));
             BotNumber = number;
             CurrentUser = new CurrentUser(this);
             ApiEventHandler = new ApiEventHandler(this);
