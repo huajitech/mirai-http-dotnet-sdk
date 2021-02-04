@@ -6,7 +6,7 @@
     <Nullable>disable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Authors>Ricky8955555</Authors>
-    <Copyright>Copyright (C) 2020 HuajiTech, All Rights Reserved.</Copyright>
+    <Copyright>Copyright (C) 2020-2021 HuajiTech</Copyright>
     <VersionPrefix>0.13.6</VersionPrefix>
     <VersionSuffix>alpha</VersionSuffix>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
