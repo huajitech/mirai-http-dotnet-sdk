@@ -127,7 +127,7 @@ namespace HuajiTech.Mirai.Http
                 throw new MessageFormatException(nameof(Messaging.Source));
             }
 
-            Content = new ComplexMessage(content.Skip(1));
+            Content = new ComplexMessage(content.SkipWhile(x => x is Source));
             FullContent = new ComplexMessage(content);
         }
 
