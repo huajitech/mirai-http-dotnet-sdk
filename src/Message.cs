@@ -117,17 +117,18 @@ namespace HuajiTech.Mirai.Http
         internal Message(Session session, List<MessageElement> content) : base(session)
         {
             content = content ?? throw new ArgumentNullException(nameof(content));
+            var sources = content.OfType<Source>();
 
             try
             {
-                Source = (Source)content.SingleOrDefault(x => x is Source) ?? throw new MessageFormatException(nameof(Messaging.Source));
+                Source = sources.SingleOrDefault() ?? throw new MessageFormatException(nameof(Messaging.Source));
             }
             catch (InvalidOperationException)
             {
                 throw new MessageFormatException(nameof(Messaging.Source));
             }
 
-            Content = new ComplexMessage(content.SkipWhile(x => x is Source));
+            Content = new ComplexMessage(content.Except(sources));
             FullContent = new ComplexMessage(content);
         }
 

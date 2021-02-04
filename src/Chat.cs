@@ -57,7 +57,7 @@ namespace HuajiTech.Mirai.Http
             try
             {
                 var quote = message.OfType<Quote>().SingleOrDefault();
-                return (quote == null || message.FirstOrDefault() == quote) ? quote?.Message.Id : throw new MessageFormatException(nameof(Quote));
+                return quote?.Message.Id;
             }
             catch (InvalidOperationException)
             {
