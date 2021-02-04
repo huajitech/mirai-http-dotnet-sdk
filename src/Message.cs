@@ -39,7 +39,7 @@ namespace HuajiTech.Mirai.Http
         /// <summary>
         /// 获取当前 <see cref="Message"/> 实例的详细内容
         /// </summary>
-        internal ComplexMessage FullContent => Source + Content;
+        internal ComplexMessage FullContent { get; }
 
         /// <summary>
         /// 异步撤回指定 ID 的 <see cref="Message"/> 实例
@@ -118,8 +118,17 @@ namespace HuajiTech.Mirai.Http
         {
             content = content ?? throw new ArgumentNullException(nameof(content));
 
-            Source = content.First() as Source ?? throw new MessageFormatException(nameof(Messaging.Source));
+            try
+            {
+                Source = (Source)content.SingleOrDefault(x => x is Source) ?? throw new MessageFormatException(nameof(Messaging.Source));
+            }
+            catch (InvalidOperationException)
+            {
+                throw new MessageFormatException(nameof(Messaging.Source));
+            }
+
             Content = new ComplexMessage(content.Skip(1));
+            FullContent = new ComplexMessage(content);
         }
 
         /// <summary>
@@ -132,6 +141,7 @@ namespace HuajiTech.Mirai.Http
         {
             Source = source ?? throw new ArgumentNullException(nameof(source));
             Content = content ?? throw new ArgumentNullException(nameof(content));
+            FullContent = Source + Content;
         }
     }
 }
