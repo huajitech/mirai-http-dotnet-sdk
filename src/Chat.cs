@@ -71,7 +71,7 @@ namespace HuajiTech.Mirai.Http
         /// <param name="message">消息</param>
         private static ComplexMessage RemoveQuote(ComplexMessage message)
         {
-            message = message ?? throw new ArgumentNullException(nameof(message));
+            message = new ComplexMessage(message ?? throw new ArgumentNullException(nameof(message)));
 
             message.RemoveAll(x => x is Quote);
             return message;

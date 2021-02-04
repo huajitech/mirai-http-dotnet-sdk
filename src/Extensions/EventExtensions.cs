@@ -23,7 +23,7 @@ namespace HuajiTech.Mirai.Http
         /// <param name="e">指定 <see cref="MessageReceivedEventArgs"/> 实例</param>
         /// <param name="message">要发送的消息</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public static Task<Message> ReplyAsync(this MessageReceivedEventArgs e, MessageElement message) => e.ReplyAsync(new ComplexMessage(message ?? throw new ArgumentNullException(nameof(message))));
+        public static Task<Message> ReplyAsync(this MessageReceivedEventArgs e, MessageElement message) => e?.ReplyAsync(new ComplexMessage(message ?? throw new ArgumentNullException(nameof(message))));
 
         /// <summary>
         /// 引用回复当前 <see cref="MessageReceivedEventArgs"/> 实例
@@ -39,7 +39,7 @@ namespace HuajiTech.Mirai.Http
         /// <param name="e">指定 <see cref="MessageReceivedEventArgs"/> 实例</param>
         /// <param name="message">要发送的消息</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        public static Task<Message> QuoteReplyAsync(this MessageReceivedEventArgs e, MessageElement message) => e.QuoteReplyAsync(new ComplexMessage(message ?? throw new ArgumentNullException(nameof(message)))) ?? throw new ArgumentNullException(nameof(e));
+        public static Task<Message> QuoteReplyAsync(this MessageReceivedEventArgs e, MessageElement message) => e?.QuoteReplyAsync(new ComplexMessage(message ?? throw new ArgumentNullException(nameof(message)))) ?? throw new ArgumentNullException(nameof(e));
 
         /// <summary>
         /// 获取回复消息
