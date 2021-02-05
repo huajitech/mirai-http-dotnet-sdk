@@ -8,6 +8,8 @@ namespace HuajiTech.Mirai.Http
     /// </summary>
     public class User : Chat
     {
+        private protected override Task<string> InternalSendAsync(MessageElement[] message, int? quoteId) => throw new NotSupportedException();
+
         /// <summary>
         /// 创建 <see cref="User"/> 实例
         /// </summary>
@@ -16,7 +18,5 @@ namespace HuajiTech.Mirai.Http
         internal User(Session session, long number) : base(session, number)
         {
         }
-
-        private protected override Task<string> InternalSendAsync(MessageElement[] message, int? quoteId) => throw new NotSupportedException();
     }
 }
