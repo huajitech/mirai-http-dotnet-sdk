@@ -11,23 +11,7 @@ namespace HuajiTech.Mirai.Http.Parsing
     /// </summary>
     internal class GroupMessageParser : MessageParser
     {
-        /// <summary>
-        /// 当前 <see cref="GroupMessageParser"/> 实例的群
-        /// </summary>
-        private Group Group { get; }
-
-        protected override MessageElement ParseExt(JObject element) => element.Value<string>("type") switch
-        {
-            "At" => ToMention(element),
-            "Quote" => ToQuote(element),
-            _ => throw new InvalidMessageTypeException(element.Value<string>("type"))
-        };
-
-        /// <summary>
-        /// 从 Json 中提取信息，并创建 <see cref="Mention"/> 实例
-        /// </summary>
-        /// <param name="element">以 Json 表达的提及</param>
-        private Mention ToMention(JObject element) => new Mention(Group.GetMemberAsync(element.Value<long>("target")).Result, element.Value<string>("display").TrimStart('@'));
+        protected override MessageElement ParseExt(JObject element) => element.Value<string>("type") == "Quote" ? ToQuote(element) : throw new InvalidMessageTypeException(element.Value<string>("type"));
 
         /// <summary>
         /// 从 Json 中提取信息，并创建 <see cref="Quote"/> 实例
@@ -37,23 +21,29 @@ namespace HuajiTech.Mirai.Http.Parsing
         {
             var info = element.ToObject<QuoteInfo>();
             var message = new Message(CurrentUser.Session, ParseMore(info.Origin).ToList());
-            var member = Group.GetMemberAsync(info.SenderId).Result;
 
-            return new Quote(message, member, Group);
+            try
+            {
+                var target = CurrentUser.GetGroupAsync(info.TargetId).Result;
+                var sender = target.GetMemberAsync(info.SenderId).Result;
+
+                return new Quote(message, sender, target);
+            }
+            catch (AggregateException)
+            {
+                var target = new Group(CurrentUser, info.TargetId, null, default);
+                var sender = new Member(target, info.SenderId, null, default);
+
+                return new Quote(message, sender, target);
+            }
         }
 
         /// <summary>
         /// 创建 <see cref="GroupMessageParser"/> 实例
         /// </summary>
         /// <param name="currentUser">指定 <see cref="GroupMessageParser"/> 实例所使用的当前用户</param>
-        /// <param name="number">指定 <see cref="GroupMessageParser"/> 实例所使用的群号码</param>
-        internal GroupMessageParser(CurrentUser currentUser, long number) : base(currentUser) => Group = CurrentUser.GetGroupAsync(number).Result;
-
-        /// <summary>
-        /// 创建 <see cref="GroupMessageParser"/> 实例
-        /// </summary>
-        /// <param name="currentUser">指定 <see cref="GroupMessageParser"/> 实例所使用的当前用户</param>
-        /// <param name="group">指定 <see cref="GroupMessageParser"/> 实例所使用的群</param>
-        internal GroupMessageParser(CurrentUser currentUser, Group group) : base(currentUser) => Group = group ?? throw new ArgumentNullException(nameof(group));
+        internal GroupMessageParser(CurrentUser currentUser) : base(currentUser)
+        {
+        }
     }
 }

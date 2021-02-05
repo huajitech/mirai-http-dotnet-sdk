@@ -14,7 +14,7 @@ namespace HuajiTech.Mirai.Http.Messaging
         /// 获取当前 <see cref="Mention"/> 实例的目标
         /// </summary>
         [JsonIgnore]
-        public Member Target { get; }
+        public User Target { get; }
 
         /// <summary>
         /// 获取当前 <see cref="Mention"/> 实例的显示名称
@@ -38,16 +38,16 @@ namespace HuajiTech.Mirai.Http.Messaging
         /// 创建 <see cref="Mention"/> 实例
         /// </summary>
         /// <param name="member">指定 <see cref="Mention"/> 实例的成员</param>
-        public Mention(Member member) => Target = member;
+        public Mention(User member) => Target = member;
 
         /// <summary>
         /// 创建 <see cref="Mention"/> 实例
         /// </summary>
-        /// <param name="member">指定 <see cref="Mention"/> 实例的成员</param>
+        /// <param name="user">指定 <see cref="Mention"/> 实例的成员</param>
         /// <param name="displayName">指定 <see cref="Mention"/> 实例的显示名称</param>
-        public Mention(Member member, string displayName)
+        public Mention(User user, string displayName)
         {
-            Target = member;
+            Target = user;
             DisplayName = displayName;
         }
     }

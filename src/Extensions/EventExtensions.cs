@@ -47,6 +47,6 @@ namespace HuajiTech.Mirai.Http
         /// <param name="e">指定 <see cref="MessageReceivedEventArgs"/> 实例</param>
         /// <param name="message">要发送的消息</param>
         /// <returns>所发送消息的 <see cref="Message"/> 实例</returns>
-        private static ComplexMessage GetReplyMessage(MessageReceivedEventArgs e, ComplexMessage message) => (e?.Source ?? throw new ArgumentNullException(nameof(e))) is Group ? (e.Sender as Member).Mention() + message : message;
+        private static ComplexMessage GetReplyMessage(MessageReceivedEventArgs e, ComplexMessage message) => (e?.Source ?? throw new ArgumentNullException(nameof(e))) is Group ? e.Sender.Mention() + message : message;
     }
 }

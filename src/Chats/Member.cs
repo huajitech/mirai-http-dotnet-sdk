@@ -130,6 +130,11 @@ namespace HuajiTech.Mirai.Http
     public enum MemberRole
     {
         /// <summary>
+        /// 未知
+        /// </summary>
+        Unknown = default,
+
+        /// <summary>
         /// 群主
         /// </summary>
         Owner,

@@ -1,9 +1,12 @@
-﻿namespace HuajiTech.Mirai.Http
+﻿using System;
+using System.Threading.Tasks;
+
+namespace HuajiTech.Mirai.Http
 {
     /// <summary>
     /// 定义用户
     /// </summary>
-    public abstract class User : Chat
+    public class User : Chat
     {
         /// <summary>
         /// 创建 <see cref="User"/> 实例
@@ -13,5 +16,7 @@
         internal User(Session session, long number) : base(session, number)
         {
         }
+
+        private protected override Task<string> InternalSendAsync(MessageElement[] message, int? quoteId) => throw new NotSupportedException();
     }
 }

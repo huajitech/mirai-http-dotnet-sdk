@@ -18,7 +18,7 @@ namespace HuajiTech.Mirai.Http.Events
         {
             var messageData = JsonConvert.DeserializeObject<MessageData>(data);
             var member = await messageData.Sender.ToObject<MemberInfo>().GetMemberAsync(session.CurrentUser);
-            var parser = new GroupMessageParser(session.CurrentUser, member.Group);
+            var parser = new GroupMessageParser(session.CurrentUser);
             var message = await Message.ToMessageAsync(session, parser, messageData.MessageChain);
 
             return new GroupMessageReceivedEventArgs(member, message);

@@ -40,6 +40,7 @@ namespace HuajiTech.Mirai.Http.Parsing
             "Poke" => ToPoke(element),
             "Voice" => ToVoice(element),
             "Xml" => ToXml(element),
+            "At" => ToMention(element),
             _ => ParseExt(element)
         };
 
@@ -59,7 +60,7 @@ namespace HuajiTech.Mirai.Http.Parsing
         public static MessageParser GetParser(CurrentUser currentUser, MessageData data) => data.Type switch
         {
             "FriendMessage" => new FriendMessageParser(currentUser),
-            "GroupMessage" => new GroupMessageParser(currentUser, data.Sender.ToObject<MemberInfo>().Group.Id),
+            "GroupMessage" => new GroupMessageParser(currentUser),
             "TempMessage" => new MemberMessageParser(currentUser),
             _ => null
         };
@@ -128,6 +129,12 @@ namespace HuajiTech.Mirai.Http.Parsing
         /// </summary>
         /// <param name="element">以 Json 表达的 Xml 消息</param>
         private static Xml ToXml(JObject element) => element.ToObject<Xml>();
+
+        /// <summary>
+        /// 从 Json 中提取信息，并创建 <see cref="Mention"/> 实例
+        /// </summary>
+        /// <param name="element">以 Json 表达的提及</param>
+        private Mention ToMention(JObject element) => new Mention(new User(CurrentUser.Session, element.Value<long>("target")), element.Value<string>("display").TrimStart('@'));
 
         /// <summary>
         /// 创建 <see cref="MessageParser"/> 实例
